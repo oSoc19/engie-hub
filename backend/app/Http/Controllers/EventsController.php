@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
+use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Http\Resources\Participant as ParticipantResource;
+use App\Http\Resources\Event as EventResource;
 
-class ParticipantsController extends Controller
+
+class EventsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,29 @@ class ParticipantsController extends Controller
      */
     public function index()
     {
-        $participants = Participant::paginate(5);
-        return ParticipantResource::collection($participants);
+        $events = Event::paginate(15);
+        return EventResource::collection($events);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $event = new Event();
+        $event->name = $request->input('name');
+        $event->type = $request->input('type');
+        $event->date = $request->input('date');
+        $event->city = $request->input('city');
+        $event->total_created_energy = $request->input('total_created_energy');
+        $event->amount_of_people = $request->input('amount_of_people');
+
+        if($event->save()) {
+            return new EventResource($event);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -28,14 +48,7 @@ class ParticipantsController extends Controller
      */
     public function store(Request $request)
     {
-        $participant = new Participant();
-        $participant->firstname = $request->input('firstname');
-        $participant->lastname = $request->input('lastname');
-        $participant->email = $request->input('email');
-
-        if($participant->save()) {
-            return new ParticipantResource($participant);
-        }
+        //
     }
 
     /**
@@ -46,8 +59,8 @@ class ParticipantsController extends Controller
      */
     public function show($id)
     {
-        $participant = Participant::findOrFail($id);
-        return new ParticipantResource($participant);
+        $event = Event::FindOrFail($id);
+        return new EventResource($event);
     }
 
     /**
