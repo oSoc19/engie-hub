@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Http\Controllers\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,16 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
+//PARTICIPANT ROUTES
 Route::get('participants', 'ParticipantsController@index');
-Route::post('participant', 'ParticipantsController@store');
+Route::post('insertparticipant', 'ParticipantsController@store');
 Route::get('participant/{id}', 'ParticipantsController@show');
+
+//EVENT ROUTES
+Route::get('events', 'EventsController@index');
+Route::post('insertevent', 'EventsController@store');
+Route::get('event/{id}', 'EventsController@show');
+
+
 
 
