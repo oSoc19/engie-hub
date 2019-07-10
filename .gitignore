@@ -1,8 +1,9 @@
 /node_modules
-/backend/public/hot
-/backend/public/storage
-/backend/storage/*.key
-/backend/vendor
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/bootstrap
 .env
 .phpunit.result.cache
 Homestead.json
