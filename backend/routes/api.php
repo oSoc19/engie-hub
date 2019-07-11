@@ -28,6 +28,7 @@ Route::get('events', 'EventsController@index');
 Route::post('insertevent', 'EventsController@store');
 Route::get('event/{id}', 'EventsController@show');
 
+Route::post('particle', 'ParticleController@store');
 
 
 
