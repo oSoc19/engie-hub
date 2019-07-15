@@ -12,6 +12,7 @@ import App from './App.vue';
 Vue.use(VueAxios, axios);
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import SideBar from './components/SideBar.vue';
 
 const routes = [
   {
@@ -19,9 +20,9 @@ const routes = [
       path: '/',
       component: ExampleComponent
   },{
-      name: 'welcome',
+      name: 'sidebar',
       path: '/welcome',
-      component: ExampleComponent
+      component: SideBar
   }
 ];
 
