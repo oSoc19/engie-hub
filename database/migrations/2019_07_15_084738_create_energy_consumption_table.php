@@ -17,7 +17,6 @@ class CreateEnergyConsumptionTable extends Migration
             $table->bigIncrements('id');
             $table->string('item');
             $table->integer('avg_power');
-            $table->integer('duration');
             $table->timestamps();
         });
     }

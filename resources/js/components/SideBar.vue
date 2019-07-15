@@ -7,7 +7,7 @@
             <p>
               <div>Today this place </div>
               <div>generated</div><br>
-              <h2><img src="../../img/energy.svg" width="40" height="40"/><b>{{todayEnergy}}kWh</b></h2>
+              <h2><img src="../../img/energy.svg" width="40" height="40"/><b>{{todayEnergy}}joules</b></h2>
               <br>
               <p id="rcorners" align="center"><img src="../../img/washing-machine.png" width="30" height="40" /></p><br>
               <div>Which can be used to</div>
@@ -17,7 +17,7 @@
             <br><hr><br>
             <p>
               Yesterday<br>
-              <h4><img src="../../img/energy.svg" width="30" height="30"/><b>{{yesterdayEnergy}}kWh</b></h4><br>
+              <h4><img src="../../img/energy.svg" width="30" height="30"/><b>{{yesterdayEnergy}}joules</b></h4><br>
               was generated
             </p>
           </div>
@@ -32,8 +32,8 @@
         name: 'SideBar',
         data() {
             return {
-              todayEnergy: 336,
-              yesterdayEnergy: 456
+              todayEnergy: "336.050",
+              yesterdayEnergy: "456.232"
             }
         },
         created() {
