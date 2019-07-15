@@ -14,6 +14,5 @@
 Route::get('/{any?}', function (){
     return view('example');
 })->where('any', '[\/\w]*');
-/*Route::get('/welcome', function () {
-    return view('welcome');
-});*/
+
+});
