@@ -2,9 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="https://assets.design.digital.engie.com/brand/favicon.ico">
+        <title>Engie Hub</title>
+        <!-- ENGIE core CSS -->
+        <link href="https://assets.design.digital.engie.com/library/latest/css/nj-components.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
         <link href="https://assets.design.digital.engie.com/library/latest/css/nj-components.min.css" rel="stylesheet">
         <link href="cover.css" rel="stylesheet">

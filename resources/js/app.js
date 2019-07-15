@@ -11,15 +11,8 @@ import axios from 'axios';
 import App from './App.vue';
 Vue.use(VueAxios, axios);
 
-import GeneralScreen from './components/GeneralScreen.vue';
-import Sidebar from './components/Sidebar.vue';
-
-export default {
-    components: {
-        GeneralScreen,
-        SideBar
-    },
-}
+import ExampleComponent from './components/ExampleComponent.vue';
+import SideBar from './components/SideBar.vue';
 
 const routes = [
   {
@@ -30,6 +23,7 @@ const routes = [
       name: 'welcome',
       path: '/general',
       component: GeneralScreen
+
   }
 ];
 
