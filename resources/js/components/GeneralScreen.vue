@@ -1,13 +1,19 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+            <div class="col-md-8 order-md-1">
+                <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+                <p>
+                    THis is it
+                </p>
+                <div class="d-flex justify-content-center align-items-center pb-7">
+                    <p>
+                        what's generating now
+                    </p>
+                    <p>
+                        21 kWh
+                    </p>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
                 </div>
             </div>
         </div>
@@ -16,9 +22,10 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        name: 'GeneralScreen'
+        // mounted() {
+        //     console.log('Component mounted.')
+        // }
 
-    }
+    };
 </script>

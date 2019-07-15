@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class ParticleController extends Controller
 {
+    private $counter;
     public function store(Request $request) {
-    file_put_contents ( 'tmp/ngroktest.log', json_encode($request));
-    return;
+        $this->counter += 1;
+    return $this->counter;
     }
 }
