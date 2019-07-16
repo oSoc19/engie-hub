@@ -1747,20 +1747,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
     return {
-      energy: 250
+      energy: 3,
+      nextTreshold: 25,
+      previousThreshold: 0,
+      percentageCompleted: 25,
+      idOfNextGoal: 0,
+      show: false
     };
   },
-  created: function created() {//this.getEnergy()
+  created: function created() {//energy of yesterday
+    //this.getEnergy()
   },
   methods: {
-    getEnergy: function getEnergy() {//TODO api call to get information about energy generated
+    getEnergy: function getEnergy() {
+      var channel = pusher.subscribe('particle-channel');
+      channel.bind('particle-data', function (data) {
+        this.energy++;
+        console.log(this.energy);
+        calculatePercentage();
+      }); //TODO api call to get information about energy generated
+    },
+    calculatePercentage: function calculatePercentage() {
+      var percentage = this.nextThreshold / this.energy;
+
+      if (percentage < 1) {
+        this.percentageCompleted = percentage * 100;
+      } else {
+        lottieDisplay("path");
+        this.previousThreshold = this.nextThreshold;
+        this.idOfNextGoal++; //get nextThreshold with the new itemId
+      }
+    },
+    timer: function timer() {
+      var sec = 60;
+      var timer = setInterval(function () {
+        sec--;
+
+        if (sec < 0) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    },
+    lottieDisplay: function lottieDisplay(path) {
+      var svgContainer = document.getElementById('svgContainer');
+      var animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: 'svg',
+        loop: false,
+        path: path
+      });
+    },
+    updateProgressBar: function updateProgressBar() {
+      var percentageCompleted = this.percentageCompleted + "%";
+      $('.nj-progress__bar').css({
+        'width': percentageCompleted,
+        'aria-valuenow': percentageCompleted,
+        'aria-valuemin': 0,
+        'aria-valuemax': 100
+      });
     }
   }
-});
+}); //PUSHER CODE
+// var counter = 0;
+// var channel = pusher.subscribe('particle-channel');
+// channel.bind('particle-data', function(data) {
+//     energy
+//     counter++;
+//     console.log(counter);
+// });
 
 /***/ }),
 
@@ -6292,7 +6354,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-bottom: 30%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.nj-progress__bar {\n  width: auto;\n  aria-valuenow: 25;\n  aria-valuemin: 0;\n  aria-valuemax: 100;\n}\n", ""]);
 
 // exports
 
@@ -37896,7 +37958,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _c(
       "div",
       {
@@ -37923,7 +37985,28 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex nj-progress nj-progress--cerise mb-4" },
+            [
+              _c("div", {
+                staticClass: "nj-progress__bar",
+                staticStyle: { width: "75%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuenow": "75",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "nj-progress__text" }, [
+                _vm._v(_vm._s(_vm.percentageCompleted) + "%")
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("sideBar")

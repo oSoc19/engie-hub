@@ -13,7 +13,7 @@
                     <h1>{{energy}} joules</h1>
                 </div>
                 <div class="d-flex nj-progress nj-progress--cerise mb-4">
-                    <div class="nj-progress__bar" role="progressbar" style="width: "{{percentageCompleted}}"%" aria-valuenow={{percentageCompleted}} aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="nj-progress__bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     <div class="nj-progress__text">{{percentageCompleted}}%</div>
                 </div>
             </div>
@@ -27,11 +27,12 @@
         name: 'GeneralScreen',
         data() {
             return {
-              energy: 0,
+              energy: 3,
               nextTreshold: 25,
               previousThreshold: 0,
-              percentageCompleted: 0,
-              idOfNextGoal: 0
+              percentageCompleted: 25,
+              idOfNextGoal: 0,
+              show: false
             }
         },
         created() {
@@ -50,12 +51,12 @@
               //TODO api call to get information about energy generated
           },
 
-            calculatePercentage: function() {
+            calculatePercentage: function () {
                 let percentage = this.nextThreshold / this.energy;
                 if(percentage<1) {
                     this.percentageCompleted = percentage*100;
                 } else {
-                    //TODO animation with lottie
+                    lottieDisplay("path");
                     this.previousThreshold = this.nextThreshold;
                     this.idOfNextGoal ++;
                     //get nextThreshold with the new itemId
@@ -72,22 +73,26 @@
                 }, 1000);
             },
 
-            lottieDisplay: function() {
+            lottieDisplay: function (path) {
                 let svgContainer = document.getElementById('svgContainer');
                 let animItem = bodymovin.loadAnimation({
                     wrapper: svgContainer,
                     animType: 'svg',
                     loop: false,
-                    path: ''
+                    path: path
                 });
+            },
+
+            updateProgressBar: function (){
+              let percentageCompleted = this.percentageCompleted + "%";
+              $('.nj-progress__bar').css({'width': percentageCompleted, 'aria-valuenow':percentageCompleted, 'aria-valuemin':0, 'aria-valuemax':100});
             }
+
         }
 
     };
 
     //PUSHER CODE
-    Pusher.logToConsole = true;
-
     // var counter = 0;
     // var channel = pusher.subscribe('particle-channel');
     // channel.bind('particle-data', function(data) {
@@ -120,5 +125,22 @@ body {
 .spark {
   height: 100px;
   width: 15%;
+}
+
+.lottie-popup {
+    z-index: 1;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.nj-progress__bar {
+  width: auto;
+  aria-valuenow: 25;
+  aria-valuemin: 0;
+  aria-valuemax: 100;
 }
 </style>

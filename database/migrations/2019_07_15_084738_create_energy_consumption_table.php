@@ -19,7 +19,8 @@ class CreateEnergyConsumptionTable extends Migration
             $table->integer('avg_power');
             $table->integer('duration');
             $table->integer('threshold');
-            $table->string('emblem_path')
+            $table->string('emblem_path');
+            $table->string('lottie_path')
             $table->string('text');
             $table->timestamps();
         });
