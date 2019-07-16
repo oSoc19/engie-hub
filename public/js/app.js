@@ -6292,7 +6292,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-bottom: 30%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: gray;\n  background-color: gray;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n", ""]);
+exports.push([module.i, "\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-bottom: 30%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n", ""]);
 
 // exports
 
