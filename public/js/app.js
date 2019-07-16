@@ -1798,6 +1798,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SideBar',
   data: function data() {
@@ -37967,91 +37993,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-4", attrs: { id: "sidebar", align: "center" } },
-    [
-      _c("div", { staticClass: "nj-card mb-3" }, [
-        _c("div", { staticClass: "nj-card__body" }, [
-          _c("p"),
-          _c("div", [_vm._v("Today this place ")]),
-          _vm._v(" "),
-          _c("div", [_vm._v("generated")]),
-          _c("br"),
-          _vm._v(" "),
-          _c("h2", [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
-                width: "40",
-                height: "40"
-              }
-            }),
-            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " joules")])
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(0),
-          _c("br"),
-          _vm._v(" "),
-          _c("div", [_vm._v("Which can be used to")]),
-          _vm._v(" "),
-          _c("div", [_vm._v("power")]),
-          _vm._v(" "),
-          _c("div", [_vm._v(" 3.6 washing machines")]),
-          _vm._v(" "),
-          _c("p"),
-          _vm._v(" "),
-          _c("br"),
-          _c("hr"),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(1),
-          _c("h4", [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
-                width: "30",
-                height: "30"
-              }
-            }),
-            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " joules")])
-          ]),
-          _vm._v("\n        was generated\n      "),
-          _c("p")
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { attrs: { id: "rcorners", align: "center" } }, [
-      _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
-          width: "30",
-          height: "40"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [_vm._v("\n        Yesterday"), _c("br")])
-  }
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
@@ -52888,17 +52831,6 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
-
-/***/ }),
-
-/***/ "./resources/img/washing-machine.png":
-/*!*******************************************!*\
-  !*** ./resources/img/washing-machine.png ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/washing-machine.png?d8c9f05df92c6cd688d7405955019fd4";
 
 /***/ }),
 
