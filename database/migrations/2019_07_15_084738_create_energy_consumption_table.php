@@ -20,8 +20,23 @@ class CreateEnergyConsumptionTable extends Migration
             $table->integer('duration');
             $table->integer('threshold');
             $table->string('emblem_path')
+            $table->string('text');
             $table->timestamps();
         });
+
+        // Insert some stuff
+        DB::table('energy_consumption')->insert([
+            [
+              'item' => 'LED bulb',
+              'avg_power' => 80,
+              'text' => 'You generated enough energy to fuel a street light for 5 minutes!'
+            ],
+            [
+              'item' => 'Brain',
+              'avg_power' => 20,
+              'text' => 'During a timespan of 10 hours the average adult brain consumes 200Wh'
+            ],
+        ]);
     }
 
     /**

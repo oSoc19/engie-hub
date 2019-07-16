@@ -118,8 +118,8 @@ body {
 }
 .live {
   border-style: solid;
-  border-color: gray;
-  background-color: gray;
+  border-color: red;
+  background-color: red;
   color: white;
 }
 .spark {
