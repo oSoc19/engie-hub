@@ -19,8 +19,9 @@
     <body>
     <div id="app">
     </div>
-    
+
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+        <script src="js/pusher/index.js" type="text/javascript"></script>
         <script src="https://assets.design.digital.engie.com/library/latest/js/nj-components.min.js"></script>
     </body>
 </html>

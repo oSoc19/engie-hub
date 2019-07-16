@@ -11,6 +11,13 @@ import axios from 'axios';
 import App from './App.vue';
 Vue.use(VueAxios, axios);
 
+import Pusher from 'pusher';
+
+new Pusher(process.env.MIX_PUSHER_APP_KEY, {
+        cluster: 'eu',
+        forceTLS: true
+})
+
 import GeneralScreen from './components/GeneralScreen.vue';
 import SideBar from './components/SideBar.vue';
 

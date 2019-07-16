@@ -23,12 +23,13 @@
 </template>
 
 <script>
+    import Pusher from '../pusher';
     export default {
         name: 'GeneralScreen',
         data() {
             return {
               energy: 3,
-              nextTreshold: 25,
+              nextThreshold: 75,
               previousThreshold: 0,
               percentageCompleted: 25,
               idOfNextGoal: 0,
@@ -37,26 +38,28 @@
         },
         created() {
             //energy of yesterday
-          //this.getEnergy()
+          this.getEnergy();
         },
 
         methods: {
             getEnergy: function(){
-                let channel = pusher.subscribe('particle-channel');
-                channel.bind('particle-data', function(data) {
-                    this.energy ++;
+                let channel = Pusher.subscribe('particle-channel');
+                channel.bind('particle-data', (data) => {
+                    this.energy++;
                     console.log(this.energy);
-                    calculatePercentage();
+                    console.log(this.percentageCompleted);
+                    this.calculatePercentage();
                 });
               //TODO api call to get information about energy generated
           },
 
             calculatePercentage: function () {
-                let percentage = this.nextThreshold / this.energy;
+                let percentage = (this.energy / this.nextThreshold);
+                console.log(percentage);
                 if(percentage<1) {
                     this.percentageCompleted = percentage*100;
                 } else {
-                    lottieDisplay("path");
+                    this.lottieDisplay("path");
                     this.previousThreshold = this.nextThreshold;
                     this.idOfNextGoal ++;
                     //get nextThreshold with the new itemId
@@ -75,12 +78,12 @@
 
             lottieDisplay: function (path) {
                 let svgContainer = document.getElementById('svgContainer');
-                let animItem = bodymovin.loadAnimation({
-                    wrapper: svgContainer,
-                    animType: 'svg',
-                    loop: false,
-                    path: path
-                });
+                // let animItem = bodymovin.loadAnimation({
+                //     wrapper: svgContainer,
+                //     animType: 'svg',
+                //     loop: false,
+                //     path: path
+                // });
             },
 
             updateProgressBar: function (){
