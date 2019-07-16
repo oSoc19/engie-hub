@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row justify-content-center" style="border:solid 1px black;">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
                 <div class="d-flex justify-content-center">
                     <div class="col-md-5" align="right"><b>What's generating now</b></div>
@@ -40,7 +40,7 @@
         },
 
         methods: {
-            function getEnergy(){
+            getEnergy: function(){
                 let channel = pusher.subscribe('particle-channel');
                 channel.bind('particle-data', function(data) {
                     this.energy ++;
@@ -48,9 +48,9 @@
                     calculatePercentage();
                 });
               //TODO api call to get information about energy generated
-            }
+          },
 
-            function calculatePercentage() {
+            calculatePercentage: function() {
                 let percentage = this.nextThreshold / this.energy;
                 if(percentage<1) {
                     this.percentageCompleted = percentage*100;
@@ -60,9 +60,9 @@
                     this.idOfNextGoal ++;
                     //get nextThreshold with the new itemId
                 }
-            }
+            },
 
-            function timer(){
+            timer: function(){
                 let sec = 60;
                 let timer = setInterval(function(){
                     sec--;
@@ -70,9 +70,9 @@
                         clearInterval(timer);
                     }
                 }, 1000);
-            }
+            },
 
-            function lottieDisplay() {
+            lottieDisplay: function() {
                 let svgContainer = document.getElementById('svgContainer');
                 let animItem = bodymovin.loadAnimation({
                     wrapper: svgContainer,
@@ -87,11 +87,6 @@
 
     //PUSHER CODE
     Pusher.logToConsole = true;
-
-    var pusher = new Pusher('096d50d6815feaddf8a3', {
-      cluster: 'eu',
-      forceTLS: true
-    });
 
     // var counter = 0;
     // var channel = pusher.subscribe('particle-channel');
