@@ -1751,6 +1751,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -1835,6 +1838,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -6354,7 +6359,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.nj-progress__bar {\n  width: auto;\n  aria-valuenow: 25;\n  aria-valuemin: 0;\n  aria-valuemax: 100;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__bar {\n  margin-left: 5%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n}\n.progress-bar-filling {\n  background-color: #272382;\n}\n.round {\n  border-radius: 100px;\n}\n\n", ""]);
 
 // exports
 
@@ -6373,7 +6378,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n  background-color: #dddddd;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #A0A0A0;\n  padding: 20px 20px;\n  width: 80px;\n  height: 80px;\n}\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -37984,29 +37989,10 @@ var render = function() {
               attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+            _c("h1", [_vm._v(_vm._s(_vm.energy) + " watts")])
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "d-flex nj-progress nj-progress--cerise mb-4" },
-            [
-              _c("div", {
-                staticClass: "nj-progress__bar",
-                staticStyle: { width: "75%" },
-                attrs: {
-                  role: "progressbar",
-                  "aria-valuenow": "75",
-                  "aria-valuemin": "0",
-                  "aria-valuemax": "100"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "nj-progress__text" }, [
-                _vm._v(_vm._s(_vm.percentageCompleted) + "%")
-              ])
-            ]
-          )
+          _vm._m(1)
         ]),
         _vm._v(" "),
         _c("sideBar")
@@ -38022,14 +38008,29 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex justify-content-center" }, [
       _c("div", { staticClass: "col-md-5", attrs: { align: "right" } }, [
-        _c("b", [_vm._v("What's generating now")])
+        _c("b", [_c("h4", [_vm._v("What's generating now")])])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-1 justify-content-center live" }, [
+      _c("div", { staticClass: "col-md-1 live", attrs: { align: "center" } }, [
         _vm._v("live")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress-bar round" }, [
+      _c(
+        "div",
+        {
+          staticClass: "progress-bar-filling round",
+          staticStyle: { width: "60%" }
+        },
+        [_vm._v(" ")]
+      )
     ])
   }
 ]
@@ -38069,12 +38070,12 @@ var render = function() {
           _c("h2", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
                 width: "40",
                 height: "40"
               }
             }),
-            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " joules")])
+            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " watts")])
           ]),
           _vm._v(" "),
           _c("br"),
@@ -38098,12 +38099,12 @@ var render = function() {
           _c("h4", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
                 width: "30",
                 height: "30"
               }
             }),
-            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " joules")])
+            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " watts")])
           ]),
           _vm._v("\n        was generated\n      "),
           _c("p")
@@ -38121,8 +38122,8 @@ var staticRenderFns = [
       _c("img", {
         attrs: {
           src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
-          width: "30",
-          height: "40"
+          width: "65",
+          height: "80"
         }
       })
     ])
@@ -38131,7 +38132,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_vm._v("\n        Yesterday"), _c("br")])
+    return _c("p", { staticClass: "nj-card__body yesterday" }, [
+      _c("br"),
+      _vm._v("Yesterday"),
+      _c("br")
+    ])
   }
 ]
 render._withStripped = true
@@ -52960,6 +52965,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/img/energy-2.svg":
+/*!************************************!*\
+  !*** ./resources/img/energy-2.svg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
 
 /***/ }),
 

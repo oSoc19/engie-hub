@@ -4,18 +4,21 @@
             <div class="col-md-8">
                 <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
                 <div class="d-flex justify-content-center">
-                    <div class="col-md-5" align="right"><b>What's generating now</b></div>
+                    <div class="col-md-5" align="right"><b><h4>What's generating now</h4></b></div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-1 justify-content-center live">live</div>
+                    <div class="col-md-1 live" align="center">live</div>
                 </div>
                 <div class="d-flex justify-content-center energy">
                     <img class="spark" src="../../img/energy.svg"/>
-                    <h1>{{energy}} joules</h1>
+                    <h1>{{energy}} watts</h1>
                 </div>
-                <div class="d-flex nj-progress nj-progress--cerise mb-4">
-                    <div class="nj-progress__bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="nj-progress__text">{{percentageCompleted}}%</div>
-                </div>
+                <!--<div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%"></div>
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style=""></div>
+                </div>-->
+                <div class="progress-bar round">
+            			<div class="progress-bar-filling round" style="width: 60%;">&nbsp;</div>
+            		</div>
             </div>
             <sideBar></sideBar>
         </div>
@@ -118,29 +121,43 @@ body {
 }
 .live {
   border-style: solid;
-  border-color: red;
-  background-color: red;
+  border-color: #cc0033;
+  background-color: #cc0033;
   color: white;
 }
 .spark {
   height: 100px;
-  width: 15%;
+  width: 10%;
 }
 
 .lottie-popup {
     z-index: 1;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+h1 {
+  color: #00aaff;
+  margin-bottom: 10%;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+
+.progress-div {
+  margin-top: 10%;
 }
 .nj-progress__bar {
-  width: auto;
-  aria-valuenow: 25;
-  aria-valuemin: 0;
-  aria-valuemax: 100;
+  margin-left: 5%;
 }
+.nj-progress__text{
+  margin-left: 3%;
+}
+.progress-bar {
+  background-color: #E62B87;
+}
+.progress-bar-filling {
+  background-color: #272382;
+}
+.round {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+}
+
 </style>
