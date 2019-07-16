@@ -1,0 +1,10 @@
+body {
+    background-color: #ffffff;
+}
+
+.logo {
+    position:absolute;
+    left:64px;
+    top:44px;
+    
+}
