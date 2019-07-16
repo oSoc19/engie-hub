@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div>
         <div class="row justify-content-center" style="border:solid 1px black;">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
                 <div class="d-flex justify-content-center">
                     <div class="col-md-5" align="right"><b>What's generating now</b></div>
@@ -11,6 +11,10 @@
                 <div class="d-flex justify-content-center energy">
                     <img class="spark" src="../../img/energy.svg"/>
                     <h1>{{energy}} joules</h1>
+                </div>
+                <div class="d-flex nj-progress nj-progress--cerise mb-4">
+                    <div class="nj-progress__bar" role="progressbar" style="width: "{{percentageCompleted}}"%" aria-valuenow={{percentageCompleted}} aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="nj-progress__text">{{percentageCompleted}}%</div>
                 </div>
             </div>
             <sideBar></sideBar>
@@ -23,24 +27,91 @@
         name: 'GeneralScreen',
         data() {
             return {
-              energy: 250
+              energy: 0,
+              nextTreshold: 25,
+              previousThreshold: 0,
+              percentageCompleted: 0,
+              idOfNextGoal: 0
             }
         },
         created() {
+            //energy of yesterday
           //this.getEnergy()
         },
+
         methods: {
-            getEnergy(){
+            function getEnergy(){
+                let channel = pusher.subscribe('particle-channel');
+                channel.bind('particle-data', function(data) {
+                    this.energy ++;
+                    console.log(this.energy);
+                    calculatePercentage();
+                });
               //TODO api call to get information about energy generated
+            }
+
+            function calculatePercentage() {
+                let percentage = this.nextThreshold / this.energy;
+                if(percentage<1) {
+                    this.percentageCompleted = percentage*100;
+                } else {
+                    //TODO animation with lottie
+                    this.previousThreshold = this.nextThreshold;
+                    this.idOfNextGoal ++;
+                    //get nextThreshold with the new itemId
+                }
+            }
+
+            function timer(){
+                let sec = 60;
+                let timer = setInterval(function(){
+                    sec--;
+                    if (sec < 0) {
+                        clearInterval(timer);
+                    }
+                }, 1000);
+            }
+
+            function lottieDisplay() {
+                let svgContainer = document.getElementById('svgContainer');
+                let animItem = bodymovin.loadAnimation({
+                    wrapper: svgContainer,
+                    animType: 'svg',
+                    loop: false,
+                    path: ''
+                });
             }
         }
 
     };
+
+    //PUSHER CODE
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('096d50d6815feaddf8a3', {
+      cluster: 'eu',
+      forceTLS: true
+    });
+
+    // var counter = 0;
+    // var channel = pusher.subscribe('particle-channel');
+    // channel.bind('particle-data', function(data) {
+    //     energy
+    //     counter++;
+    //     console.log(counter);
+    // });
 </script>
+
 <style>
+body {
+    background-color: #F5F5F5;
+}
+
 .nj-navbar__logo {
   margin-top: 3%;
-  margin-bottom: 30%;
+  margin-left: 3%;
+  margin-bottom: 15%;
+  width: 11%;
 }
 .energy {
   margin-top: 3%;
