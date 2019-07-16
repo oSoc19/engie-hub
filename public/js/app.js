@@ -1747,20 +1747,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
     return {
-      energy: 250
+      energy: 0,
+      nextTreshold: 25,
+      previousThreshold: 0,
+      percentageCompleted: 0,
+      idOfNextGoal: 0,
+      show: false
     };
   },
-  created: function created() {//this.getEnergy()
+  created: function created() {//energy of yesterday
+    //this.getEnergy()
   },
   methods: {
-    getEnergy: function getEnergy() {//TODO api call to get information about energy generated
+    getEnergy: function getEnergy() {
+      var channel = pusher.subscribe('particle-channel');
+      channel.bind('particle-data', function (data) {
+        this.energy++;
+        console.log(this.energy);
+        calculatePercentage();
+      }); //TODO api call to get information about energy generated
+    },
+    calculatePercentage: function calculatePercentage() {
+      var percentage = this.nextThreshold / this.energy;
+
+      if (percentage < 1) {
+        this.percentageCompleted = percentage * 100;
+      } else {
+        lottieDisplay("path");
+        this.previousThreshold = this.nextThreshold;
+        this.idOfNextGoal++; //get nextThreshold with the new itemId
+      }
+    },
+    timer: function timer() {
+      var sec = 60;
+      var timer = setInterval(function () {
+        sec--;
+
+        if (sec < 0) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    },
+    lottieDisplay: function lottieDisplay(path) {
+      var svgContainer = document.getElementById('svgContainer');
+      var animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: 'svg',
+        loop: false,
+        path: path
+      });
     }
   }
-});
+}); //PUSHER CODE
+
+Pusher.logToConsole = true;
+var pusher = new Pusher('096d50d6815feaddf8a3', {
+  cluster: 'eu',
+  forceTLS: true
+}); // var counter = 0;
+// var channel = pusher.subscribe('particle-channel');
+// channel.bind('particle-data', function(data) {
+//     energy
+//     counter++;
+//     console.log(counter);
+// });
 
 /***/ }),
 
@@ -6292,7 +6355,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-bottom: 30%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  margin-bottom: 15%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 15%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -6311,7 +6374,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n  background-color: #dddddd;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #A0A0A0;\n  padding: 20px 20px;\n  width: 80px;\n  height: 80px;\n}\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #dddddd;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #A0A0A0;\r\n  padding: 20px 20px;\r\n  width: 80px;\r\n  height: 80px;\n}\r\n", ""]);
 
 // exports
 
@@ -37896,41 +37959,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      {
-        staticClass: "row justify-content-center",
-        staticStyle: { border: "solid 1px black" }
-      },
-      [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("img", {
-            staticClass: "nj-navbar__logo",
-            attrs: {
-              src:
-                "https://assets.design.digital.engie.com/brand/logo-engie-blue.svg",
-              alt: "ENGIE"
-            }
-          }),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex justify-content-center energy" }, [
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        {
+          staticClass: "row justify-content-center",
+          staticStyle: { border: "solid 1px black" }
+        },
+        [
+          _c("div", { staticClass: "col-md-9" }, [
             _c("img", {
-              staticClass: "spark",
-              attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
+              staticClass: "nj-navbar__logo",
+              attrs: {
+                src:
+                  "https://assets.design.digital.engie.com/brand/logo-engie-blue.svg",
+                alt: "ENGIE"
+              }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex justify-content-center energy" }, [
+              _c("img", {
+                staticClass: "spark",
+                attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
+              }),
+              _vm._v(" "),
+              _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-flex nj-progress nj-progress--cerise mb-4" },
+              [
+                _vm._v(
+                  '"%" aria-valuenow=' +
+                    _vm._s(_vm.percentageCompleted) +
+                    ' aria-valuemin="0" aria-valuemax="100">'
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "nj-progress__text" }, [
+              _vm._v(_vm._s(_vm.percentageCompleted) + "%")
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("sideBar")
-      ],
-      1
-    )
-  ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("sideBar"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "lottie-popup" },
+        [
+          _c("transition", { attrs: { name: "fade" } }, [
+            _vm.show ? _c("p", [_vm._v("hello")]) : _vm._e()
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -53290,8 +53383,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

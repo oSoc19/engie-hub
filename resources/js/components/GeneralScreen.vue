@@ -18,6 +18,11 @@
                 </div>
             </div>
             <sideBar></sideBar>
+            <div class="lottie-popup">
+                <transition name="fade">
+                    <p v-if="show">hello</p>
+                </transition>
+            </div>
         </div>
     </div>
 </template>
@@ -31,7 +36,8 @@
               nextTreshold: 25,
               previousThreshold: 0,
               percentageCompleted: 0,
-              idOfNextGoal: 0
+              idOfNextGoal: 0,
+              show: false
             }
         },
         created() {
@@ -40,7 +46,7 @@
         },
 
         methods: {
-            function getEnergy(){
+            getEnergy: function (){
                 let channel = pusher.subscribe('particle-channel');
                 channel.bind('particle-data', function(data) {
                     this.energy ++;
@@ -48,21 +54,21 @@
                     calculatePercentage();
                 });
               //TODO api call to get information about energy generated
-            }
+          },
 
-            function calculatePercentage() {
+            calculatePercentage: function () {
                 let percentage = this.nextThreshold / this.energy;
                 if(percentage<1) {
                     this.percentageCompleted = percentage*100;
                 } else {
-                    //TODO animation with lottie
+                    lottieDisplay("path");
                     this.previousThreshold = this.nextThreshold;
                     this.idOfNextGoal ++;
                     //get nextThreshold with the new itemId
                 }
-            }
+            },
 
-            function timer(){
+            timer: function(){
                 let sec = 60;
                 let timer = setInterval(function(){
                     sec--;
@@ -70,17 +76,18 @@
                         clearInterval(timer);
                     }
                 }, 1000);
-            }
+            },
 
-            function lottieDisplay() {
+            lottieDisplay: function (path) {
                 let svgContainer = document.getElementById('svgContainer');
                 let animItem = bodymovin.loadAnimation({
                     wrapper: svgContainer,
                     animType: 'svg',
                     loop: false,
-                    path: ''
+                    path: path
                 });
             }
+
         }
 
     };
@@ -125,5 +132,16 @@ body {
 .spark {
   height: 100px;
   width: 15%;
+}
+
+.lottie-popup {
+    z-index: 1;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
