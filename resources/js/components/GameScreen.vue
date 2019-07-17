@@ -211,10 +211,12 @@ body {
 .progress-bar {
   margin-left: 10%;
   margin-right: 10%;
+  padding-left: 0;
+  padding-right: 0;
+  max-height: 30px;
 }
 .progress-bar-filling {
   background-color: #272382;
-  width: 0%;
 }
 .round {
   -webkit-border-radius: 100px;
@@ -226,6 +228,7 @@ body {
 }
 .next-goal{
   background-color: #0080FF;
+  margin-left: -10%;
 }
 
 .next-goal img{

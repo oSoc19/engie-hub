@@ -6501,9 +6501,17 @@ exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n  transitio
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GameScreen.vue?vue&type=style&index=0&lang=css& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(213:9) Unknown word\n\n \u001b[90m 211 | \u001b[39m\u001b[33m.progress-bar\u001b[39m \u001b[33m{\u001b[39m\n \u001b[90m 212 | \u001b[39m  margin-left\u001b[33m:\u001b[39m 10%\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 213 | \u001b[39m<<<<<<< HEAD\n \u001b[90m     | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 214 | \u001b[39m  padding-left\u001b[33m:\u001b[39m 0\u001b[33m;\u001b[39m\n \u001b[90m 215 | \u001b[39m  padding-right\u001b[33m:\u001b[39m 0\u001b[33m;\u001b[39m\n");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#topbar {\n  margin-bottom: 15%;\n}\n#timer {\n    /* margin-top: 15px; */\n}\n#timer-box {\n    margin-left: 34%;\n    text-align: center;\n    display: inline-block;\n}\n.row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 9%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  margin-left: 10%;\n  margin-right: 10%;\n  padding-left: 0;\n  padding-right: 0;\n  max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #272382;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  margin-left: -10%;\n}\n.next-goal img{\n  width: 60px;\n  height: 60px;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
