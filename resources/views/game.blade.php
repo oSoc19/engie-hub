@@ -8,7 +8,7 @@
         <link rel="icon" href="https://assets.design.digital.engie.com/brand/favicon.ico">
         <title>Engie Hub</title>
         <!-- ENGIE core CSS -->
-        <link href="https://assets.design.digital.engie.com/library/latest/css/nj-components.min.css" rel="stylesheet">
+        <link href="https://assets.design.digital.engie.com/library/latest/css/nj-components.min.css" rel="stylesheet" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
         <link href="https://assets.design.digital.engie.com/library/latest/css/nj-components.min.css" rel="stylesheet">
@@ -23,6 +23,6 @@
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
         <script src="js/pusher/index.js" type="text/javascript"></script>
         <!-- <script src="https://cdnjs.com/libraries/bodymovin" type="text/javascript"></script> -->
-        <script src="https://assets.design.digital.engie.com/library/latest/js/nj-components.min.js"></script>
+        <script src="https://assets.design.digital.engie.com/library/latest/js/nj-components.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

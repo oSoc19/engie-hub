@@ -15,6 +15,6 @@ Route::get('/', function (){
     return view('example');
 })->where('any', '[\/\w]*');
 
-Route::get('/counter', function() {
-    return view('counter');
+Route::get('/game', function() {
+    return view('game');
 });
