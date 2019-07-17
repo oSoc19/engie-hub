@@ -1752,6 +1752,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -1764,9 +1792,6 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       timeLeftOfSession: 60
     };
-  },
-  mounted: function mounted() {
-    this.updateProgressBar();
   },
   created: function created() {
     //energy of yesterday
@@ -1794,7 +1819,6 @@ __webpack_require__.r(__webpack_exports__);
 
       if (percentage < 1) {
         this.percentageCompleted = percentage * 100;
-        this.updateProgressBar();
       } else {
         // this.lottieDisplay("path");
         this.previousThreshold = this.nextThreshold;
@@ -6483,7 +6507,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    display: inline-block;\r\n    margin-left: 40%;\r\n    margin-top: 15px;\n}\n#time-left {\n}\n#timer-box {\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 15%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-top: 15px;\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -6495,9 +6519,17 @@ exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar 
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneralScreen.vue?vue&type=style&index=0&lang=css& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(176:1) Unknown word\n\n \u001b[90m 174 | \u001b[39m\u001b[33m.nj-progress__text\u001b[39m\u001b[33m{\u001b[39m\n \u001b[90m 175 | \u001b[39m  margin-left\u001b[33m:\u001b[39m 3%\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 176 | \u001b[39m>>>>>>> backend\n \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 177 | \u001b[39m\u001b[33m}\u001b[39m\n \u001b[90m 178 | \u001b[39m\u001b[33m.progress-bar\u001b[39m \u001b[33m{\u001b[39m\n");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 10%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__bar {\r\n  margin-left: 5%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.progress-bar {\r\n  background-color: #E62B87;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -61474,7 +61506,9 @@ var render = function() {
           _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
         ]),
         _vm._v(" "),
-        _vm._m(2)
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3)
       ])
     ]
   )
@@ -61495,9 +61529,11 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("div", { attrs: { id: "timer-box" } }, [
-        _c("p", { attrs: { id: "time-left" } }, [_vm._v("Time left to move")]),
+        _c("p", { staticClass: "timer-elements" }, [
+          _vm._v("Time left to move")
+        ]),
         _vm._v(" "),
-        _c("p", { attrs: { id: "timer" } })
+        _c("p", { staticClass: "timer-elements ", attrs: { id: "timer" } })
       ])
     ])
   },
@@ -61506,15 +61542,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex justify-content-center" }, [
-      _c("div", { staticClass: "col-md-5", attrs: { align: "right" } }, [
-        _c("b", [_vm._v("What's generating now")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-1 justify-content-center live" }, [
-        _vm._v("live")
-      ])
+      _c("b", [_vm._v("YOU'VE GENERATED")])
     ])
   },
   function() {
@@ -61524,6 +61552,81 @@ var staticRenderFns = [
     return _c("div", { staticClass: "progress-bar round" }, [
       _c("div", { staticClass: "progress-bar-filling round" }, [_vm._v(" ")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "row justify-content-center ",
+        staticStyle: { border: "solid 1px black" }
+      },
+      [
+        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+          _c("i", {
+            staticClass: "nj-icon nj-icon-temperature nj-icon--circle"
+          }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("GOAL")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+          _c("i", { staticClass: "nj-icon nj-icon-cardload nj-icon--circle" }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("GOAL")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+          _c("i", { staticClass: "nj-icon nj-icon-medal nj-icon--circle" }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("GOAL")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+          _c("i", { staticClass: "nj-icon nj-icon-moon nj-icon--border" }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("GOAL")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+          _c("i", { staticClass: "nj-icon nj-icon-nature nj-icon--border" }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("GOAL")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

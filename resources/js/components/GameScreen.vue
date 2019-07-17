@@ -4,15 +4,13 @@
             <div id='topbar'>
                 <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
                 <div id="timer-box">
-                    <p id="time-left">Time left to move</p>
-                    <p id="timer"></p>
+                    <p class="timer-elements">Time left to move</p>
+                    <p id="timer" class="timer-elements "></p>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center">
-                <div class="col-md-5" align="right"><b>What's generating now</b></div>
-                <div class="col-md-2"></div>
-                <div class="col-md-1 justify-content-center live">live</div>
+                <b>YOU'VE GENERATED</b>
             </div>
             <div class="d-flex justify-content-center energy">
                 <img class="spark" src="../../img/energy.svg"/>
@@ -20,6 +18,36 @@
             </div>
             <div class="progress-bar round">
                 <div class="progress-bar-filling round">&nbsp;</div>
+            </div>
+
+            <div class="row justify-content-center " style="border:solid 1px black;">
+                <div class="col-md-2 goal-tickets">
+                    <i class="nj-icon nj-icon-temperature nj-icon--circle"></i>
+                    <h4>GOAL</h4>
+                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                </div>
+                <div class="col-md-2 goal-tickets">
+                    <i class="nj-icon nj-icon-cardload nj-icon--circle"></i>
+                    <h4>GOAL</h4>
+                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                </div>
+                <div class="col-md-2 goal-tickets">
+                    <i class="nj-icon nj-icon-medal nj-icon--circle"></i>
+                    <h4>GOAL</h4>
+                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                </div>
+                <div class="col-md-2 goal-tickets">
+                    <i class="nj-icon nj-icon-moon nj-icon--border"></i>
+
+                    <h4>GOAL</h4>
+                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                </div>
+                <div class="col-md-2 goal-tickets">
+                    <i class="nj-icon nj-icon-nature nj-icon--border"></i>
+
+                    <h4>GOAL</h4>
+                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                </div>
             </div>
         </div>
     </div>
@@ -39,11 +67,6 @@ export default {
           show: false,
           timeLeftOfSession: 60,
         }
-    },
-
-    mounted() {
-        this.updateProgressBar();
-
     },
 
     created() {
@@ -71,7 +94,6 @@ export default {
             console.log(percentage);
             if(percentage<1) {
                 this.percentageCompleted = percentage*100;
-                this.updateProgressBar();
             } else {
                 // this.lottieDisplay("path");
                 this.previousThreshold = this.nextThreshold;
@@ -119,23 +141,29 @@ body {
   margin-bottom: 15%;
 }
 #timer {
-    display: inline-block;
-    margin-left: 40%;
-    margin-top: 15px;
-}
-#time-left {
-
+    /* margin-top: 15px; */
 }
 #timer-box {
-
+    margin-top: 15px;
+    margin-left: 34%;
+    text-align: center;
+    display: inline-block;
 }
 
+.goal-tickets {
+    text-align: center;
+}
+
+.timer-elements {
+    display: block;
+}
 
 .nj-navbar__logo {
     display: inline-block;
-  margin-top: 3%;
-  margin-left: 3%;
-  width: 10%;
+    margin-top: 0;
+    margin-left: 3%;
+    width: 10%;
+
 }
 .energy {
   margin-top: 3%;
@@ -148,7 +176,8 @@ body {
 }
 .spark {
   height: 100px;
-  width: 15%;
+  width: 9%;
+  margin-left: -5%;
 }
 
 .lottie-popup {
