@@ -1778,8 +1778,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -6507,7 +6505,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-top: 15px;\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 42%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 25%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -61485,33 +61483,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "row justify-content-center",
-      staticStyle: { border: "solid 1px black" }
-    },
-    [
-      _c("div", { staticClass: "col-md-12" }, [
-        _vm._m(0),
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-center energy" }, [
+        _c("img", {
+          staticClass: "spark",
+          attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
+        }),
         _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex justify-content-center energy" }, [
-          _c("img", {
-            staticClass: "spark",
-            attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
-          }),
-          _vm._v(" "),
-          _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
-        ]),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _vm._m(3)
-      ])
-    ]
-  )
+        _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -61557,76 +61548,74 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "row justify-content-center ",
-        staticStyle: { border: "solid 1px black" }
-      },
-      [
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", {
-            staticClass: "nj-icon nj-icon-temperature nj-icon--circle"
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-cardload nj-icon--circle" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
+        _c("h4", [_vm._v("GOAL")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-medal nj-icon--circle" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-moon nj-icon--border" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-nature nj-icon--border" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: {
+            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
+          }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons goal-icon-empty",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons goal-icon-empty",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -76684,6 +76673,39 @@ module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
 /***/ (function(module, exports) {
 
 module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_Game_1967460.svg":
+/*!***************************************************!*\
+  !*** ./resources/img/icons/noun_Game_1967460.svg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_Game_1967460.svg?b643c156a699734abe7d03d61cebf702";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_Microwave_1967465.svg":
+/*!********************************************************!*\
+  !*** ./resources/img/icons/noun_Microwave_1967465.svg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_pizza slice_1204552.svg":
+/*!**********************************************************!*\
+  !*** ./resources/img/icons/noun_pizza slice_1204552.svg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_pizza slice_1204552.svg?aed4b446190d476d61e88283cae51ef3";
 
 /***/ }),
 

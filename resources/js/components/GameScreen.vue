@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center" style="border:solid 1px black;">
+    <div class="row justify-content-center">
         <div class="col-md-12">
             <div id='topbar'>
                 <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
@@ -20,31 +20,29 @@
                 <div class="progress-bar-filling round">&nbsp;</div>
             </div>
 
-            <div class="row justify-content-center " style="border:solid 1px black;">
+            <div class="row justify-content-center">
                 <div class="col-md-2 goal-tickets">
-                    <i class="nj-icon nj-icon-temperature nj-icon--circle"></i>
+                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
                 </div>
                 <div class="col-md-2 goal-tickets">
-                    <i class="nj-icon nj-icon-cardload nj-icon--circle"></i>
+                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
                 </div>
                 <div class="col-md-2 goal-tickets">
-                    <i class="nj-icon nj-icon-medal nj-icon--circle"></i>
+                    <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
                 </div>
                 <div class="col-md-2 goal-tickets">
-                    <i class="nj-icon nj-icon-moon nj-icon--border"></i>
-
+                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons goal-icon-empty"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
                 </div>
                 <div class="col-md-2 goal-tickets">
-                    <i class="nj-icon nj-icon-nature nj-icon--border"></i>
-
+                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons goal-icon-empty"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
                 </div>
@@ -144,12 +142,25 @@ body {
     /* margin-top: 15px; */
 }
 #timer-box {
-    margin-top: 15px;
     margin-left: 34%;
     text-align: center;
     display: inline-block;
 }
 
+.row {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.goal-icons {
+    width: 37%;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #0af;
+}
+.goal-icon-empty {
+    background-color: #c4ebff;
+}
 .goal-tickets {
     text-align: center;
 }
@@ -197,7 +208,7 @@ body {
 }
 .progress-bar-filling {
   background-color: #272382;
-  width: 0%;
+  width: 25%;
 }
 .round {
   -webkit-border-radius: 100px;
