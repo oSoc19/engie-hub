@@ -12,13 +12,17 @@
                     <img class="spark" src="../../img/energy.svg"/>
                     <h1>{{energy}} watts</h1>
                 </div>
-                <!--<div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%"></div>
-                  <div class="progress-bar progress-bar-warning" role="progressbar" style=""></div>
-                </div>-->
-                <div class="progress-bar round">
-            			<div class="progress-bar-filling round" style="width: 60%;">&nbsp;</div>
-            		</div>
+                <div class="row progression">
+                  <div class="nj-avatar first-pic">
+                    <div class="nj-avatar__picture"></div>
+                  </div>
+                  <div class="col-md-9 progress-bar round">
+              			<div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor }" >&nbsp;</div>
+              		</div>
+                  <div class="nj-avatar">
+                    <div class="nj-avatar__picture"></div>
+                  </div>
+                </div>
             </div>
             <sideBar></sideBar>
         </div>
@@ -28,15 +32,17 @@
 <script>
     export default {
         name: 'GeneralScreen',
-        data() {
-            return {
-              energy: 3,
-              nextTreshold: 25,
-              previousThreshold: 0,
-              percentageCompleted: 25,
-              idOfNextGoal: 0,
-              show: false
-            }
+        data: function() {
+          return {
+            //percentageCompleted: 50
+            energy: 3,
+            nextTreshold: 25,
+            previousThreshold: 0,
+            percentageCompleted: 50,
+            idOfNextGoal: 0,
+            show: false,
+            progressBarColor: '#272382',
+          }
         },
         created() {
             //energy of yesterday
@@ -86,11 +92,6 @@
                 });
             },
 
-            updateProgressBar: function (){
-              let percentageCompleted = this.percentageCompleted + "%";
-              $('.nj-progress__bar').css({'width': percentageCompleted, 'aria-valuenow':percentageCompleted, 'aria-valuemin':0, 'aria-valuemax':100});
-            }
-
         }
 
     };
@@ -119,6 +120,12 @@ body {
 .energy {
   margin-top: 3%;
 }
+.progression{
+  margin-left: 5%;
+}
+.first-pic  {
+  margin-right: -15%;
+}
 .live {
   border-style: solid;
   border-color: #cc0033;
@@ -142,17 +149,17 @@ h1 {
 .progress-div {
   margin-top: 10%;
 }
-.nj-progress__bar {
-  margin-left: 5%;
-}
 .nj-progress__text{
   margin-left: 3%;
 }
 .progress-bar {
   background-color: #E62B87;
+  padding-left: 0;
+  padding-right: 0;
 }
-.progress-bar-filling {
+#progress-bar-filling {
   background-color: #272382;
+  height: 100%;
 }
 .round {
   -webkit-border-radius: 100px;

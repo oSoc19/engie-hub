@@ -1754,16 +1754,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
     return {
+      //percentageCompleted: 50
       energy: 3,
       nextTreshold: 25,
       previousThreshold: 0,
-      percentageCompleted: 25,
+      percentageCompleted: 50,
       idOfNextGoal: 0,
-      show: false
+      show: false,
+      progressBarColor: '#272382'
     };
   },
   created: function created() {//energy of yesterday
@@ -1807,15 +1813,6 @@ __webpack_require__.r(__webpack_exports__);
         loop: false,
         path: path
       });
-    },
-    updateProgressBar: function updateProgressBar() {
-      var percentageCompleted = this.percentageCompleted + "%";
-      $('.nj-progress__bar').css({
-        'width': percentageCompleted,
-        'aria-valuenow': percentageCompleted,
-        'aria-valuemin': 0,
-        'aria-valuemax': 100
-      });
     }
   }
 }); //PUSHER CODE
@@ -1838,6 +1835,32 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6359,7 +6382,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__bar {\n  margin-left: 5%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n}\n.progress-bar-filling {\n  background-color: #272382;\n}\n.round {\n  border-radius: 100px;\n}\n\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  border-radius: 100px;\n}\n\n", ""]);
 
 // exports
 
@@ -37992,7 +38015,26 @@ var render = function() {
             _c("h1", [_vm._v(_vm._s(_vm.energy) + " watts")])
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "row progression" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-9 progress-bar round" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "round",
+                  style: {
+                    width: _vm.percentageCompleted + "%",
+                    "background-color": _vm.progressBarColor
+                  },
+                  attrs: { id: "progress-bar-filling" }
+                },
+                [_vm._v(" ")]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
         ]),
         _vm._v(" "),
         _c("sideBar")
@@ -38022,15 +38064,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress-bar round" }, [
-      _c(
-        "div",
-        {
-          staticClass: "progress-bar-filling round",
-          staticStyle: { width: "60%" }
-        },
-        [_vm._v(" ")]
-      )
+    return _c("div", { staticClass: "nj-avatar first-pic" }, [
+      _c("div", { staticClass: "nj-avatar__picture" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "nj-avatar" }, [
+      _c("div", { staticClass: "nj-avatar__picture" })
     ])
   }
 ]
@@ -38051,95 +38094,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-4", attrs: { id: "sidebar", align: "center" } },
-    [
-      _c("div", { staticClass: "nj-card mb-3" }, [
-        _c("div", { staticClass: "nj-card__body" }, [
-          _c("p"),
-          _c("div", [_vm._v("Today this place ")]),
-          _vm._v(" "),
-          _c("div", [_vm._v("generated")]),
-          _c("br"),
-          _vm._v(" "),
-          _c("h2", [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
-                width: "40",
-                height: "40"
-              }
-            }),
-            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " watts")])
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(0),
-          _c("br"),
-          _vm._v(" "),
-          _c("div", [_vm._v("Which can be used to")]),
-          _vm._v(" "),
-          _c("div", [_vm._v("power")]),
-          _vm._v(" "),
-          _c("div", [_vm._v(" 3.6 washing machines")]),
-          _vm._v(" "),
-          _c("p"),
-          _vm._v(" "),
-          _c("br"),
-          _c("hr"),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(1),
-          _c("h4", [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
-                width: "30",
-                height: "30"
-              }
-            }),
-            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " watts")])
-          ]),
-          _vm._v("\n        was generated\n      "),
-          _c("p")
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { attrs: { id: "rcorners", align: "center" } }, [
-      _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
-          width: "65",
-          height: "80"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "nj-card__body yesterday" }, [
-      _c("br"),
-      _vm._v("Yesterday"),
-      _c("br")
-    ])
-  }
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
@@ -52968,17 +52924,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/img/energy-2.svg":
-/*!************************************!*\
-  !*** ./resources/img/energy-2.svg ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
-
-/***/ }),
-
 /***/ "./resources/img/energy.svg":
 /*!**********************************!*\
   !*** ./resources/img/energy.svg ***!
@@ -52987,17 +52932,6 @@ module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
 /***/ (function(module, exports) {
 
 module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
-
-/***/ }),
-
-/***/ "./resources/img/washing-machine.png":
-/*!*******************************************!*\
-  !*** ./resources/img/washing-machine.png ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/washing-machine.png?d8c9f05df92c6cd688d7405955019fd4";
 
 /***/ }),
 
