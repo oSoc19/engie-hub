@@ -16,11 +16,7 @@
                     <img class="spark" src="../../img/energy.svg"/>
                     <h1>{{energy}} watts</h1>
                 </div>
-                <!--<div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%"></div>
-                  <div class="progress-bar progress-bar-warning" role="progressbar" style=""></div>
-                </div>-->
-                <div class="progress-bar round">
+                  <div class="progress-bar round">
             			<div class="progress-bar-filling round" style="width: 60%;">&nbsp;</div>
             		</div>
             </div>
@@ -40,7 +36,7 @@
               energy: 25,
               nextThreshold: 75,
               previousThreshold: 0,
-              percentageCompleted: '15%',
+              percentageCompleted: '15',
               idOfNextGoal: 0,
               show: false,
               timeLeftOfSession: 60,

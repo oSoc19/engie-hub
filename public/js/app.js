@@ -1780,6 +1780,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -1790,7 +1796,8 @@ __webpack_require__.r(__webpack_exports__);
       percentageCompleted: '15%',
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 60
+      timeLeftOfSession: 60,
+      progressBarColor: '#272382'
     };
   },
   created: function created() {
@@ -1892,10 +1899,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1905,7 +1908,7 @@ __webpack_require__.r(__webpack_exports__);
       energy: 25,
       nextThreshold: 75,
       previousThreshold: 0,
-      percentageCompleted: '15%',
+      percentageCompleted: '15',
       idOfNextGoal: 0,
       show: false,
       timeLeftOfSession: 60
@@ -6507,7 +6510,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-top: 15px;\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#topbar {\n  margin-bottom: 15%;\n}\n#timer {\n    /* margin-top: 15px; */\n}\n#timer-box {\n    margin-top: 15px;\n    margin-left: 34%;\n    text-align: center;\n    display: inline-block;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 9%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  margin-left: 10%;\n  padding-left: 0;\n  padding-right: 0;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n}\n.next-goal img{\n  width: 60px;\n  height: 60px;\n}\n", ""]);
 
 // exports
 
@@ -6526,7 +6529,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 10%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__bar {\r\n  margin-left: 5%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.progress-bar {\r\n  background-color: #E62B87;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#topbar {\n  margin-bottom: 15%;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__bar {\n  margin-left: 5%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n}\n.progress-bar-filling {\n  background-color: #272382;\n}\n.round {\n  border-radius: 100px;\n}\n\n", ""]);
 
 // exports
 
@@ -6545,7 +6548,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -61506,7 +61509,25 @@ var render = function() {
           _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "row progression" }, [
+          _c("div", { staticClass: "col-md-9 progress-bar round" }, [
+            _c(
+              "div",
+              {
+                staticClass: "round",
+                style: {
+                  width: _vm.percentageCompleted + "%",
+                  "background-color": _vm.progressBarColor,
+                  height: "100%"
+                },
+                attrs: { id: "progress-bar-filling" }
+              },
+              [_vm._v(" ")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ]),
         _vm._v(" "),
         _vm._m(3)
       ])
@@ -61549,8 +61570,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress-bar round" }, [
-      _c("div", { staticClass: "progress-bar-filling round" }, [_vm._v(" ")])
+    return _c("div", { staticClass: "next-goal round" }, [
+      _c("img", {
+        attrs: {
+          src: __webpack_require__(/*! ../../img/noun_Microwave_1967465.svg */ "./resources/img/noun_Microwave_1967465.svg"),
+          alt: "microwave"
+        }
+      })
     ])
   },
   function() {
@@ -76687,6 +76713,17 @@ module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
 
 /***/ }),
 
+/***/ "./resources/img/noun_Microwave_1967465.svg":
+/*!**************************************************!*\
+  !*** ./resources/img/noun_Microwave_1967465.svg ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
+
+/***/ }),
+
 /***/ "./resources/img/washing-machine.png":
 /*!*******************************************!*\
   !*** ./resources/img/washing-machine.png ***!
@@ -77195,8 +77232,8 @@ pusher_js__WEBPACK_IMPORTED_MODULE_0___default.a.logToConsole = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

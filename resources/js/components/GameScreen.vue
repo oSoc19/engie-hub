@@ -16,8 +16,14 @@
                 <img class="spark" src="../../img/energy.svg"/>
                 <h1>{{energy}} joules</h1>
             </div>
-            <div class="progress-bar round">
-                <div class="progress-bar-filling round">&nbsp;</div>
+
+            <div class="row progression">
+              <div class="col-md-9 progress-bar round">
+                <div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
+              </div>
+              <div class="next-goal round">
+                  <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
+              </div>
             </div>
 
             <div class="row justify-content-center " style="border:solid 1px black;">
@@ -66,6 +72,7 @@ export default {
           idOfNextGoal: 0,
           show: false,
           timeLeftOfSession: 60,
+          progressBarColor: '#272382',
         }
     },
 
@@ -191,17 +198,24 @@ body {
   opacity: 0;
 }
 .progress-bar {
-  background-color: #E62B87;
   margin-left: 10%;
-  margin-right: 10%;
-}
-.progress-bar-filling {
-  background-color: #272382;
-  width: 0%;
+  padding-left: 0;
+  padding-right: 0;
 }
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
+}
+.nj-avatar__picture{
+  margin-left: -100%;
+}
+.next-goal{
+  background-color: #0080FF;
+}
+
+.next-goal img{
+  width: 60px;
+  height: 60px;
 }
 </style>
