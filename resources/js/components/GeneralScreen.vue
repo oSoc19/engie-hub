@@ -2,7 +2,11 @@
     <div>
         <div class="row justify-content-center" style="border:solid 1px black;">
             <div class="col-md-8">
-                <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+                <div id='topbar'>
+                    <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+                    <p id="timer"></p>
+                </div>
+
                 <div class="d-flex justify-content-center">
                     <div class="col-md-5" align="right"><b>What's generating now</b></div>
                     <div class="col-md-2"></div>
@@ -12,10 +16,11 @@
                     <img class="spark" src="../../img/energy.svg"/>
                     <h1>{{energy}} joules</h1>
                 </div>
-                <div class="d-flex nj-progress nj-progress--cerise mb-4">
-                    <div class="nj-progress__bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="nj-progress__text">{{percentageCompleted}}%</div>
+                <div class="progress-bar round">
+                    <div class="progress-bar-filling round">&nbsp;</div>
+                    <!-- v-bind:style="{'width': percentageCompleted}" -->
                 </div>
+                <div id="lottie"></div>
             </div>
             <sideBar></sideBar>
         </div>
@@ -24,21 +29,28 @@
 
 <script>
     import Pusher from '../pusher';
+    import lottie from 'lottie-web';
+
     export default {
         name: 'GeneralScreen',
         data() {
             return {
-              energy: 3,
+              energy: 25,
               nextThreshold: 75,
               previousThreshold: 0,
-              percentageCompleted: 25,
+              percentageCompleted: '15%',
               idOfNextGoal: 0,
-              show: false
+              show: false,
+              timeLeftOfSession: 60,
             }
         },
+
         created() {
             //energy of yesterday
-          this.getEnergy();
+          // this.getEnergy();
+          this.calculatePercentage();
+          this.timer();
+          this.lottieDisplay();
         },
 
         methods: {
@@ -58,8 +70,9 @@
                 console.log(percentage);
                 if(percentage<1) {
                     this.percentageCompleted = percentage*100;
+                    this.updateProgressBar();
                 } else {
-                    this.lottieDisplay("path");
+                    // this.lottieDisplay("path");
                     this.previousThreshold = this.nextThreshold;
                     this.idOfNextGoal ++;
                     //get nextThreshold with the new itemId
@@ -67,42 +80,37 @@
             },
 
             timer: function(){
-                let sec = 60;
+                let sec = this.timeLeftOfSession
                 let timer = setInterval(function(){
                     sec--;
-                    if (sec < 0) {
+                    if (sec <= 0) {
+                        sec = 60;
                         clearInterval(timer);
                     }
+                    console.log(sec);
+                    document.getElementById("timer").innerHTML = sec;
                 }, 1000);
             },
 
-            lottieDisplay: function (path) {
-                let svgContainer = document.getElementById('svgContainer');
+            lottieDisplay: function () {
                 // let animItem = bodymovin.loadAnimation({
-                //     wrapper: svgContainer,
+                //     container: document.getElementById('lottie'),
+                //     renderer: 'svg/canvas/html',
                 //     animType: 'svg',
-                //     loop: false,
-                //     path: path
+                //     loop: true,
+                //     autoplay: true,
+                //     path: "../lottie/data.json"
                 // });
             },
 
             updateProgressBar: function (){
-              let percentageCompleted = this.percentageCompleted + "%";
-              $('.nj-progress__bar').css({'width': percentageCompleted, 'aria-valuenow':percentageCompleted, 'aria-valuemin':0, 'aria-valuemax':100});
+            // console.log(this.percentageCompleted);
+            // let bar =  document.getElementsByClassName("progress-bar-filling");
+            //     bar.style.width = this.percentageCompleted;
+            // }
             }
-
         }
-
     };
-
-    //PUSHER CODE
-    // var counter = 0;
-    // var channel = pusher.subscribe('particle-channel');
-    // channel.bind('particle-data', function(data) {
-    //     energy
-    //     counter++;
-    //     console.log(counter);
-    // });
 </script>
 
 <style>
@@ -110,10 +118,13 @@ body {
     background-color: #F5F5F5;
 }
 
+#topbar {
+  margin-bottom: 15%;
+}
+
 .nj-navbar__logo {
   margin-top: 3%;
   margin-left: 3%;
-  margin-bottom: 15%;
   width: 11%;
 }
 .energy {
@@ -140,10 +151,16 @@ body {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-.nj-progress__bar {
-  width: auto;
-  aria-valuenow: 25;
-  aria-valuemin: 0;
-  aria-valuemax: 100;
+.progress-bar {
+  background-color: #E62B87;
+}
+.progress-bar-filling {
+  background-color: #272382;
+  width: 25%;
+}
+.round {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
 }
 </style>

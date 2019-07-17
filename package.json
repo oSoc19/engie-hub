@@ -32,6 +32,7 @@
         "pusher-js": "^4.4.0",
         "tls": "0.0.1",
         "vue-axios": "^2.1.4",
+        "vue-lottie": "^0.2.1",
         "vue-router": "^3.0.7"
     }
 }
