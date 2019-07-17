@@ -11,4 +11,4 @@ class ParticleController extends Controller
         $this->counter += 1;
     return $this->counter;
     }
-}
+};

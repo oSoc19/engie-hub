@@ -1747,20 +1747,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
     return {
-      energy: 250
+      energy: 3,
+      nextTreshold: 25,
+      previousThreshold: 0,
+      percentageCompleted: 25,
+      idOfNextGoal: 0,
+      show: false
     };
   },
-  created: function created() {//this.getEnergy()
+  created: function created() {//energy of yesterday
+    //this.getEnergy()
   },
   methods: {
-    getEnergy: function getEnergy() {//TODO api call to get information about energy generated
+    getEnergy: function getEnergy() {
+      var channel = pusher.subscribe('particle-channel');
+      channel.bind('particle-data', function (data) {
+        this.energy++;
+        console.log(this.energy);
+        calculatePercentage();
+      }); //TODO api call to get information about energy generated
+    },
+    calculatePercentage: function calculatePercentage() {
+      var percentage = this.nextThreshold / this.energy;
+
+      if (percentage < 1) {
+        this.percentageCompleted = percentage * 100;
+      } else {
+        lottieDisplay("path");
+        this.previousThreshold = this.nextThreshold;
+        this.idOfNextGoal++; //get nextThreshold with the new itemId
+      }
+    },
+    timer: function timer() {
+      var sec = 60;
+      var timer = setInterval(function () {
+        sec--;
+
+        if (sec < 0) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    },
+    lottieDisplay: function lottieDisplay(path) {
+      var svgContainer = document.getElementById('svgContainer');
+      var animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: 'svg',
+        loop: false,
+        path: path
+      });
+    },
+    updateProgressBar: function updateProgressBar() {
+      var percentageCompleted = this.percentageCompleted + "%";
+      $('.nj-progress__bar').css({
+        'width': percentageCompleted,
+        'aria-valuenow': percentageCompleted,
+        'aria-valuemin': 0,
+        'aria-valuemax': 100
+      });
     }
   }
-});
+}); //PUSHER CODE
+// var counter = 0;
+// var channel = pusher.subscribe('particle-channel');
+// channel.bind('particle-data', function(data) {
+//     energy
+//     counter++;
+//     console.log(counter);
+// });
 
 /***/ }),
 
@@ -1773,30 +1838,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6318,7 +6359,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-bottom: 30%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 15%;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  margin-bottom: 15%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__bar {\n  margin-left: 5%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n}\n.progress-bar-filling {\n  background-color: #272382;\n}\n.round {\n  border-radius: 100px;\n}\n\n", ""]);
 
 // exports
 
@@ -6337,7 +6378,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n  background-color: #dddddd;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #A0A0A0;\n  padding: 20px 20px;\n  width: 80px;\n  height: 80px;\n}\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -37922,7 +37963,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _c(
       "div",
       {
@@ -37948,8 +37989,10 @@ var render = function() {
               attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
-          ])
+            _c("h1", [_vm._v(_vm._s(_vm.energy) + " watts")])
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
         ]),
         _vm._v(" "),
         _c("sideBar")
@@ -37965,14 +38008,29 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex justify-content-center" }, [
       _c("div", { staticClass: "col-md-5", attrs: { align: "right" } }, [
-        _c("b", [_vm._v("What's generating now")])
+        _c("b", [_c("h4", [_vm._v("What's generating now")])])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-1 justify-content-center live" }, [
+      _c("div", { staticClass: "col-md-1 live", attrs: { align: "center" } }, [
         _vm._v("live")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress-bar round" }, [
+      _c(
+        "div",
+        {
+          staticClass: "progress-bar-filling round",
+          staticStyle: { width: "60%" }
+        },
+        [_vm._v(" ")]
+      )
     ])
   }
 ]
@@ -37993,8 +38051,95 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-md-4", attrs: { id: "sidebar", align: "center" } },
+    [
+      _c("div", { staticClass: "nj-card mb-3" }, [
+        _c("div", { staticClass: "nj-card__body" }, [
+          _c("p"),
+          _c("div", [_vm._v("Today this place ")]),
+          _vm._v(" "),
+          _c("div", [_vm._v("generated")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("h2", [
+            _c("img", {
+              attrs: {
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
+                width: "40",
+                height: "40"
+              }
+            }),
+            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " watts")])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _vm._m(0),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", [_vm._v("Which can be used to")]),
+          _vm._v(" "),
+          _c("div", [_vm._v("power")]),
+          _vm._v(" "),
+          _c("div", [_vm._v(" 3.6 washing machines")]),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c("br"),
+          _c("hr"),
+          _c("br"),
+          _vm._v(" "),
+          _vm._m(1),
+          _c("h4", [
+            _c("img", {
+              attrs: {
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
+                width: "30",
+                height: "30"
+              }
+            }),
+            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " watts")])
+          ]),
+          _vm._v("\n        was generated\n      "),
+          _c("p")
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { attrs: { id: "rcorners", align: "center" } }, [
+      _c("img", {
+        attrs: {
+          src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
+          width: "65",
+          height: "80"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "nj-card__body yesterday" }, [
+      _c("br"),
+      _vm._v("Yesterday"),
+      _c("br")
+    ])
+  }
+]
+render._withStripped = true
 
 
 
@@ -52823,6 +52968,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/img/energy-2.svg":
+/*!************************************!*\
+  !*** ./resources/img/energy-2.svg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
+
+/***/ }),
+
 /***/ "./resources/img/energy.svg":
 /*!**********************************!*\
   !*** ./resources/img/energy.svg ***!
@@ -52831,6 +52987,17 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
+
+/***/ }),
+
+/***/ "./resources/img/washing-machine.png":
+/*!*******************************************!*\
+  !*** ./resources/img/washing-machine.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/washing-machine.png?d8c9f05df92c6cd688d7405955019fd4";
 
 /***/ }),
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use \App\Http\Controllers\EventsController;
+use \App\Events\ParticleData;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::get('events', 'EventsController@index');
 Route::post('insertevent', 'EventsController@store');
 Route::get('event/{id}', 'EventsController@show');
 
-Route::post('webhook', 'ParticleController@store');
+// Route::post('webhook', 'ParticleController@store');
+Route::post('webhook', function() {
+    $data = request()->text;
+    event(new ParticleData($data));
+});

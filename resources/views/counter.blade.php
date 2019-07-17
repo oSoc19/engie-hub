@@ -13,9 +13,11 @@
       forceTLS: true
     });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
+    var counter = 0;
+    var channel = pusher.subscribe('particle-channel');
+    channel.bind('particle-data', function(data) {
+        counter++;
+        console.log(counter);
     });
   </script>
 </head>

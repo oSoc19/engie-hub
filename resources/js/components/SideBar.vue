@@ -30,17 +30,19 @@
         <p>
           <div>Today this place </div>
           <div>generated</div><br>
-          <h2><img src="../../img/energy.svg" width="40" height="40"/><b>{{todayEnergy}} joules</b></h2>
+          <h2><img src="../../img/energy-2.svg" width="40" height="40"/><b>{{todayEnergy}} watts</b></h2>
           <br>
-          <p id="rcorners" align="center"><img src="../../img/washing-machine.png" width="30" height="40" /></p><br>
+          <p id="rcorners" align="center"><img src="../../img/washing-machine.png" width="65" height="80" /></p><br>
           <div>Which can be used to</div>
           <div>power</div>
           <div> 3.6 washing machines</div>
         </p>
         <br><hr><br>
-        <p>
-          Yesterday<br>
-          <h4><img src="../../img/energy.svg" width="30" height="30"/><b>{{yesterdayEnergy}} joules</b></h4>
+        <p class="nj-card__body yesterday">
+          <br>Yesterday<br>
+          <h4>
+            <img src="../../img/energy-2.svg" width="30" height="30"/><b>{{yesterdayEnergy}} watts</b>
+          </h4>
           was generated
         </p>
 >>>>>>> backend
@@ -70,13 +72,14 @@
 </script>
 <style>
 .nj-card__body {
-  background-color: #dddddd;
+  background-color: #E0E0E0;
 }
 #rcorners {
   border-radius: 100px;
-  background-color: #A0A0A0;
-  padding: 20px 20px;
-  width: 80px;
-  height: 80px;
+  background-color: #272382;
+  padding: 30px 20px;
+  width: 150px;
+  height: 150px;
 }
+
 </style>

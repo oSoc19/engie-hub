@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/{any?}', function (){
+Route::get('/', function (){
     return view('example');
 })->where('any', '[\/\w]*');
+
+Route::get('/counter', function() {
+    return view('counter');
+});

@@ -17,10 +17,11 @@ class CreateEnergyConsumptionTable extends Migration
             $table->bigIncrements('id');
             $table->string('item');
             $table->integer('avg_power');
-<<<<<<< HEAD
-=======
+            $table->integer('duration');
+            $table->integer('threshold');
+            $table->string('emblem_path');
+            $table->string('lottie_path')
             $table->string('text');
->>>>>>> backend
             $table->timestamps();
         });
 
