@@ -1784,8 +1784,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -6503,17 +6501,9 @@ exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n  transitio
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GameScreen.vue?vue&type=style&index=0&lang=css& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#topbar {\n  margin-bottom: 15%;\n}\n#timer {\n    /* margin-top: 15px; */\n}\n#timer-box {\n    margin-top: 15px;\n    margin-left: 34%;\n    text-align: center;\n    display: inline-block;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy {\n  margin-top: 3%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 9%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  margin-left: 10%;\n  padding-left: 0;\n  padding-right: 0;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n}\n.next-goal img{\n  width: 60px;\n  height: 60px;\n}\n", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(213:9) Unknown word\n\n \u001b[90m 211 | \u001b[39m\u001b[33m.progress-bar\u001b[39m \u001b[33m{\u001b[39m\n \u001b[90m 212 | \u001b[39m  margin-left\u001b[33m:\u001b[39m 10%\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 213 | \u001b[39m<<<<<<< HEAD\n \u001b[90m     | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 214 | \u001b[39m  padding-left\u001b[33m:\u001b[39m 0\u001b[33m;\u001b[39m\n \u001b[90m 215 | \u001b[39m  padding-right\u001b[33m:\u001b[39m 0\u001b[33m;\u001b[39m\n");
 
 /***/ }),
 
@@ -61488,51 +61478,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "row justify-content-center",
-      staticStyle: { border: "solid 1px black" }
-    },
-    [
-      _c("div", { staticClass: "col-md-12" }, [
-        _vm._m(0),
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-center energy" }, [
+        _c("img", {
+          staticClass: "spark",
+          attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
+        }),
         _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex justify-content-center energy" }, [
-          _c("img", {
-            staticClass: "spark",
-            attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
-          }),
-          _vm._v(" "),
-          _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row progression" }, [
-          _c("div", { staticClass: "col-md-9 progress-bar round" }, [
-            _c(
-              "div",
-              {
-                staticClass: "round",
-                style: {
-                  width: _vm.percentageCompleted + "%",
-                  "background-color": _vm.progressBarColor,
-                  height: "100%"
-                },
-                attrs: { id: "progress-bar-filling" }
+        _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row progression" }, [
+        _c("div", { staticClass: "col-md-9 progress-bar round" }, [
+          _c(
+            "div",
+            {
+              staticClass: "round",
+              style: {
+                width: _vm.percentageCompleted + "%",
+                "background-color": _vm.progressBarColor,
+                height: "100%"
               },
-              [_vm._v(" ")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(2)
+              attrs: { id: "progress-bar-filling" }
+            },
+            [_vm._v(" ")]
+          )
         ]),
         _vm._v(" "),
-        _vm._m(3)
-      ])
-    ]
-  )
+        _vm._m(2)
+      ]),
+      _vm._v(" "),
+      _vm._m(3)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -61583,76 +61566,74 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "row justify-content-center ",
-        staticStyle: { border: "solid 1px black" }
-      },
-      [
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", {
-            staticClass: "nj-icon nj-icon-temperature nj-icon--circle"
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-cardload nj-icon--circle" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
+        _c("h4", [_vm._v("GOAL")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-medal nj-icon--circle" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-moon nj-icon--border" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-          _c("i", { staticClass: "nj-icon nj-icon-nature nj-icon--border" }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("GOAL")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
-            )
-          ])
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: {
+            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
+          }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons goal-icon-empty",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons goal-icon-empty",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("GOAL")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -76710,6 +76691,39 @@ module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
 /***/ (function(module, exports) {
 
 module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_Game_1967460.svg":
+/*!***************************************************!*\
+  !*** ./resources/img/icons/noun_Game_1967460.svg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_Game_1967460.svg?b643c156a699734abe7d03d61cebf702";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_Microwave_1967465.svg":
+/*!********************************************************!*\
+  !*** ./resources/img/icons/noun_Microwave_1967465.svg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
+
+/***/ }),
+
+/***/ "./resources/img/icons/noun_pizza slice_1204552.svg":
+/*!**********************************************************!*\
+  !*** ./resources/img/icons/noun_pizza slice_1204552.svg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/noun_pizza slice_1204552.svg?aed4b446190d476d61e88283cae51ef3";
 
 /***/ }),
 
