@@ -1751,6 +1751,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -1822,10 +1823,6 @@ __webpack_require__.r(__webpack_exports__);
       //     autoplay: true,
       //     path: "../lottie/data.json"
       // });
-    },
-    updateProgressBar: function updateProgressBar() {// console.log(this.percentageCompleted);
-      // let bar =  document.getElementsByClassName("progress-bar-filling");
-      //     bar.style.width = this.percentageCompleted;
     }
   }
 });
@@ -1844,6 +1841,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pusher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pusher */ "./resources/js/pusher/index.js");
 /* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lottie-web */ "./node_modules/lottie-web/build/player/lottie.js");
 /* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lottie_web__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
 //
 //
 //
@@ -1963,6 +1962,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -6482,7 +6483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    display: block;\r\n    margin-left: 40%;\r\n    margin-top: 15px;\n}\n#timer-box {\r\n    display: inline-block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 15%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    display: inline-block;\r\n    margin-left: 40%;\r\n    margin-top: 15px;\n}\n#time-left {\n}\n#timer-box {\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 15%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 0%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -6494,17 +6495,9 @@ exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar 
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneralScreen.vue?vue&type=style&index=0&lang=css& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 15%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 25%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(176:1) Unknown word\n\n \u001b[90m 174 | \u001b[39m\u001b[33m.nj-progress__text\u001b[39m\u001b[33m{\u001b[39m\n \u001b[90m 175 | \u001b[39m  margin-left\u001b[33m:\u001b[39m 3%\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 176 | \u001b[39m>>>>>>> backend\n \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 177 | \u001b[39m\u001b[33m}\u001b[39m\n \u001b[90m 178 | \u001b[39m\u001b[33m.progress-bar\u001b[39m \u001b[33m{\u001b[39m\n");
 
 /***/ }),
 
@@ -6520,7 +6513,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #dddddd;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #A0A0A0;\r\n  padding: 20px 20px;\r\n  width: 80px;\r\n  height: 80px;\n}\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -61502,6 +61495,8 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("div", { attrs: { id: "timer-box" } }, [
+        _c("p", { attrs: { id: "time-left" } }, [_vm._v("Time left to move")]),
+        _vm._v(" "),
         _c("p", { attrs: { id: "timer" } })
       ])
     ])
@@ -61571,12 +61566,10 @@ var render = function() {
               attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+            _c("h1", [_vm._v(_vm._s(_vm.energy) + " watts")])
           ]),
           _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "lottie" } })
+          _vm._m(2)
         ]),
         _vm._v(" "),
         _c("sideBar")
@@ -61609,12 +61602,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "d-flex justify-content-center" }, [
       _c("div", { staticClass: "col-md-5", attrs: { align: "right" } }, [
-        _c("b", [_vm._v("What's generating now")])
+        _c("b", [_c("h4", [_vm._v("What's generating now")])])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-1 justify-content-center live" }, [
+      _c("div", { staticClass: "col-md-1 live", attrs: { align: "center" } }, [
         _vm._v("live")
       ])
     ])
@@ -61624,7 +61617,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress-bar round" }, [
-      _c("div", { staticClass: "progress-bar-filling round" }, [_vm._v(" ")])
+      _c(
+        "div",
+        {
+          staticClass: "progress-bar-filling round",
+          staticStyle: { width: "60%" }
+        },
+        [_vm._v(" ")]
+      )
     ])
   }
 ]
@@ -61664,12 +61664,12 @@ var render = function() {
           _c("h2", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
                 width: "40",
                 height: "40"
               }
             }),
-            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " joules")])
+            _c("b", [_vm._v(_vm._s(_vm.todayEnergy) + " watts")])
           ]),
           _vm._v(" "),
           _c("br"),
@@ -61693,12 +61693,12 @@ var render = function() {
           _c("h4", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg"),
+                src: __webpack_require__(/*! ../../img/energy-2.svg */ "./resources/img/energy-2.svg"),
                 width: "30",
                 height: "30"
               }
             }),
-            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " joules")])
+            _c("b", [_vm._v(_vm._s(_vm.yesterdayEnergy) + " watts")])
           ]),
           _vm._v("\n        was generated\n      "),
           _c("p")
@@ -61716,8 +61716,8 @@ var staticRenderFns = [
       _c("img", {
         attrs: {
           src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
-          width: "30",
-          height: "40"
+          width: "65",
+          height: "80"
         }
       })
     ])
@@ -61726,7 +61726,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_vm._v("\n        Yesterday"), _c("br")])
+    return _c("p", { staticClass: "nj-card__body yesterday" }, [
+      _c("br"),
+      _vm._v("Yesterday"),
+      _c("br")
+    ])
   }
 ]
 render._withStripped = true
@@ -76555,6 +76559,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/img/energy-2.svg":
+/*!************************************!*\
+  !*** ./resources/img/energy-2.svg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/energy-2.svg?bba574ab3bfacfe78ee07421509051f1";
 
 /***/ }),
 

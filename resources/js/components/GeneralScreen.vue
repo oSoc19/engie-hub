@@ -155,25 +155,11 @@ h1 {
 .progress-div {
   margin-top: 10%;
 }
-<<<<<<< HEAD
-.progress-bar {
-  background-color: #E62B87;
-}
-.progress-bar-filling {
-  background-color: #272382;
-  width: 25%;
-}
-.round {
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  border-radius: 100px;
-=======
 .nj-progress__bar {
   margin-left: 5%;
 }
 .nj-progress__text{
   margin-left: 3%;
->>>>>>> backend
 }
 .progress-bar {
   background-color: #E62B87;
