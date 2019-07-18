@@ -27,14 +27,14 @@ class CreateGoalsTable extends Migration
             [
               'name' => 'LED bulb',
               'threshold' => 80,
-              'emblem_path' => '../../img/icons/noun_Microwave_1967465',
+              'emblem_path' => 'images/noun_Microwave_1967465.svg',
               'lottie_path' => '',
               'description' => 'You generated enough energy to fuel a street light for 5 minutes!'
             ],
             [
               'name' => 'Brain',
               'threshold' => 20,
-              'emblem_path' => '../../img/icons/noun_Game_1967460',
+              'emblem_path' => 'images/noun_Game_1967460.svg',
               'lottie_path' => '',
               'description' => 'During a timespan of 10 hours the average adult brain consumes 200Wh'
             ],
