@@ -1776,8 +1776,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -1969,6 +1967,51 @@ __webpack_require__.r(__webpack_exports__);
       // let bar =  document.getElementsByClassName("progress-bar-filling");
       //     bar.style.width = this.percentageCompleted;
       // }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicket.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicket.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'GoalTicket',
+  data: function data() {
+    return {
+      goals: []
+    };
+  },
+  created: function created() {
+    this.getGoals();
+  },
+  methods: {
+    getGoals: function getGoals() {
+      var _this = this;
+
+      axios.get('/api/goals').then(function (response) {
+        _this.goals = response.data.data;
+        console.log(response.data.data);
+      })["catch"](function (e) {
+        _this.errors.push(e);
+      });
     }
   }
 });
@@ -6505,7 +6548,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 42%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 25%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 15%;\n}\n#timer {\r\n    /* margin-top: 15px; */\n}\n#timer-box {\r\n    margin-left: 34%;\r\n    text-align: center;\r\n    display: inline-block;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 9%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  margin-left: 10%;\r\n  margin-right: 10%;\n}\n.progress-bar-filling {\r\n  background-color: #272382;\r\n  width: 25%;\n}\n.round {\r\n  border-radius: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -61484,24 +61527,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center" }, [
-    _c("div", { staticClass: "col-md-12" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex justify-content-center energy" }, [
-        _c("img", {
-          staticClass: "spark",
-          attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
-        }),
+    _c(
+      "div",
+      { staticClass: "col-md-12" },
+      [
+        _vm._m(0),
         _vm._v(" "),
-        _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
-      ]),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3)
-    ])
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex justify-content-center energy" }, [
+          _c("img", {
+            staticClass: "spark",
+            attrs: { src: __webpack_require__(/*! ../../img/energy.svg */ "./resources/img/energy.svg") }
+          }),
+          _vm._v(" "),
+          _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("GoalTicket")
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -61542,79 +61590,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress-bar round" }, [
       _c("div", { staticClass: "progress-bar-filling round" }, [_vm._v(" ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("GOAL")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("GOAL")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: {
-            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
-          }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("GOAL")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons goal-icon-empty",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("GOAL")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons goal-icon-empty",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("GOAL")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum")
-        ])
-      ])
     ])
   }
 ]
@@ -61720,6 +61695,46 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row justify-content-center" },
+    _vm._l(_vm.goals, function(goal) {
+      return _c("div", { staticClass: "col-md-2 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: goal.emblem_path }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v(_vm._s(goal.name))]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(goal.description))])
+      ])
+    }),
+    0
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -76676,39 +76691,6 @@ module.exports = "/images/energy.svg?dd41a576df47ef9ea036612d71e84233";
 
 /***/ }),
 
-/***/ "./resources/img/icons/noun_Game_1967460.svg":
-/*!***************************************************!*\
-  !*** ./resources/img/icons/noun_Game_1967460.svg ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Game_1967460.svg?b643c156a699734abe7d03d61cebf702";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_Microwave_1967465.svg":
-/*!********************************************************!*\
-  !*** ./resources/img/icons/noun_Microwave_1967465.svg ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_pizza slice_1204552.svg":
-/*!**********************************************************!*\
-  !*** ./resources/img/icons/noun_pizza slice_1204552.svg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_pizza slice_1204552.svg?aed4b446190d476d61e88283cae51ef3";
-
-/***/ }),
-
 /***/ "./resources/img/washing-machine.png":
 /*!*******************************************!*\
   !*** ./resources/img/washing-machine.png ***!
@@ -76828,6 +76810,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_GeneralScreen_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GeneralScreen.vue */ "./resources/js/components/GeneralScreen.vue");
 /* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SideBar.vue */ "./resources/js/components/SideBar.vue");
 /* harmony import */ var _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/GameScreen.vue */ "./resources/js/components/GameScreen.vue");
+/* harmony import */ var _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/GoalTicket.vue */ "./resources/js/components/GoalTicket.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -76840,7 +76823,9 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 
 
+
 Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('GoalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var routes = [{
   name: 'home',
   path: '/',
@@ -77087,6 +77072,92 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneralScreen_vue_vue_type_template_id_6b6ca919___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneralScreen_vue_vue_type_template_id_6b6ca919___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicket.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/GoalTicket.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GoalTicket.vue?vue&type=template&id=f652ddac& */ "./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac&");
+/* harmony import */ var _GoalTicket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GoalTicket.vue?vue&type=script&lang=js& */ "./resources/js/components/GoalTicket.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _GoalTicket_vue_vue_type_custom_index_0_blockType_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GoalTicket.vue?vue&type=custom&index=0&blockType=css */ "./resources/js/components/GoalTicket.vue?vue&type=custom&index=0&blockType=css");
+/* harmony import */ var _GoalTicket_vue_vue_type_custom_index_0_blockType_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_GoalTicket_vue_vue_type_custom_index_0_blockType_css__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GoalTicket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* custom blocks */
+
+if (typeof _GoalTicket_vue_vue_type_custom_index_0_blockType_css__WEBPACK_IMPORTED_MODULE_3___default.a === 'function') _GoalTicket_vue_vue_type_custom_index_0_blockType_css__WEBPACK_IMPORTED_MODULE_3___default()(component)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GoalTicket.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicket.vue?vue&type=custom&index=0&blockType=css":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/GoalTicket.vue?vue&type=custom&index=0&blockType=css ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicket.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/GoalTicket.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicket.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicket.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicket.vue?vue&type=template&id=f652ddac& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

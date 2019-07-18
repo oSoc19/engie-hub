@@ -1,26 +1,36 @@
 <template>
-    <div class="col-md-2 goal-tickets">
-        <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-        <h4>GOAL</h4>
-        <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+    <div class="row justify-content-center">
+        <div v-for="goal in goals" class="col-md-2 goal-tickets">
+            <img :src="goal.emblem_path" class="goal-icons"/>
+            <h4>{{goal.name}}</h4>
+            <p>{{goal.description}}</p>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'GoalTicket'
+    name: 'GoalTicket',
     data() {
-        goals: []
-    }
+        return {
+            goals: []
+        }
+    },
+    created() {
+        this.getGoals();
+    },
 
     methods: {
-        axios.get('/api/getgoals')
-        .then(response => {
-            this.goals = response.data
-        })
-        .catch(e => {
-            this.errors.push(e);
-        })
+        getGoals: function(){
+            axios.get('/api/goals')
+            .then(response => {
+                this.goals = response.data.data;
+                console.log(response.data.data);
+            })
+            .catch(e => {
+                this.errors.push(e);
+            })
+        }
     }
 }
 </script>
