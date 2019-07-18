@@ -15,6 +15,7 @@ Vue.use(VueAxios, axios);
 import GeneralScreen from './components/GeneralScreen.vue';
 import SideBar from './components/SideBar.vue';
 import GameScreen from './components/GameScreen.vue';
+import SessionEndScreen from './components/SessionEndScreen.vue';
 
 
 Vue.component('sideBar', SideBar);
@@ -28,7 +29,10 @@ const routes = [
       name: 'game',
       path: '/game',
       component: GameScreen
-
+  },{
+      name: 'end',
+      path: '/end',
+      component: SessionEndScreen
   }
 ];
 

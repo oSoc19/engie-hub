@@ -13,11 +13,11 @@
                 <b>YOU'VE GENERATED</b>
             </div>
             <div class="d-flex justify-content-center energy">
-                <img class="spark" src="../../img/energy.svg"/>
+                <img class="spark" src="../../img/icons/blue-energy.svg"/>
                 <h1>{{energy}} joules</h1>
             </div>
 
-            <div class="row progression">
+            <div class="row align-items-center progression">
               <div class="col-md-9 progress-bar round">
                 <div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
               </div>
@@ -61,12 +61,12 @@
 <script>
 export default {
     name: 'GeneralScreen',
-    data() {
+    data: function() {
         return {
-          energy: 25,
-          nextThreshold: 75,
+          energy: 0,
+          nextThreshold: 600,
           previousThreshold: 0,
-          percentageCompleted: '15%',
+          percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
           timeLeftOfSession: 60,
@@ -80,6 +80,9 @@ export default {
       this.calculatePercentage();
       this.timer()
       this.lottieDisplay();
+      var simulation = setInterval(this.updateProgressBar, 1500);
+      let timeLeft = this.timeLeftOfSession * 1000;
+      setTimeout(function(){ clearInterval(simulation); }, timeLeft);
     },
 
     methods: {
@@ -131,6 +134,16 @@ export default {
             // });
         },
 
+        getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min;
+        },
+
+        updateProgressBar: function(){
+          this.energy += this.getRandomInt(5, 25);
+          this.calculatePercentage();
+        }
     }
 
 };
@@ -210,7 +223,6 @@ body {
 }
 .progress-bar {
   margin-left: 10%;
-  margin-right: 10%;
   padding-left: 0;
   padding-right: 0;
   max-height: 30px;
@@ -228,11 +240,12 @@ body {
 }
 .next-goal{
   background-color: #0080FF;
-  margin-left: -10%;
+  z-index: 1;
+  margin-left: -2%;
 }
 
 .next-goal img{
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
 }
 </style>

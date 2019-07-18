@@ -11,10 +11,14 @@
 |
 */
 
+Route::get('/{any?}', function (){
+    return view('example');
+})->where('any', '[\/\w]*');
+/*
 Route::get('/', function (){
     return view('example');
 })->where('any', '[\/\w]*');
 
 Route::get('/game', function() {
     return view('game');
-});
+});*/
