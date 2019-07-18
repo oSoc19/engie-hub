@@ -13,7 +13,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
+                            <h4>{{this.totalEnergy}}x</h4>
                             <p>Object</p>
                         </div>
                         <div class="col-md-3 goal-tickets">
@@ -56,7 +56,9 @@
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
-            totalEnergy: 540
+            totalEnergy: 540,
+            goals: [],
+            goalsCompleted: []
           }
         },
 
@@ -75,6 +77,10 @@
                     }
                     console.log(sec);
                 }, 1000);
+            },
+
+            calculateGoalsCollected: function() {
+                this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
             }
         }
     };
@@ -150,6 +156,7 @@ h1 {
 
 .goals {
   background-color: white;
+  color: #707070;
 }
 
 .goal-icons {
@@ -163,6 +170,7 @@ h1 {
 
 .watts-container {
     background-color: #00AAFF;
+    color: #FFFFFF;
 }
 
 .container-flex > div{

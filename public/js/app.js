@@ -2155,7 +2155,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       timeLeftBeforeInitialScreen: 10,
-      totalEnergy: 540
+      totalEnergy: 540,
+      goals: [],
+      goalsCompleted: []
     };
   },
   created: function created() {
@@ -2174,6 +2176,9 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(sec);
       }, 1000);
+    },
+    calculateGoalsCollected: function calculateGoalsCollected() {
+      this.goals.foreach(this.goalsCompleted[goal.id - 1] = this.totalEnergy / goal.threshold);
     }
   }
 });
@@ -6767,7 +6772,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 10%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\n}\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 100px;\r\n  width: 10%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\n}\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\r\n  color: #707070;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -62148,7 +62153,26 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "p-2 goals" }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+              _c("img", {
+                staticClass: "goal-icons",
+                attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+              }),
+              _vm._v(" "),
+              _c("h4", [_vm._v(_vm._s(this.totalEnergy) + "x")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Object")])
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
       ]),
       _vm._v(" "),
       _c("FinishSidebar")
@@ -62176,83 +62200,70 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-2 goals" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ]),
+    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+      _c("img", {
+        staticClass: "goal-icons",
+        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+      }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("{{}}x")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Object")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+      _c("img", {
+        staticClass: "goal-icons",
+        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg") }
+      }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("{{}}x")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Object")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: {
-              src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg")
-            }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ]),
+        _c("h4", [_vm._v("{{}}x")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: {
-              src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
-            }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ])
+        _c("p", [_vm._v("Object")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ]),
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: {
-              src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg")
-            }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ]),
+        _c("h4", [_vm._v("{{}}x")]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-          _c("img", {
-            staticClass: "goal-icons",
-            attrs: {
-              src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
-            }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("{{}}x")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Object")])
-        ])
+        _c("p", [_vm._v("Object")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: {
+            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
+          }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("{{}}x")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Object")])
       ])
     ])
   }
