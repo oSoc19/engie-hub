@@ -25,9 +25,8 @@
                   <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
               </div>
             </div>
-
-            <div class="row justify-content-center">
-                <div class="col-md-2 goal-tickets">
+                <GoalTicket></GoalTicket>
+                <!-- <div class="col-md-2 goal-tickets">
                     <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
@@ -51,8 +50,7 @@
                     <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons goal-icon-empty"/>
                     <h4>GOAL</h4>
                     <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-            </div>
+                </div> -->
         </div>
     </div>
 
