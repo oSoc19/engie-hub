@@ -16,11 +16,14 @@ import GeneralScreen from './components/GeneralScreen.vue';
 import SideBar from './components/SideBar.vue';
 import GameScreen from './components/GameScreen.vue';
 import GoalTicket from './components/GoalTicket.vue';
+import FinishSidebar from './components/FinishSidebar.vue';
 
 
 
 Vue.component('sideBar', SideBar);
-Vue.component('GoalTicket', GoalTicket);
+Vue.component('GoalTicket', GoalTicket;
+Vue.component('FinishSidebar', FinishSidebar;
+
 
 
 const routes = [
