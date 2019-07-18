@@ -21,8 +21,8 @@ import FinishSidebar from './components/FinishSidebar.vue';
 
 
 Vue.component('sideBar', SideBar);
-Vue.component('GoalTicket', GoalTicket;
-Vue.component('FinishSidebar', FinishSidebar;
+Vue.component('GoalTicket', GoalTicket);
+Vue.component('FinishSidebar', FinishSidebar);
 
 
 

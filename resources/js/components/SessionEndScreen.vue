@@ -1,11 +1,9 @@
 <template>
-    <div>
-        <div class="row justify-content-center" style="border:solid 1px black;">
-            <div class="col-md-8">
-                <div class="d-flex flex-column info-generated">
-                  <div class="p-2" align="center">
+        <div class="row justify-content-center container-flex" style="border:solid 1px black;">
+            <div class="col-md-9">
+                  <div class="watts-container" align="center">
                     <div id='topbar'>
-                        <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+                        <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
                     </div>
                     <h4>You have generated</h4>
                     <h2><img class="spark" src="../../img/icons/white-energy.svg"/> {{totalEnergy}} watts</h2>
@@ -13,44 +11,42 @@
                   </div>
                   <div class="p-2 goals">
                     <div class="row justify-content-center">
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
-                        <div class="col-md-2 goal-tickets">
+                        <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
                     </div>
                   </div>
-                </div>
-            </div>
-            <sideBar></sideBar>
         </div>
+        <FinishSidebar></FinishSidebar>
     </div>
 </template>
 
@@ -60,6 +56,7 @@
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
+            totalEnergy: 540
           }
         },
 
@@ -154,5 +151,27 @@ h1 {
 .goals {
   background-color: white;
 }
+
+.goal-icons {
+    width: 29%;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.watts-container {
+    background-color: #00AAFF;
+}
+
+.container-flex > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 
 </style>

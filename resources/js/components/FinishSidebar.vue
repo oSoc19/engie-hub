@@ -1,20 +1,20 @@
 <template>
-  <div id="sidebar" class="col-md-4" align="center">
-    <div class="nj-card mb-3">
-      <div class="nj-card__body">
-        <p id="donate">
-            Donate your {{this.energy}} watts of clean energy to a good cause
-        </p>
-        <br><hr><br>
-        <div class="nj-card__body yesterday">
-        <p>
-            Scan to donate
-        </p>
-            <img src="../../img/qr-code-svgrepo-com.svg"/>
-      </div>
-      </div>
+  <div id="sidebar" class="col-md-3" align="center">
+          <div class="nj-card__body">
+              <div>
+                  <p id="donate">
+                      Donate your {{this.energy}} watts of clean energy to a good cause
+                  </p>
+              </div>
+              <br><hr><br>
+              <div>
+                  <p>
+                      Scan to donate
+                  </p>
+                  <img src="../../img/qr-code-svgrepo-com.svg"/>
+              </div>
+          </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -22,7 +22,7 @@
         name: 'SideBar',
         data() {
             return {
-                energy: 456;
+                energy: 456
             }
         },
         created() {
@@ -37,19 +37,39 @@
 </script>
 <style>
 .nj-card__body {
-  background-color: #E0E0E0;
+    background-color: #FFFFFF;
+    border-color: #CFCECE;
+    border-width: 3px;
+    border-left-style: solid;
+    border-right-style: solid;
+
+    display: flex;
+	flex-direction: column;
 }
+.nj-card__body > div {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+}
+
 p{
     font-family: Lato;
+}
+img{
+    width: 50%;
 }
 
 #donate {
     font-size: 54px;
+    text-align: left;
+    line-height: 1.1;
+    margin-left: 86px;
     color: #707070;
 }
+
 #rcorners {
   border-radius: 100px;
-  background-color: #272382;
   padding: 30px 20px;
   width: 150px;
   height: 150px;
