@@ -1782,6 +1782,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
   data: function data() {
@@ -61546,7 +61561,7 @@ var render = function() {
           _vm._v(" "),
           _c("h1", [_vm._v(_vm._s(_vm.energy) + " joules")])
         ]),
-        _vm._v(" "),
+        _vm._v("\n<<<<<<< HEAD\n\n            "),
         _c("div", { staticClass: "row progression" }, [
           _c("div", { staticClass: "col-md-9 progress-bar round" }, [
             _c(
