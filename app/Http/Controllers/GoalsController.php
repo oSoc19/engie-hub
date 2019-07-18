@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use App\Models\EnergyConsumption;
-use App\Http\Resources\EnergyConsumption as EnergyConsumptionResource;
+use App\Models\Goal;
+use App\Http\Resources\Goal as GoalResource;
 
-
-class EnergyConsumptionController extends Controller
+class GoalsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class EnergyConsumptionController extends Controller
      */
     public function index()
     {
-        //
+        $goals = Goal::paginate(5);
+        return GoalResource::collection($goals);
     }
 
     /**
@@ -48,8 +49,8 @@ class EnergyConsumptionController extends Controller
      */
     public function show($id)
     {
-        $item = EnergyConsumption::findOrFail($id);
-        return new EnergyConsumptionResource($item);
+        $goals = Goal::findOrFail($id);
+        return new GoalResource($goals);
     }
 
     /**
