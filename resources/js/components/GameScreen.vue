@@ -13,11 +13,17 @@
                 <b>YOU'VE GENERATED</b>
             </div>
             <div class="d-flex justify-content-center energy">
-                <img class="spark" src="../../img/energy.svg"/>
+                <img class="spark" src="../../img/icons/blue-energy.svg"/>
                 <h1>{{energy}} joules</h1>
             </div>
-            <div class="progress-bar round">
-                <div class="progress-bar-filling round">&nbsp;</div>
+
+            <div class="row align-items-center progression">
+              <div class="col-md-9 progress-bar round">
+                <div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
+              </div>
+              <div class="next-goal round">
+                  <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
+              </div>
             </div>
                 <GoalTicket></GoalTicket>
                 <!-- <div class="col-md-2 goal-tickets">
@@ -53,15 +59,16 @@
 <script>
 export default {
     name: 'GeneralScreen',
-    data() {
+    data: function() {
         return {
-          energy: 25,
-          nextThreshold: 75,
+          energy: 0,
+          nextThreshold: 600,
           previousThreshold: 0,
-          percentageCompleted: '15%',
+          percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
           timeLeftOfSession: 60,
+          progressBarColor: '#272382',
         }
     },
 
@@ -71,6 +78,9 @@ export default {
       this.calculatePercentage();
       this.timer()
       this.lottieDisplay();
+      var simulation = setInterval(this.updateProgressBar, 1500);
+      let timeLeft = this.timeLeftOfSession * 1000;
+      setTimeout(function(){ clearInterval(simulation); }, timeLeft);
     },
 
     methods: {
@@ -122,6 +132,16 @@ export default {
             // });
         },
 
+        getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min;
+        },
+
+        updateProgressBar: function(){
+          this.energy += this.getRandomInt(5, 25);
+          this.calculatePercentage();
+        }
     }
 
 };
@@ -200,17 +220,30 @@ body {
   opacity: 0;
 }
 .progress-bar {
-  background-color: #E62B87;
   margin-left: 10%;
-  margin-right: 10%;
+  padding-left: 0;
+  padding-right: 0;
+  max-height: 30px;
 }
 .progress-bar-filling {
   background-color: #272382;
-  width: 25%;
 }
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
+}
+.nj-avatar__picture{
+  margin-left: -100%;
+}
+.next-goal{
+  background-color: #0080FF;
+  z-index: 1;
+  margin-left: -2%;
+}
+
+.next-goal img{
+  width: 100px;
+  height: 100px;
 }
 </style>

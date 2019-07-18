@@ -5,7 +5,7 @@
         <p>
           <div>Today this place </div>
           <div>generated</div><br>
-          <h2><img src="../../img/energy-2.svg" width="40" height="40"/><b>{{todayEnergy}} watts</b></h2>
+          <h2><img src="../../img/icons/black-energy.svg" width="40" height="40"/><b>{{todayEnergy}} watts</b></h2>
           <br>
           <p id="rcorners" align="center"><img src="../../img/washing-machine.png" width="65" height="80" /></p><br>
           <div>Which can be used to</div>
@@ -16,7 +16,7 @@
         <p class="nj-card__body yesterday">
           <br>Yesterday<br>
           <h4>
-            <img src="../../img/energy-2.svg" width="30" height="30"/><b>{{yesterdayEnergy}} watts</b>
+            <img src="../../img/icons/black-energy.svg" width="30" height="30"/><b>{{yesterdayEnergy}} watts</b>
           </h4>
           was generated
         </p>
