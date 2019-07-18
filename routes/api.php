@@ -29,7 +29,12 @@ Route::get('events', 'EventsController@index');
 Route::post('insertevent', 'EventsController@store');
 Route::get('event/{id}', 'EventsController@show');
 
+//GOALS ROUTES
+Route:get()
+
 // Route::post('webhook', 'ParticleController@store');
+
+//indeplaats van request naar text te veranderen, direct de request doorgeven naar uw particledata event?..
 Route::post('webhook', function() {
     $data = request()->text;
     event(new ParticleData($data));
