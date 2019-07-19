@@ -121,7 +121,7 @@
 </script>
 
 <style>
-body {
+/* body {
     background-color: #F5F5F5;
 }
 
@@ -182,6 +182,6 @@ h1 {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
-}
+} */
 
 </style>

@@ -9,54 +9,35 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <b>YOU'VE GENERATED</b>
-            </div>
-            <div class="d-flex justify-content-center energy">
-                <img class="spark" src="../../img/icons/blue-energy.svg"/>
-                <h1>{{energy}} joules</h1>
+
+            <div class="energy-container">
+                <div class="d-flex justify-content-center">
+                    <p>YOU'VE GENERATED</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center ">
+                    <img class="spark" src="../../img/icons/white-energy.svg"/>
+                    <h1 id="energy">{{energy}} joules</h1>
+                </div>
             </div>
 
             <div class="row align-items-center progression">
-              <div class="col-md-9 progress-bar round">
-                <div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
+              <div class="col-md-9 progress-bar round bar">
               </div>
+              <div class="progress-bar-filling round bar" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
+
               <div class="next-goal round">
                   <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
               </div>
             </div>
                 <GoalTicket></GoalTicket>
-                <!-- <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons goal-icon-empty"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons goal-icon-empty"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div> -->
         </div>
     </div>
 
 </template>
 
 <script>
+import {router} from '../app.js'
+
 export default {
     name: 'GeneralScreen',
     data: function() {
@@ -67,16 +48,14 @@ export default {
           percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
-          timeLeftOfSession: 60,
+          timeLeftOfSession: 5,
           progressBarColor: '#272382',
         }
     },
 
     created() {
-        //energy of yesterday
-      // this.getEnergy();
       this.calculatePercentage();
-      this.timer()
+      // this.timer()
       this.lottieDisplay();
       var simulation = setInterval(this.updateProgressBar, 1500);
       let timeLeft = this.timeLeftOfSession * 1000;
@@ -110,10 +89,10 @@ export default {
 
         timer: function(){
             let sec = this.timeLeftOfSession
-            let timer = setInterval(function(){
+            let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    sec = 60;
+                    router.push('/end');
                     clearInterval(timer);
                 }
                 console.log(sec);
@@ -149,8 +128,15 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 body {
     background-color: #F5F5F5;
+    font-family: 'Lato', sans-serif;
+}
+
+#energy {
+    color: #FFFFFF;
+    margin-bottom: 0;
 }
 
 #topbar {
@@ -194,8 +180,12 @@ body {
     width: 10%;
 
 }
-.energy {
-  margin-top: 3%;
+.energy-container {
+    background-color: #00AAFF;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+
 }
 .live {
   border-style: solid;
@@ -220,13 +210,17 @@ body {
   opacity: 0;
 }
 .progress-bar {
-  margin-left: 10%;
-  padding-left: 0;
-  padding-right: 0;
-  max-height: 30px;
+    opacity: 0.37;
+  background-color: rgb(194, 176, 210);
+}
+.bar {
+    margin-left: 10%;
+    padding-left: 0;
+    padding-right: 0;
+    max-height: 30px;
 }
 .progress-bar-filling {
-  background-color: #272382;
+  background-color: #552382;
 }
 .round {
   -webkit-border-radius: 100px;

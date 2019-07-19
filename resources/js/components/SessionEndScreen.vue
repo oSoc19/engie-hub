@@ -135,15 +135,6 @@ h1 {
 .nj-progress__text{
   margin-left: 3%;
 }
-.progress-bar {
-  background-color: #E62B87;
-  padding-left: 0;
-  padding-right: 0;
-}
-#progress-bar-filling {
-  background-color: #272382;
-  height: 100%;
-}
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
