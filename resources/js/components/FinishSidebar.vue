@@ -53,9 +53,6 @@
     flex-direction: column;
 }
 
-p{
-    font-family: Lato;
-}
 img{
     width: 50%;
 }

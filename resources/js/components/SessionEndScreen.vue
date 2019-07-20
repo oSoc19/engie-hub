@@ -92,7 +92,7 @@ body {
 }
 
 #topbar {
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
 }
 
 .nj-navbar__logo {
@@ -116,8 +116,8 @@ body {
   color: white;
 }
 .spark {
-  height: 100px;
-  width: 10%;
+  height: 8.5rem;
+  width: 6%;
 }
 
 .lottie-popup {
