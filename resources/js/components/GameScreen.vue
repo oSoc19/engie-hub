@@ -1,35 +1,32 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div id='topbar'>
-                <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+            <div id='topbar' class="d-flex justify-content-center">
+                <!-- <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE"> -->
                 <div id="timer-box">
                     <p class="timer-elements">Time left to move</p>
-                    <p id="timer" class="timer-elements "></p>
+                    <p id="timer" class="timer-elements ">01:00</p>
                 </div>
             </div>
 
 
             <div class="energy-container">
-                <div class="d-flex justify-content-center">
-                    <p>YOU'VE GENERATED</p>
-                </div>
                 <div class="d-flex align-items-center justify-content-center ">
                     <img class="spark" src="../../img/icons/white-energy.svg"/>
-                    <h1 id="energy">{{energy}} joules</h1>
+                    <p id="energy">{{energy}}</p><p id="watt">W</p>
                 </div>
             </div>
 
             <div class="row align-items-center progression">
               <div class="col-md-9 progress-bar round bar">
+                  <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[this.currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
-              <div class="progress-bar-filling round bar" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
 
-              <div class="next-goal round">
-                  <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
+              <div class="next-goal round ">
+                  <img :src="goals[this.currentGoal].emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goals[this.currentGoal].emblem_color}"/>
               </div>
             </div>
-                <GoalTicket></GoalTicket>
+                <GoalTicket :current="currentGoal"></GoalTicket>
         </div>
     </div>
 
@@ -43,20 +40,23 @@ export default {
     data: function() {
         return {
           energy: 0,
-          nextThreshold: 600,
+          nextThreshold: 20,
           previousThreshold: 0,
           percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
-          timeLeftOfSession: 5,
-          progressBarColor: '#272382',
+          timeLeftOfSession: 15,
+          // progressBarColor: '#272382',
+          goals: [],
+          currentGoal: 0
         }
     },
 
     created() {
-      this.calculatePercentage();
-      // this.timer()
+      this.timer();
       this.lottieDisplay();
+      this.getGoals();
+      this.calculatePercentage();
       var simulation = setInterval(this.updateProgressBar, 1500);
       let timeLeft = this.timeLeftOfSession * 1000;
       setTimeout(function(){ clearInterval(simulation); }, timeLeft);
@@ -78,13 +78,27 @@ export default {
             let percentage = (this.energy / this.nextThreshold);
             console.log(percentage);
             if(percentage<1) {
+                console.log("lower");
                 this.percentageCompleted = percentage*100;
-            } else {
-                // this.lottieDisplay("path");
-                this.previousThreshold = this.nextThreshold;
-                this.idOfNextGoal ++;
+            }
+            if(percentage >= 1) {
+                console.log("hello");
+                this.percentageCompleted = 100;
+                this.changeOnGoalReached();
                 //get nextThreshold with the new itemId
             }
+        },
+
+        changeOnGoalReached: function() {
+            this.percentageCompleted = 0;
+            // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
+            // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
+            this.previousThreshold = this.nextThreshold;
+            console.log(this.previousThreshold);
+            this.currentGoal ++;
+            console.log(this.currentGoal);
+            this.nextThreshold = this.goals[this.currentGoal].threshold;
+            console.log(this.nextThreshold);
         },
 
         timer: function(){
@@ -92,11 +106,14 @@ export default {
             let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    router.push('/end');
+                    // router.push('/end');
                     clearInterval(timer);
                 }
-                console.log(sec);
-                document.getElementById("timer").innerHTML = sec;
+                if (sec > 9) {
+                    document.getElementById("timer").innerHTML = '00:' + sec;
+                } else {
+                    document.getElementById("timer").innerHTML = '00:0' + sec;
+                }
             }, 1000);
         },
 
@@ -118,8 +135,16 @@ export default {
         },
 
         updateProgressBar: function(){
-          this.energy += this.getRandomInt(5, 25);
+          this.energy += this.getRandomInt(5, 5);
           this.calculatePercentage();
+      },
+
+        getGoals: function(){
+            axios.get('/api/goals')
+            .then(response => {
+                this.goals = response.data.data;
+                console.log(response.data.data);
+            })
         }
     }
 
@@ -136,17 +161,26 @@ body {
 
 #energy {
     color: #FFFFFF;
-    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 9.5rem;
+    margin-right: 0.5rem;
+}
+#watt {
+    color: #FFFFFF;
+    font-size: 4rem;
+    height: 2.5rem;
 }
 
 #topbar {
-  margin-bottom: 15%;
+    margin-top: 1%;
+  margin-bottom: 1%;
 }
 #timer {
-    /* margin-top: 15px; */
+    font-size: 3.5rem;
+    font-weight: 700;
 }
 #timer-box {
-    margin-left: 34%;
+    /* margin-left: 34%; */
     text-align: center;
     display: inline-block;
 }
@@ -182,8 +216,8 @@ body {
 }
 .energy-container {
     background-color: #00AAFF;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     margin-bottom: 5%;
 
 }
@@ -194,8 +228,8 @@ body {
   color: white;
 }
 .spark {
-  height: 100px;
-  width: 9%;
+  height: 8.5rem;
+  width: 6%;
   margin-left: -5%;
 }
 
@@ -210,8 +244,10 @@ body {
   opacity: 0;
 }
 .progress-bar {
-    opacity: 0.37;
-  background-color: rgb(194, 176, 210);
+  background-color: #e2dce8;
+}
+.progression {
+    line-height: 2;
 }
 .bar {
     margin-left: 10%;
@@ -221,6 +257,7 @@ body {
 }
 .progress-bar-filling {
   background-color: #552382;
+  z-index: 1;
 }
 .round {
   -webkit-border-radius: 100px;
