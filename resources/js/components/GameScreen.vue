@@ -12,8 +12,10 @@
 
             <div class="energy-container">
                 <div class="d-flex align-items-center justify-content-center ">
+                    <img class="engie-mascotte" src="../../img/blue_dancing_man.jpg"/>
                     <img class="spark" src="../../img/icons/white-energy.svg"/>
                     <p id="energy">{{energy}}</p><p id="watt">W</p>
+                    <img class="engie-mascotte" src="../../img/blue_dancing_man.jpg"/>
                 </div>
             </div>
 
@@ -184,7 +186,11 @@ body {
     text-align: center;
     display: inline-block;
 }
-
+.engie-mascotte {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 11%;
+}
 .row {
     margin-top: 25px;
     margin-bottom: 15px;
