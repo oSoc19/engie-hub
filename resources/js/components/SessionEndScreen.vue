@@ -13,9 +13,14 @@
                   </div>
                   <div class="p-2 goals">
                     <div class="row justify-content-center">
+                      <!--<<div v-for="(goal, index) in goals" :key="index" class="col-md-2 goal-tickets">
+                        <img :src="goal.emblem_path" class="goal-icons"/>
+                        img v-else class="goal-icons goal-icon-empty"/>
+                        <h4>{{goalsCompleted[index]}}x</h4>
+                        <p>{{goal.name}}</p>
+                      </div>-->
                       <div v-for="(goal, index) in goals" :key="index" class="col-md-2 goal-tickets">
                         <img :src="goal.emblem_path" class="goal-icons"/>
-                        <!--<img v-else class="goal-icons goal-icon-empty"/>-->
                         <h4>{{goalsCompleted[index]}}x</h4>
                         <p>{{goal.name}}</p>
                       </div>

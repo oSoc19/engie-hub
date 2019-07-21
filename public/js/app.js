@@ -2094,9 +2094,88 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/gracien/Bureau/oSoc19/engie-hub/resources/js/components/SessionEndScreen.vue: Unexpected token (93:0)\n\n\u001b[0m \u001b[90m 91 | \u001b[39m          \u001b[36mreturn\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 92 | \u001b[39m            timeLeftBeforeInitialScreen\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 93 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 94 | \u001b[39m            totalEnergy\u001b[33m:\u001b[39m \u001b[35m32\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 95 | \u001b[39m            goals\u001b[33m:\u001b[39m []\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 96 | \u001b[39m            goalsCompleted\u001b[33m:\u001b[39m [\u001b[35m10\u001b[39m\u001b[33m,\u001b[39m \u001b[35m5\u001b[39m]\u001b[0m\n    at Parser.raise (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:6325:17)\n    at Parser.unexpected (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:7642:16)\n    at Parser.parseIdentifierName (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9521:18)\n    at Parser.parseIdentifier (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9499:23)\n    at Parser.parseMaybePrivateName (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8863:19)\n    at Parser.parsePropertyName (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9319:98)\n    at Parser.parseObjectMember (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9220:10)\n    at Parser.parseObj (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9154:25)\n    at Parser.parseExprAtom (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8784:28)\n    at Parser.parseExprSubscripts (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Parser.parseMaybeUnary (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Parser.parseExprOps (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Parser.parseMaybeConditional (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Parser.parseMaybeAssign (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Parser.parseExpression (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8135:23)\n    at Parser.parseReturnStatement (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10198:28)\n    at Parser.parseStatementContent (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9877:21)\n    at Parser.parseStatement (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Parser.parseBlockBody (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Parser.parseBlock (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10376:10)\n    at Parser.parseFunctionBody (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9424:24)\n    at Parser.parseFunctionBodyAndFinish (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9394:10)\n    at withTopicForbiddingContext (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10535:12)\n    at Parser.withTopicForbiddingContext (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9702:14)\n    at Parser.parseFunction (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:10534:10)\n    at Parser.parseFunctionExpression (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8877:17)\n    at Parser.parseExprAtom (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8790:21)\n    at Parser.parseExprSubscripts (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8412:23)\n    at Parser.parseMaybeUnary (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8392:21)\n    at Parser.parseExprOps (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8267:23)\n    at Parser.parseMaybeConditional (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8240:23)\n    at Parser.parseMaybeAssign (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:8187:21)\n    at Parser.parseObjectProperty (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9281:101)\n    at Parser.parseObjPropValue (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9306:101)\n    at Parser.parseObjectMember (/home/gracien/Bureau/oSoc19/engie-hub/node_modules/@babel/parser/lib/index.js:9230:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SessionEndScreen',
+  data: function data() {
+    return {
+      timeLeftBeforeInitialScreen: 10,
+      totalEnergy: 32,
+      goals: [],
+      goalsCompleted: [10, 5, 8, 2]
+    };
+  },
+  created: function created() {
+    this.timer();
+    this.getGoals();
+  },
+  methods: {
+    timer: function timer() {
+      var sec = this.timeLeftBeforeInitialScreen;
+      var timer = setInterval(function () {
+        sec--;
+
+        if (sec <= 0) {
+          sec = 60;
+          clearInterval(timer);
+        }
+
+        console.log(sec);
+      }, 1000);
+    },
+    getGoals: function getGoals() {
+      var _this = this;
+
+      axios.get('/api/goals').then(function (response) {
+        _this.goals = response.data.data;
+        console.log(response.data.data);
+      })["catch"](function (e) {
+        _this.errors.push(e);
+      });
+    },
+    calculateGoalsCollected: function calculateGoalsCollected() {
+      this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor(this.totalEnergy / goal.threshold));
+    }
+  }
+});
 
 /***/ }),
 
@@ -6680,9 +6759,17 @@ exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#topbar {\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=style&index=0&lang=css& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(214:1) Unknown word\n\n \u001b[90m 212 | \u001b[39m\n \u001b[90m 213 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 214 | \u001b[39m>>>>>>> backend\n \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 215 | \u001b[39m\n");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\nh1 {\n  color: white;\n  margin-bottom: 0;\n}\nh4 {\n  margin-bottom: 0;\n}\n#topbar {\n  margin-bottom: 0;\n  padding-bottom: 3%;\n  background-color: #00AAFF;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\nimg.spark {\n  height: 80px;\n  width: 2%\n}\n.info-generated {\n  background-color: #00AAFF;\n}\n.goals {\n  background-color: white;\n  color: #707070;\n}\n.goal-icons {\n    width: 29%;\n}\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.total-generated-box {\n  color: white;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -62028,8 +62115,95 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "row justify-content-center",
+        staticStyle: { border: "solid 1px black" }
+      },
+      [
+        _c("div", { staticClass: "col-md-9" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex flex-column info-generated" }, [
+            _c(
+              "div",
+              {
+                staticClass: "p-2 total-generated-box",
+                attrs: { align: "center" }
+              },
+              [
+                _c("h4", [_vm._v("You have generated")]),
+                _vm._v(" "),
+                _c("h1", [
+                  _c("img", {
+                    staticClass: "spark",
+                    attrs: { src: __webpack_require__(/*! ../../img/icons/white-energy.svg */ "./resources/img/icons/white-energy.svg") }
+                  }),
+                  _vm._v(" " + _vm._s(_vm.totalEnergy) + " watts")
+                ]),
+                _vm._v(" "),
+                _c("h4", [_vm._v("which equals")])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-2 goals" }, [
+              _c(
+                "div",
+                { staticClass: "row justify-content-center" },
+                _vm._l(_vm.goals, function(goal, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "col-md-2 goal-tickets" },
+                    [
+                      _c("img", {
+                        staticClass: "goal-icons",
+                        attrs: { src: goal.emblem_path }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v(_vm._s(_vm.goalsCompleted[index]) + "x")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(goal.name))])
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("FinishSidebar")
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "topbar" } }, [
+      _c("img", {
+        staticClass: "nj-navbar__logo",
+        attrs: {
+          src:
+            "https://assets.design.digital.engie.com/brand/logo-engie-white.svg",
+          alt: "ENGIE"
+        }
+      })
+    ])
+  }
+]
+render._withStripped = true
 
 
 
@@ -76982,6 +77156,17 @@ module.exports = "/images/black-energy.svg?bba574ab3bfacfe78ee07421509051f1";
 /***/ (function(module, exports) {
 
 module.exports = "/images/blue-energy.svg?dd41a576df47ef9ea036612d71e84233";
+
+/***/ }),
+
+/***/ "./resources/img/icons/white-energy.svg":
+/*!**********************************************!*\
+  !*** ./resources/img/icons/white-energy.svg ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/white-energy.svg?8ecd695936f4332033077a1bee3adc4c";
 
 /***/ }),
 
