@@ -2,9 +2,7 @@
   <div id="sidebar" class="col-md-3" align="center">
           <div class="nj-card__body">
               <div>
-                  <p id="donate">
-                      Donate your {{this.energy}} watts of clean energy to a good cause
-                  </p>
+                  <p id="donate">Donate your {{this.energy}} watts of clean energy to a good cause</p>
               </div>
               <br><hr><br>
               <div>
@@ -18,6 +16,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'SideBar',
         data() {
@@ -58,7 +57,7 @@ img{
 }
 
 #donate {
-    font-size: 54px;
+    font-size: 3rem;
     text-align: left;
     line-height: 1.1;
     margin-left: 86px;

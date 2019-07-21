@@ -1741,8 +1741,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SideBar',
   data: function data() {
@@ -1817,7 +1815,7 @@ __webpack_require__.r(__webpack_exports__);
       percentageCompleted: 15,
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 15,
+      timeLeftOfSession: 5,
       // progressBarColor: '#272382',
       goals: [],
       currentGoal: 0
@@ -1874,12 +1872,20 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.nextThreshold);
     },
     timer: function timer() {
+      var _this2 = this;
+
       var sec = this.timeLeftOfSession;
       var timer = setInterval(function () {
         sec--;
 
         if (sec <= 0) {
-          // router.push('/end');
+          var energy = _this2.energy;
+          _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
+            path: '/end',
+            params: {
+              energy: _this2.energy
+            }
+          });
           clearInterval(timer);
         }
 
@@ -1909,10 +1915,10 @@ __webpack_require__.r(__webpack_exports__);
       this.calculatePercentage();
     },
     getGoals: function getGoals() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/goals').then(function (response) {
-        _this2.goals = response.data.data;
+        _this3.goals = response.data.data;
         console.log(response.data.data);
       });
     }
@@ -2103,6 +2109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
 //
 //
 //
@@ -2155,8 +2162,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SessionEndScreen',
+  props: ['energy'],
   data: function data() {
     return {
       timeLeftBeforeInitialScreen: 10,
@@ -2166,7 +2177,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.timer();
+    this.timer(); // console.log(router.params.energy + "params");
+
+    console.log(this.energy + "geweun energy");
+    console.log(energy.html());
   },
   methods: {
     timer: function timer() {
@@ -2183,7 +2197,11 @@ __webpack_require__.r(__webpack_exports__);
       }, 1000);
     },
     calculateGoalsCollected: function calculateGoalsCollected() {
-      this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor(this.totalEnergy / goal.threshold));
+      // this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
+      this.goals.forEach(function (goal) {
+        var acquiredAmount = Math.floor(totalEnergy / goal.threshold);
+        return;
+      });
     }
   }
 });
@@ -6720,7 +6738,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\nimg{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 54px;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 86px;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\nimg{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 86px;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6796,7 +6814,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  /* margin-bottom: 5%; */\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\r\n  color: #707070;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  /* margin-bottom: 5%; */\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\r\n  color: #707070;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 3rem;\r\n    padding-bottom: 2rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -61853,9 +61871,9 @@ var render = function() {
         _c("div", [
           _c("p", { attrs: { id: "donate" } }, [
             _vm._v(
-              "\n                    Donate your " +
+              "Donate your " +
                 _vm._s(this.energy) +
-                " watts of clean energy to a good cause\n                "
+                " watts of clean energy to a good cause"
             )
           ])
         ]),
@@ -62200,8 +62218,6 @@ var render = function() {
           "div",
           { staticClass: "watts-container", attrs: { align: "center" } },
           [
-            _vm._m(0),
-            _vm._v(" "),
             _c("h4", [_vm._v("You have generated")]),
             _vm._v(" "),
             _c("h2", [
@@ -62217,24 +62233,18 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "p-2 goals" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-              _c("img", {
-                staticClass: "goal-icons",
-                attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-              }),
-              _vm._v(" "),
-              _c("h4", [_vm._v(_vm._s(this.totalEnergy) + "x")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Object")])
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
-          ]),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center" },
+            [
+              _c("GoalTicket", {
+                attrs: { acquiredAmount: _vm.calculateGoalsCollected() }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -62244,51 +62254,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "topbar" } }, [
-      _c("img", {
-        staticClass: "nj-navbar__logo",
-        attrs: {
-          src:
-            "https://assets.design.digital.engie.com/brand/logo-engie-white.svg",
-          alt: "ENGIE"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("{{}}x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg") }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("{{}}x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

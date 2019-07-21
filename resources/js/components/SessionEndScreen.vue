@@ -2,16 +2,18 @@
         <div class="row justify-content-center container-flex" style="border:solid 1px black;">
             <div class="col-md-9">
                   <div class="watts-container" align="center">
-                    <div id='topbar'>
+                    <!-- <div id='topbar'>
                         <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
-                    </div>
+                    </div> -->
                     <h4>You have generated</h4>
                     <h2><img class="spark" src="../../img/icons/white-energy.svg"/> {{totalEnergy}} watts</h2>
                     <h4>which equals</h4>
                   </div>
                   <div class="p-2 goals">
                     <div class="row justify-content-center">
-                        <div class="col-md-3 goal-tickets">
+                        <GoalTicket :acquiredAmount="calculateGoalsCollected()"></GoalTicket>
+
+                        <!-- <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                             <h4>{{this.totalEnergy}}x</h4>
                             <p>Object</p>
@@ -25,7 +27,7 @@
                             <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
                             <p>Object</p>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-3 goal-tickets">
@@ -51,8 +53,11 @@
 </template>
 
 <script>
+import {router} from '../app.js'
+
     export default {
         name: 'SessionEndScreen',
+        props: ['energy'],
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
@@ -64,6 +69,9 @@
 
         created() {
           this.timer();
+          // console.log(router.params.energy + "params");
+          console.log(this.energy + "geweun energy");
+          console.log(energy.html());
         },
 
         methods: {
@@ -80,7 +88,11 @@
             },
 
             calculateGoalsCollected: function() {
-                this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
+                // this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
+                this.goals.forEach(goal => {
+                    let acquiredAmount = Math.floor(totalEnergy/goal.threshold);
+                    return 
+                });
             }
         }
     };
@@ -162,6 +174,8 @@ h1 {
 .watts-container {
     background-color: #00AAFF;
     color: #FFFFFF;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 
 .container-flex > div{

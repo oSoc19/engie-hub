@@ -38,7 +38,7 @@ const routes = [
   },{
       name: 'end',
       path: '/end',
-      component: SessionEndScreen
+      component: SessionEndScreen,
   }
 ];
 

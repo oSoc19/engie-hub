@@ -47,7 +47,7 @@ export default {
           percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
-          timeLeftOfSession: 15,
+          timeLeftOfSession: 5,
           // progressBarColor: '#272382',
           goals: [],
           currentGoal: 0
@@ -108,7 +108,8 @@ export default {
             let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    // router.push('/end');
+                    let energy = this.energy;
+                    router.push({ path: '/end', params: {energy: this.energy}});
                     clearInterval(timer);
                 }
                 if (sec > 9) {
