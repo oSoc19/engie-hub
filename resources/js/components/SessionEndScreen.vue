@@ -47,34 +47,22 @@
                       <h4>0x</h4>
                       <p>Object 3</p>
                   </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-3 goal-tickets">
-                        <img src="/images/blender.svg" class="goal-icons"/>
-                        <h4>0x</h4>
-                        <p>Object 4</p>
-                    </div>
-                    <div class="col-md-3 goal-tickets">
-                        <img src="/images/game.svg" class="goal-icons"/>
-                        <h4>0x</h4>
-                        <p>Object 5</p>
-                    </div>
-                    <div class="col-md-3 goal-tickets">
-                        <img src="/images/laptop.svg" class="goal-icons"/>
-                        <h4>0x</h4>
-                        <p>Object 6</p>
-                    </div>
+
+                  <GoalTicketEndScreen :acquiredAmount="calculateGoalsCollected()"></GoalTicketEndScreen>
                 </div>
               </template>
             </div>
-        </div>
-        <finishSidebar :energy="totalEnergy"></finishSidebar>
+          </div>
+          <finishSidebar :energy="totalEnergy"></finishSidebar>
     </div>
 </template>
 
 <script>
+import {router} from '../app.js'
+
     export default {
         name: 'SessionEndScreen',
+        props: ['goals', 'goalsCompleted', 'totalEnergy'],
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
@@ -82,7 +70,6 @@
             fueledObjects: []
           }
         },
-        props: ['goals', 'goalsCompleted', 'totalEnergy'],
         mounted() {
           if (this.goals != null) {
             this.calculateFueledObjects();
@@ -128,18 +115,18 @@ body {
 .energy {
   margin-top: 3%;
 }
-.progression{
+/* .progression{
   margin-left: 5%;
-}
-.first-pic  {
+} */
+/* .first-pic  {
   margin-right: -15%;
-}
-.live {
+} */
+/* .live {
   border-style: solid;
   border-color: #cc0033;
   background-color: #cc0033;
   color: white;
-}
+} */
 .spark {
   height: 8.5rem;
   width: 6%;
@@ -159,28 +146,28 @@ h4 {
 }
 .progress-div {
   margin-top: 10%;
-}
-.nj-progress__text{
+} */
+/* .nj-progress__text{
   margin-left: 3%;
-}
+} */
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
 
-.info-generated {
+/* .info-generated {
   background-color: #00AAFF;
-}
+} */
 
-.goals {
+/* .goals {
   background-color: white;
   color: #707070;
 }
 
 .goal-icons {
     width: 29%;
-}
+} */
 
 .container-flex {
     display: flex;
@@ -190,6 +177,8 @@ h4 {
 .watts-container {
     background-color: #00AAFF;
     color: #FFFFFF;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 
 .container-flex > div{
@@ -199,6 +188,10 @@ h4 {
     padding-left: 0;
     padding-right: 0;
 }
+/*
+.goal-ticket-container {
+    flex-wrap: wrap;
 
+} */
 
 </style>
