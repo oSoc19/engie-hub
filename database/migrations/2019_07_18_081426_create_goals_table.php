@@ -61,7 +61,7 @@ class CreateGoalsTable extends Migration
               'name' => 'Minute of gameplay',
               'threshold' => 350,
               'emblem_path' => 'images/game.svg',
-              'emblem_color' => '#552382',
+              'emblem_color' => '#00AAFF',
               'lottie_path' => '',
               'description' => 'The energy generated is enough for a 2 hours Playstation 4 game session!'
             ],
@@ -69,7 +69,7 @@ class CreateGoalsTable extends Migration
               'name' => 'Batteries charged',
               'threshold' => 450,
               'emblem_path' => 'images/laptop.svg',
-              'emblem_color' => '#552382',
+              'emblem_color' => '#DB0015',
               'lottie_path' => '',
               'description' => 'With the energy generated a laptop could be charged for an hour!',
             ],

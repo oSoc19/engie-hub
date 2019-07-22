@@ -26,7 +26,7 @@ Vue.component('sideBar', SideBar);
 Vue.component('goalTicket', GoalTicket);
 Vue.component('goalTicketEndScreen', GoalTicketEndScreen);
 Vue.component('finishSidebar', FinishSidebar);
-
+Vue.component('goalTicketEndScreen', GoalTicketEndScreen);
 
 
 const routes = [

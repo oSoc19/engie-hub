@@ -14,34 +14,23 @@
               <!-- <template v-if="goals!=null">
                 <div class="row justify-content-center">
                   <template v-for="(goal, index) in goals">
-                    <div class="col-md-3 goal-tickets" v-if="index < 3" :key="index">
+                    <div class="col-md-4 goal-tickets" :key="index">
                       <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
                       <h4>{{fueledObjects[index]}}x</h4>
                       <p>{{goal.name}}</p>
                     </div>
                   </template>
-                </div>
-                <div class="row justify-content-center">
-                  <template v-for="(goal, index) in goals">
-                    <div class="col-md-3 goal-tickets" v-if="index >= 3" :key="index">
-                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
-                      <h4>{{fueledObjects[index]}}x</h4>
-                      <p>{{goal.name}}</p>
-                    </div>
-                  </template>
-                </div>
-              </template>
-              <template v-else>
-                <div class="row justify-content-center">
-                  <div class="col-md-3 goal-tickets">
-                      <img src="/images/lamp.svg" class="goal-icons"/>
-                      <h4>0x</h4>
-                      <p>Object 1</p>
+                </template>
+                <template v-else>
+                  <div class="col-md-4 goal-tickets">
+                    <img src="/images/lamp.svg" class="goal-icons"/>
+                    <h4>0x</h4>
+                    <p>Object 1</p>
                   </div>
-                  <div class="col-md-3 goal-tickets">
-                      <img src="/images/boiled_egg.svg" class="goal-icons"/>
-                      <h4>0x</h4>
-                      <p>Object 2</p>
+                  <div class="col-md-4 goal-tickets">
+                    <img src="/images/boiled_egg.svg" class="goal-icons"/>
+                    <h4>0x</h4>
+                    <p>Object 2</p>
                   </div>
                   <div class="col-md-3 goal-tickets">
                       <img src="/images/coffee_pot.svg" class="goal-icons"/>
@@ -72,6 +61,7 @@ import {router} from '../app.js'
         },
         mounted() {
           if (this.goals != null) {
+            console.log(this.goals);
             this.calculateFueledObjects();
           }
         },
@@ -202,10 +192,6 @@ h4 {
     padding-left: 0;
     padding-right: 0;
 }
-/*
-.goal-ticket-container {
-    flex-wrap: wrap;
 
-} */
 
 </style>
