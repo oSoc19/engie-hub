@@ -12,23 +12,23 @@
 
             <div class="energy-container">
                 <div class="d-flex align-items-center justify-content-center ">
-                    <img class="engie-mascotte" src="../../img/blue_dancing_man.jpg"/>
-                    <img class="spark" src="../../img/icons/white-energy.svg"/>
+                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
+                    <img class="spark" src="/images/white_energy.svg"/>
                     <p id="energy">{{energy}}</p><p id="watt">W</p>
-                    <img class="engie-mascotte" src="../../img/blue_dancing_man.jpg"/>
+                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
                 </div>
             </div>
 
             <div class="row align-items-center progression">
               <div class="col-md-9 progress-bar round bar">
-                  <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[this.currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
+                  <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
 
               <div class="next-goal round ">
-                  <img :src="goals[this.currentGoal].emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goals[this.currentGoal].emblem_color}"/>
+                  <img :src="goals[currentGoal].emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goals[currentGoal].emblem_color}"/>
               </div>
             </div>
-                <GoalTicket :current="currentGoal"></GoalTicket>
+                <goalTicket :current="currentGoal"></goalTicket>
         </div>
     </div>
 
@@ -50,6 +50,7 @@ export default {
           timeLeftOfSession: 15,
           // progressBarColor: '#272382',
           goals: [],
+          goalsCompleted: [],
           currentGoal: 0
         }
     },
@@ -92,6 +93,9 @@ export default {
         },
 
         changeOnGoalReached: function() {
+            let goalReached = this.goals[this.currentGoal];
+            this.goalsCompleted.push(goalReached);
+
             this.percentageCompleted = 0;
             // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
             // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
@@ -108,7 +112,7 @@ export default {
             let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    // router.push('/end');
+                    this.endSession();
                     clearInterval(timer);
                 }
                 if (sec > 9) {
@@ -137,7 +141,7 @@ export default {
         },
 
         updateProgressBar: function(){
-          this.energy += this.getRandomInt(5, 5);
+          this.energy += this.getRandomInt(5, 25);
           this.calculatePercentage();
       },
 
@@ -147,6 +151,17 @@ export default {
                 this.goals = response.data.data;
                 console.log(response.data.data);
             })
+        },
+
+        endSession: function() {
+          router.push({
+              name: 'end',
+              params: {
+                goals: this.goals,
+                goalsCompleted: this.goalsCompleted,
+                totalEnergy: this.energy
+              }
+          });
         }
     }
 

@@ -1,52 +1,74 @@
 <template>
-        <div class="row justify-content-center container-flex" style="border:solid 1px black;">
-            <div class="col-md-9">
-                  <div class="watts-container" align="center">
-                    <div id='topbar'>
-                        <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
+    <div class="row justify-content-center container-flex" style="border:solid 1px black;">
+        <div class="col-md-9">
+            <div class="watts-container" align="center">
+              <div id='engie_logo'>
+                  <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
+              </div>
+              <h3>You have generated</h3>
+              <h2><img class="spark" src="/images/white_energy.svg"/> <span v-if="totalEnergy">{{totalEnergy}}</span> watts</h2>
+              <h3>which equals</h3>
+            </div>
+            <div class="p-2 goals">
+              <template v-if="goals!=null">
+                <div class="row justify-content-center">
+                  <template v-for="(goal, index) in goals">
+                    <div class="col-md-3 goal-tickets" v-if="index < 3" :key="index">
+                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
+                      <h4>{{fueledObjects[index]}}x</h4>
+                      <p>{{goal.name}}</p>
                     </div>
-                    <h4>You have generated</h4>
-                    <h2><img class="spark" src="../../img/icons/white-energy.svg"/> {{totalEnergy}} watts</h2>
-                    <h4>which equals</h4>
+                  </template>
+                </div>
+                <div class="row justify-content-center">
+                  <template v-for="(goal, index) in goals">
+                    <div class="col-md-3 goal-tickets" v-if="index >= 3" :key="index">
+                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
+                      <h4>{{fueledObjects[index]}}x</h4>
+                      <p>{{goal.name}}</p>
+                    </div>
+                  </template>
+                </div>
+              </template>
+              <template v-else>
+                <div class="row justify-content-center">
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/lamp.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 1</p>
                   </div>
-                  <div class="p-2 goals">
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-                            <h4>{{this.totalEnergy}}x</h4>
-                            <p>Object</p>
-                        </div>
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
-                            <p>Object</p>
-                        </div>
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
-                            <p>Object</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
-                            <p>Object</p>
-                        </div>
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
-                            <p>Object</p>
-                        </div>
-                        <div class="col-md-3 goal-tickets">
-                            <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
-                            <h4>{{}}x</h4>
-                            <p>Object</p>
-                        </div>
-                    </div>
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/boiled_egg.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 2</p>
                   </div>
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/coffee_pot.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 3</p>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3 goal-tickets">
+                        <img src="/images/blender.svg" class="goal-icons"/>
+                        <h4>0x</h4>
+                        <p>Object 4</p>
+                    </div>
+                    <div class="col-md-3 goal-tickets">
+                        <img src="/images/game.svg" class="goal-icons"/>
+                        <h4>0x</h4>
+                        <p>Object 5</p>
+                    </div>
+                    <div class="col-md-3 goal-tickets">
+                        <img src="/images/laptop.svg" class="goal-icons"/>
+                        <h4>0x</h4>
+                        <p>Object 6</p>
+                    </div>
+                </div>
+              </template>
+            </div>
         </div>
-        <FinishSidebar></FinishSidebar>
+        <finishSidebar :energy="totalEnergy"></finishSidebar>
     </div>
 </template>
 
@@ -56,16 +78,16 @@
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
-            totalEnergy: 540,
-            goals: [],
-            goalsCompleted: []
+            defaultColor: '#E0E0E0',
+            fueledObjects: []
           }
         },
-
-        created() {
-          this.timer();
+        props: ['goals', 'goalsCompleted', 'totalEnergy'],
+        mounted() {
+          if (this.goals != null) {
+            this.calculateFueledObjects();
+          }
         },
-
         methods: {
             timer: function(){
                 let sec = this.timeLeftBeforeInitialScreen
@@ -78,9 +100,12 @@
                     console.log(sec);
                 }, 1000);
             },
-
-            calculateGoalsCollected: function() {
-                this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
+            calculateFueledObjects: function() {
+              for (var i = 0; i < this.goals.length; i++) {
+                let threshold = this.goals[i].threshold;
+                let result =  Math.floor(this.totalEnergy / threshold);
+                this.fueledObjects.push(result);
+              };
             }
         }
     };
@@ -91,8 +116,8 @@ body {
     background-color: #F5F5F5;
 }
 
-#topbar {
-  /* margin-bottom: 5%; */
+#engie_logo {
+  margin-bottom: 5%;
 }
 
 .nj-navbar__logo {
@@ -129,6 +154,9 @@ h1 {
   margin-bottom: 10%;
 }
 
+h4 {
+  margin-bottom: 0;
+}
 .progress-div {
   margin-top: 10%;
 }
