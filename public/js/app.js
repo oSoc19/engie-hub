@@ -1846,7 +1846,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
       percentageCompleted: 15,
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 15,
+      timeLeftOfSession: 200,
       // progressBarColor: '#272382',
       goals: [],
       goalsCompleted: [],
@@ -1940,7 +1940,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
       return Math.floor(Math.random() * (max - min)) + min;
     },
     updateProgressBar: function updateProgressBar() {
-      this.energy += this.getRandomInt(5, 10);
+      this.energy += this.getRandomInt(5, 25);
       this.calculatePercentage();
     },
     getGoals: function getGoals() {
@@ -2161,7 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'GoalTicketEndScreen',
+  name: 'GoalTicket',
   props: ['totalEnergy'],
   data: function data() {
     return {
@@ -2182,7 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     acquiredGoalsAmount: function acquiredGoalsAmount(threshold) {
-      return Math.floor(this.totalEnergy / threshold);
+      return Math.floor(this.amountEnergy / threshold);
     }
   }
 });
@@ -6832,7 +6832,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\n#qr-code{\n    width: 50%;\n}\n#donate {\n    font-size: 3rem;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 3rem;\n    margin-right: 2rem;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -6851,7 +6851,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\n.lottie-animation {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 2%;\r\n    top: -1%;\r\n    width: 8%;\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n  margin-bottom: 1%;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\n.lottie-animation {\n    position: absolute;\n    z-index: 2;\n    left: 2%;\n    top: -1%;\n    width: 8%;\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n  margin-bottom: 1%;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -6870,7 +6870,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
 
 // exports
 
@@ -6889,7 +6889,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #a3a3a3;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    width: 14%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n\n", ""]);
 
 // exports
 
@@ -6908,7 +6908,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\r\n    text-align: center;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\n    flex: 1 0 25%;\n    margin-left: 2rem;\n    margin-right:2rem;\n}\n.goal-ticket-container {\n    flex-wrap: wrap;\n}\n\n", ""]);
 
 // exports
 
@@ -6927,7 +6927,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#engie_logo {\r\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 1rem;\r\n    margin-left: 1rem;\r\n    width: 8%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 3rem;\r\n    padding-bottom: 2rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n/*\r\n.goal-ticket-container {\r\n    flex-wrap: wrap;\r\n\r\n} */\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\nh1 {\n  color: white;\n  margin-bottom: 0;\n}\nh4 {\n  margin-bottom: 0;\n}\n#topbar {\n  margin-bottom: 0;\n  padding-bottom: 3%;\n  background-color: #00AAFF;\n}\n#engie_logo {\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n/* .progression{\n  margin-left: 5%;\n} */\n/* .first-pic  {\n  margin-right: -15%;\n} */\n/* .live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n} */\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n*/\n/* .nj-progress__text{\n  margin-left: 3%;\n} */\n.round {\n  border-radius: 100px;\n}\n\n/* .info-generated {\n  background-color: #00AAFF;\n} */\n\n/* .goals {\n  background-color: white;\n  color: #707070;\n}\n\n.goal-icons {\n    width: 29%;\n} */\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.total-generated-box {\n  color: white;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n    padding-top: 3rem;\n    padding-bottom: 2rem;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n/*\n.goal-ticket-container {\n    flex-wrap: wrap;\n\n} */\n\n", ""]);
 
 // exports
 
@@ -6946,7 +6946,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -62426,7 +62426,7 @@ var render = function() {
     _vm._l(_vm.goals, function(goal) {
       return _c(
         "div",
-        { staticClass: " goal-tickets", attrs: { id: goal.id } },
+        { staticClass: "col-md-2 goal-tickets", attrs: { id: goal.id } },
         [
           _c("img", {
             staticClass: "goal-icons",
@@ -62436,7 +62436,9 @@ var render = function() {
                 : { backgroundColor: goal.emblem_color }
             ],
             attrs: { src: goal.emblem_path }
-          })
+          }),
+          _vm._v(" "),
+          _c("h4", [_vm._v(_vm._s(goal.name))])
         ]
       )
     }),
@@ -62471,7 +62473,7 @@ var render = function() {
     _vm._l(_vm.goals, function(goal) {
       return _c(
         "div",
-        { staticClass: "goal-end-tickets", attrs: { id: goal.id } },
+        { staticClass: " goal-end-tickets", attrs: { id: goal.id } },
         [
           _c("img", {
             staticClass: "goal-icons",
@@ -62516,54 +62518,155 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "row justify-content-center container-flex",
-        staticStyle: { border: "solid 1px black" }
-      },
-      [
+  return _c(
+    "div",
+    {
+      staticClass: "row justify-content-center container-flex",
+      staticStyle: { border: "solid 1px black" }
+    },
+    [
+      _c("div", { staticClass: "col-md-9" }, [
         _c(
           "div",
-          { staticClass: "col-md-9" },
+          { staticClass: "watts-container", attrs: { align: "center" } },
           [
-            _c(
-              "div",
-              { staticClass: "watts-container", attrs: { align: "center" } },
-              [
-                _c("h3", [_vm._v("You have generated")]),
-                _vm._v(" "),
-                _c("h2", [
-                  _c("img", {
-                    staticClass: "spark",
-                    attrs: { src: "/images/white_energy.svg" }
-                  }),
-                  _vm._v(" "),
-                  _vm.totalEnergy
-                    ? _c("span", [_vm._v(_vm._s(_vm.totalEnergy))])
-                    : _vm._e(),
-                  _vm._v(" watts")
-                ]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("which equals")])
-              ]
-            ),
+            _vm._m(0),
             _vm._v(" "),
-            _c("goalTicketEndScreen", {
-              attrs: { totalEnergy: _vm.totalEnergy }
-            })
-          ],
-          1
+            _c("h3", [_vm._v("You have generated")]),
+            _vm._v(" "),
+            _c("h2", [
+              _c("img", {
+                staticClass: "spark",
+                attrs: { src: "/images/white_energy.svg" }
+              }),
+              _vm._v(" "),
+              _vm.totalEnergy
+                ? _c("span", [_vm._v(_vm._s(_vm.totalEnergy))])
+                : _vm._e(),
+              _vm._v(" watts")
+            ]),
+            _vm._v(" "),
+            _c("h3", [_vm._v("which equals")])
+          ]
         ),
         _vm._v(" "),
-        _c("finishSidebar", { attrs: { energy: _vm.totalEnergy } })
-      ],
-      1
-    )
-  ])
+        _c(
+          "div",
+          { staticClass: "p-2 goals" },
+          [
+            _vm.goals != null
+              ? [
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._l(_vm.goals, function(goal, index) {
+                        return [
+                          index < 3
+                            ? _c(
+                                "div",
+                                {
+                                  key: index,
+                                  staticClass: "col-md-3 goal-tickets"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "goal-icons",
+                                    style: [
+                                      _vm.goals.includes(
+                                        _vm.goalsCompleted[index]
+                                      )
+                                        ? { backgroundColor: goal.emblem_color }
+                                        : { backgroundColor: _vm.defaultColor }
+                                    ],
+                                    attrs: { src: goal.emblem_path }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(
+                                      _vm._s(_vm.fueledObjects[index]) + "x"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v(_vm._s(goal.name))])
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._l(_vm.goals, function(goal, index) {
+                        return [
+                          index >= 3
+                            ? _c(
+                                "div",
+                                {
+                                  key: index,
+                                  staticClass: "col-md-3 goal-tickets"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "goal-icons",
+                                    style: [
+                                      _vm.goals.includes(
+                                        _vm.goalsCompleted[index]
+                                      )
+                                        ? { backgroundColor: goal.emblem_color }
+                                        : { backgroundColor: _vm.defaultColor }
+                                    ],
+                                    attrs: { src: goal.emblem_path }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(
+                                      _vm._s(_vm.fueledObjects[index]) + "x"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v(_vm._s(goal.name))])
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              : [
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("GoalTicketEndScreen", {
+                        attrs: { acquiredAmount: _vm.calculateGoalsCollected() }
+                      })
+                    ],
+                    1
+                  )
+                ]
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("finishSidebar", { attrs: { energy: _vm.totalEnergy } })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -62579,6 +62682,51 @@ var staticRenderFns = [
           alt: "ENGIE"
         }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+      _c("img", {
+        staticClass: "goal-icons",
+        attrs: { src: "/images/lamp.svg" }
+      }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("0x")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Object 1")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+      _c("img", {
+        staticClass: "goal-icons",
+        attrs: { src: "/images/boiled_egg.svg" }
+      }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("0x")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Object 2")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+      _c("img", {
+        staticClass: "goal-icons",
+        attrs: { src: "/images/coffee_pot.svg" }
+      }),
+      _vm._v(" "),
+      _c("h4", [_vm._v("0x")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Object 3")])
     ])
   }
 ]
@@ -77714,7 +77862,6 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('goalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 Vue.component('finishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var routes = [{
   name: 'home',
@@ -78531,8 +78678,8 @@ pusher_js__WEBPACK_IMPORTED_MODULE_0___default.a.logToConsole = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

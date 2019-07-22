@@ -102,6 +102,18 @@ import {router} from '../app.js'
 body {
     background-color: #F5F5F5;
 }
+h1 {
+  color: white;
+  margin-bottom: 0;
+}
+h4 {
+  margin-bottom: 0;
+}
+#topbar {
+  margin-bottom: 0;
+  padding-bottom: 3%;
+  background-color: #00AAFF;
+}
 
 #engie_logo {
   margin-bottom: 5%;
@@ -175,6 +187,10 @@ h4 {
 .container-flex {
     display: flex;
     flex-direction: row;
+}
+
+.total-generated-box {
+  color: white;
 }
 
 .watts-container {
