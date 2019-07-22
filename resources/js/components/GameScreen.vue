@@ -1,15 +1,18 @@
 <template>
+    <div>
+
+    <div id='topbar' class="d-flex justify-content-center">
+        <!-- <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE"> -->
+        <div id="timer-box">
+            <p class="timer-elements">Time left to move</p>
+            <p id="timer" class="timer-elements ">01:00</p>
+        </div>
+    </div>
+    <div class="lottie-animation">
+        <lottie :options="defaultOptions" />
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div id='topbar' class="d-flex justify-content-center">
-                <!-- <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE"> -->
-                <div id="timer-box">
-                    <p class="timer-elements">Time left to move</p>
-                    <p id="timer" class="timer-elements ">01:00</p>
-                </div>
-            </div>
-
-
             <div class="energy-container">
                 <div class="d-flex align-items-center justify-content-center ">
                     <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
@@ -18,10 +21,6 @@
                     <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
                 </div>
             </div>
-            <div class="lottie-animation">
-                <lottie :options="defaultOptions" />
-            </div>
-
             <div class="row align-items-center progression">
               <div class="col-md-9 progress-bar round bar">
                   <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
@@ -34,6 +33,8 @@
                 <goalTicket :current="currentGoal"></goalTicket>
         </div>
     </div>
+</div>
+
 
 </template>
 
@@ -59,7 +60,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 15,
+        timeLeftOfSession: 200,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
@@ -190,9 +191,9 @@ body {
 .lottie-animation {
     position: absolute;
     z-index: 2;
-    left: 2%;
-    top: -1%;
-    width: 8%;
+    left: 2rem;
+    top: 1rem;
+    width: 9%;
 }
 
 #energy {
@@ -209,7 +210,7 @@ body {
 
 #topbar {
     margin-top: 1%;
-  margin-bottom: 1%;
+    margin-bottom: 1rem;
 }
 #timer {
     font-size: 3.5rem;

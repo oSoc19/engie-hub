@@ -109,11 +109,6 @@ h1 {
 h4 {
   margin-bottom: 0;
 }
-#topbar {
-  margin-bottom: 0;
-  padding-bottom: 3%;
-  background-color: #00AAFF;
-}
 
 #engie_logo {
   margin-bottom: 5%;
