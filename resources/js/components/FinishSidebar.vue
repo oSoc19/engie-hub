@@ -9,7 +9,7 @@
                   <p>
                       Scan to donate
                   </p>
-                  <img src="../../img/qr-code-svgrepo-com.svg"/>
+                  <img id="qr-code" src="../../img/qr-code-svgrepo-com.svg"/>
               </div>
           </div>
     </div>
@@ -52,7 +52,7 @@
     flex-direction: column;
 }
 
-img{
+#qr-code{
     width: 50%;
 }
 
@@ -60,7 +60,8 @@ img{
     font-size: 3rem;
     text-align: left;
     line-height: 1.1;
-    margin-left: 86px;
+    margin-left: 3rem;
+    margin-right: 2rem;
     color: #707070;
 }
 

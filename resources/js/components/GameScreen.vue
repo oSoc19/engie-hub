@@ -47,7 +47,7 @@ export default {
           percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
-          timeLeftOfSession: 5,
+          timeLeftOfSession: 20,
           // progressBarColor: '#272382',
           goals: [],
           currentGoal: 0

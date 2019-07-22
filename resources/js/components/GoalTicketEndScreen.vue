@@ -1,9 +1,9 @@
 <template>
-    <div class="row justify-content-center">
-        <div v-for="goal in goals" class="col-md-2 goal-tickets" v-bind:id="goal.id">
+    <div class="row justify-content-center goal-ticket-container">
+        <div v-for="goal in goals" class=" goal-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
             <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[acquiredGoalsAmount(goal.threshold) > 0 ? {backgroundColor: goal.emblem_color } : {backgroundColor: '#E0E0E0' }]" />
-            <h4>{{acquiredGoalsAmount(goal.threshold)}}</h4>
+            <h3>{{acquiredGoalsAmount(goal.threshold)}} x</h3>
             <p>{{goal.name}}</p>
         </div>
     </div>
@@ -15,6 +15,7 @@ export default {
     props: ['totalEnergy'],
     data() {
         return {
+            amountEnergy: 300,
             goals: []
         }
     },
@@ -28,11 +29,11 @@ export default {
             .then(response => {
                 this.goals = response.data.data;
                 console.log(response.data.data);
-            }),
+            })
         },
 
         acquiredGoalsAmount: function(threshold) {
-            return (totalEnergy/threshold);
+            return (Math.floor(this.amountEnergy/threshold));
         }
     }
 }
@@ -43,6 +44,18 @@ export default {
     fill: white;
     box-shadow: 0px 0px 15px #E0E0E0;
     background-color: #E0E0E0;
+}
+
+.goal-tickets {
+    flex: 1 0 25%;
+    margin-left: 2rem;
+    margin-right:2rem;
+}
+
+
+.goal-ticket-container {
+    flex-wrap: wrap;
+
 }
 
 </style>

@@ -1815,7 +1815,7 @@ __webpack_require__.r(__webpack_exports__);
       percentageCompleted: 15,
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 5,
+      timeLeftOfSession: 20,
       // progressBarColor: '#272382',
       goals: [],
       currentGoal: 0
@@ -2100,6 +2100,55 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'GoalTicket',
+  props: ['totalEnergy'],
+  data: function data() {
+    return {
+      amountEnergy: 300,
+      goals: []
+    };
+  },
+  created: function created() {
+    this.getGoals();
+  },
+  methods: {
+    getGoals: function getGoals() {
+      var _this = this;
+
+      axios.get('/api/goals').then(function (response) {
+        _this.goals = response.data.data;
+        console.log(response.data.data);
+      });
+    },
+    acquiredGoalsAmount: function acquiredGoalsAmount(threshold) {
+      return Math.floor(this.amountEnergy / threshold);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionEndScreen.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=script&lang=js& ***!
@@ -2171,14 +2220,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       timeLeftBeforeInitialScreen: 10,
-      totalEnergy: 540,
+      totalEnergy: 100,
       goals: [],
       goalsCompleted: []
     };
   },
   created: function created() {
-    this.timer(); // console.log(router.params.energy + "params");
-
+    this.timer();
     console.log(this.energy + "geweun energy");
     console.log(energy.html());
   },
@@ -2197,9 +2245,11 @@ __webpack_require__.r(__webpack_exports__);
       }, 1000);
     },
     calculateGoalsCollected: function calculateGoalsCollected() {
+      var _this = this;
+
       // this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
       this.goals.forEach(function (goal) {
-        var acquiredAmount = Math.floor(totalEnergy / goal.threshold);
+        var acquiredAmount = Math.floor(_this.totalEnergy / goal.threshold);
         return;
       });
     }
@@ -6738,7 +6788,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\nimg{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 86px;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6802,6 +6852,25 @@ exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionEndScreen.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=style&index=0&lang=css& ***!
@@ -6814,7 +6883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  /* margin-bottom: 5%; */\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\r\n  color: #707070;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 3rem;\r\n    padding-bottom: 2rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  /* margin-bottom: 5%; */\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\r\n\r\n/* .progress-div {\r\n  margin-top: 10%;\r\n} */\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 3rem;\r\n    padding-bottom: 2rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n/*\r\n.goal-ticket-container {\r\n    flex-wrap: wrap;\r\n\r\n} */\r\n\r\n", ""]);
 
 // exports
 
@@ -61163,6 +61232,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionEndScreen.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=style&index=0&lang=css& ***!
@@ -61898,7 +61997,10 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("img", {
-        attrs: { src: __webpack_require__(/*! ../../img/qr-code-svgrepo-com.svg */ "./resources/img/qr-code-svgrepo-com.svg") }
+        attrs: {
+          id: "qr-code",
+          src: __webpack_require__(/*! ../../img/qr-code-svgrepo-com.svg */ "./resources/img/qr-code-svgrepo-com.svg")
+        }
       })
     ])
   }
@@ -62191,6 +62293,57 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row justify-content-center goal-ticket-container" },
+    _vm._l(_vm.goals, function(goal) {
+      return _c(
+        "div",
+        { staticClass: " goal-tickets", attrs: { id: goal.id } },
+        [
+          _c("img", {
+            staticClass: "goal-icons",
+            style: [
+              _vm.acquiredGoalsAmount(goal.threshold) > 0
+                ? { backgroundColor: goal.emblem_color }
+                : { backgroundColor: "#E0E0E0" }
+            ],
+            attrs: { src: goal.emblem_path }
+          }),
+          _vm._v(" "),
+          _c("h3", [
+            _vm._v(_vm._s(_vm.acquiredGoalsAmount(goal.threshold)) + " x")
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(goal.name))])
+        ]
+      )
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionEndScreen.vue?vue&type=template&id=b7eec5c8&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionEndScreen.vue?vue&type=template&id=b7eec5c8& ***!
@@ -62213,89 +62366,41 @@ var render = function() {
       staticStyle: { border: "solid 1px black" }
     },
     [
-      _c("div", { staticClass: "col-md-9" }, [
-        _c(
-          "div",
-          { staticClass: "watts-container", attrs: { align: "center" } },
-          [
-            _c("h4", [_vm._v("You have generated")]),
-            _vm._v(" "),
-            _c("h2", [
-              _c("img", {
-                staticClass: "spark",
-                attrs: { src: __webpack_require__(/*! ../../img/icons/white-energy.svg */ "./resources/img/icons/white-energy.svg") }
-              }),
-              _vm._v(" " + _vm._s(_vm.totalEnergy) + " watts")
-            ]),
-            _vm._v(" "),
-            _c("h4", [_vm._v("which equals")])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-2 goals" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-9" },
+        [
           _c(
             "div",
-            { staticClass: "row justify-content-center" },
+            { staticClass: "watts-container", attrs: { align: "center" } },
             [
-              _c("GoalTicket", {
-                attrs: { acquiredAmount: _vm.calculateGoalsCollected() }
-              })
-            ],
-            1
+              _c("h4", [_vm._v("You have generated")]),
+              _vm._v(" "),
+              _c("h2", [
+                _c("img", {
+                  staticClass: "spark",
+                  attrs: { src: __webpack_require__(/*! ../../img/icons/white-energy.svg */ "./resources/img/icons/white-energy.svg") }
+                }),
+                _vm._v(" " + _vm._s(_vm.totalEnergy) + " watts")
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("which equals")])
+            ]
           ),
           _vm._v(" "),
-          _vm._m(0)
-        ])
-      ]),
+          _c("GoalTicketEndScreen", {
+            attrs: { acquiredAmount: _vm.calculateGoalsCollected() }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("FinishSidebar")
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("Object")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("Object")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-        _c("img", {
-          staticClass: "goal-icons",
-          attrs: {
-            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
-          }
-        }),
-        _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("Object")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -77263,39 +77368,6 @@ module.exports = "/images/blue-energy.svg?dd41a576df47ef9ea036612d71e84233";
 
 /***/ }),
 
-/***/ "./resources/img/icons/noun_Game_1967460.svg":
-/*!***************************************************!*\
-  !*** ./resources/img/icons/noun_Game_1967460.svg ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Game_1967460.svg?68ebe09b7e1957c746343d338ee0787a";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_Microwave_1967465.svg":
-/*!********************************************************!*\
-  !*** ./resources/img/icons/noun_Microwave_1967465.svg ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_pizza slice_1204552.svg":
-/*!**********************************************************!*\
-  !*** ./resources/img/icons/noun_pizza slice_1204552.svg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_pizza slice_1204552.svg?aed4b446190d476d61e88283cae51ef3";
-
-/***/ }),
-
 /***/ "./resources/img/icons/white-energy.svg":
 /*!**********************************************!*\
   !*** ./resources/img/icons/white-energy.svg ***!
@@ -77440,7 +77512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/GameScreen.vue */ "./resources/js/components/GameScreen.vue");
 /* harmony import */ var _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/SessionEndScreen.vue */ "./resources/js/components/SessionEndScreen.vue");
 /* harmony import */ var _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/GoalTicket.vue */ "./resources/js/components/GoalTicket.vue");
-/* harmony import */ var _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/FinishSidebar.vue */ "./resources/js/components/FinishSidebar.vue");
+/* harmony import */ var _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/GoalTicketEndScreen.vue */ "./resources/js/components/GoalTicketEndScreen.vue");
+/* harmony import */ var _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/FinishSidebar.vue */ "./resources/js/components/FinishSidebar.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -77456,9 +77529,11 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 
 
+
 Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('GoalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('FinishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('GoalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('FinishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var routes = [{
   name: 'home',
   path: '/',
@@ -77883,6 +77958,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicket_vue_vue_type_template_id_f652ddac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicketEndScreen.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/GoalTicketEndScreen.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66& */ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66&");
+/* harmony import */ var _GoalTicketEndScreen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GoalTicketEndScreen.vue?vue&type=script&lang=js& */ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _GoalTicketEndScreen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GoalTicketEndScreen.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicketEndScreen.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicketEndScreen.vue?vue&type=template&id=fa0f7c66&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GoalTicketEndScreen_vue_vue_type_template_id_fa0f7c66___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

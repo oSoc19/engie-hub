@@ -9,9 +9,9 @@
                     <h2><img class="spark" src="../../img/icons/white-energy.svg"/> {{totalEnergy}} watts</h2>
                     <h4>which equals</h4>
                   </div>
-                  <div class="p-2 goals">
-                    <div class="row justify-content-center">
-                        <GoalTicket :acquiredAmount="calculateGoalsCollected()"></GoalTicket>
+                  <!-- <div class="p-2 goals"> -->
+                    <!-- <div class="row justify-content-center goal-ticket-container"> -->
+                        <GoalTicketEndScreen :acquiredAmount="calculateGoalsCollected()"></GoalTicketEndScreen>
 
                         <!-- <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
@@ -28,8 +28,8 @@
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div> -->
-                    </div>
-                    <div class="row justify-content-center">
+                    <!-- </div> -->
+                    <!-- <div class="row justify-content-center">
                         <div class="col-md-3 goal-tickets">
                             <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
                             <h4>{{}}x</h4>
@@ -45,8 +45,8 @@
                             <h4>{{}}x</h4>
                             <p>Object</p>
                         </div>
-                    </div>
-                  </div>
+                    </div> -->
+                  <!-- </div> -->
         </div>
         <FinishSidebar></FinishSidebar>
     </div>
@@ -61,7 +61,7 @@ import {router} from '../app.js'
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
-            totalEnergy: 540,
+            totalEnergy: 100,
             goals: [],
             goalsCompleted: []
           }
@@ -69,7 +69,6 @@ import {router} from '../app.js'
 
         created() {
           this.timer();
-          // console.log(router.params.energy + "params");
           console.log(this.energy + "geweun energy");
           console.log(energy.html());
         },
@@ -90,8 +89,8 @@ import {router} from '../app.js'
             calculateGoalsCollected: function() {
                 // this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
                 this.goals.forEach(goal => {
-                    let acquiredAmount = Math.floor(totalEnergy/goal.threshold);
-                    return 
+                    let acquiredAmount = Math.floor(this.totalEnergy/goal.threshold);
+                    return
                 });
             }
         }
@@ -115,18 +114,18 @@ body {
 .energy {
   margin-top: 3%;
 }
-.progression{
+/* .progression{
   margin-left: 5%;
-}
-.first-pic  {
+} */
+/* .first-pic  {
   margin-right: -15%;
-}
-.live {
+} */
+/* .live {
   border-style: solid;
   border-color: #cc0033;
   background-color: #cc0033;
   color: white;
-}
+} */
 .spark {
   height: 8.5rem;
   width: 6%;
@@ -141,30 +140,30 @@ h1 {
   margin-bottom: 10%;
 }
 
-.progress-div {
+/* .progress-div {
   margin-top: 10%;
-}
-.nj-progress__text{
+} */
+/* .nj-progress__text{
   margin-left: 3%;
-}
+} */
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
 
-.info-generated {
+/* .info-generated {
   background-color: #00AAFF;
-}
+} */
 
-.goals {
+/* .goals {
   background-color: white;
   color: #707070;
 }
 
 .goal-icons {
     width: 29%;
-}
+} */
 
 .container-flex {
     display: flex;
@@ -185,6 +184,10 @@ h1 {
     padding-left: 0;
     padding-right: 0;
 }
+/*
+.goal-ticket-container {
+    flex-wrap: wrap;
 
+} */
 
 </style>
