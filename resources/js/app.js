@@ -25,7 +25,7 @@ import NotFound from './components/404.vue';
 Vue.component('sideBar', SideBar);
 Vue.component('goalTicket', GoalTicket);
 Vue.component('finishSidebar', FinishSidebar);
-
+Vue.component('goalTicketEndScreen', GoalTicketEndScreen);
 
 
 const routes = [

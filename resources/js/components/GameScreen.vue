@@ -22,7 +22,7 @@
                 <lottie :options="defaultOptions" />
             </div>
 
-            <div class="row align-items-center progression">
+            <div class="row align-items-center progression" v-if="goals.length">
               <div class="col-md-9 progress-bar round bar">
                   <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
@@ -59,15 +59,14 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 200,
+        timeLeftOfSession: 60,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
         currentGoal: 0
         }
     },
-
-    created() {
+    mounted() {
       this.timer();
       this.lottieDisplay();
       this.getGoals();
@@ -105,18 +104,21 @@ export default {
         },
 
         changeOnGoalReached: function() {
-            let goalReached = this.goals[this.currentGoal];
-            this.goalsCompleted.push(goalReached);
+            if (this.currentGoal < this.goals.length - 1) {
+              let goalReached = this.goals[this.currentGoal];
+              this.goalsCompleted.push(goalReached);
 
-            this.percentageCompleted = 0;
-            // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
-            // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
-            this.previousThreshold = this.nextThreshold;
-            console.log(this.previousThreshold);
-            this.currentGoal ++;
-            console.log(this.currentGoal);
-            this.nextThreshold = this.goals[this.currentGoal].threshold;
-            console.log(this.nextThreshold);
+              this.percentageCompleted = 0;
+              // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
+              // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
+              this.previousThreshold = this.nextThreshold;
+              console.log(this.previousThreshold);
+              this.currentGoal ++;
+              console.log(this.currentGoal);
+              this.nextThreshold = this.goals[this.currentGoal].threshold;
+              console.log(this.nextThreshold);
+            }
+
         },
 
         timer: function(){

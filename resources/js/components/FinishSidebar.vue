@@ -3,7 +3,7 @@
           <div class="nj-card__body">
               <div>
                   <p id="donate">
-                      Donate your {{energy}} watts of clean energy to a good cause
+                      Donate your <span v-if="energy">{{energy}}</span> watts of clean energy to a good cause
                   </p>
               </div>
               <br><hr><br>

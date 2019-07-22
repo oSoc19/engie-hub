@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" v-if="goals">
         <div v-for="goal in goals" class="col-md-2 goal-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
             <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goal.id-1) >= current ? {backgroundColor: defaultColor } : {backgroundColor:  goal.emblem_color }]" />

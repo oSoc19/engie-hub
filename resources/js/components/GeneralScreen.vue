@@ -14,7 +14,7 @@
                 </div>
                 <div class="d-flex justify-content-center energy">
                     <img class="spark" src="/images/blue_energy.svg"/>
-                    <h1>{{energy}} watts</h1>
+                    <h1><span>{{energy}}</span> watts</h1>
                 </div>
                 <div class="row progression">
                   <div class="nj-avatar first-pic">
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-    import Pusher from '../pusher';
     import lottie from 'lottie-web';
 
     export default {
