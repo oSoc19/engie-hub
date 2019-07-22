@@ -104,11 +104,12 @@ export default {
         },
 
         changeOnGoalReached: function() {
-            if (this.currentGoal < this.goals.length - 1) {
-              let goalReached = this.goals[this.currentGoal];
-              this.goalsCompleted.push(goalReached);
+            let goalReached = this.goals[this.currentGoal];
+            this.goalsCompleted.push(goalReached);
 
-              this.percentageCompleted = 0;
+            this.percentageCompleted = 0;
+
+            if (this.currentGoal < this.goals.length - 1) {
               // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
               // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
               this.previousThreshold = this.nextThreshold;
@@ -118,7 +119,6 @@ export default {
               this.nextThreshold = this.goals[this.currentGoal].threshold;
               console.log(this.nextThreshold);
             }
-
         },
 
         timer: function(){
@@ -155,7 +155,7 @@ export default {
         },
 
         updateProgressBar: function(){
-          this.energy += this.getRandomInt(5, 25);
+          this.energy += this.getRandomInt(5, 15);
           this.calculatePercentage();
       },
 

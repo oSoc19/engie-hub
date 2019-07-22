@@ -1893,12 +1893,13 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
       }
     },
     changeOnGoalReached: function changeOnGoalReached() {
-      if (this.currentGoal < this.goals.length - 1) {
-        var goalReached = this.goals[this.currentGoal];
-        this.goalsCompleted.push(goalReached);
-        this.percentageCompleted = 0; // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
-        // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
+      var goalReached = this.goals[this.currentGoal];
+      this.goalsCompleted.push(goalReached);
+      this.percentageCompleted = 0;
 
+      if (this.currentGoal < this.goals.length - 1) {
+        // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
+        // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
         this.previousThreshold = this.nextThreshold;
         console.log(this.previousThreshold);
         this.currentGoal++;
@@ -1942,7 +1943,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
       return Math.floor(Math.random() * (max - min)) + min;
     },
     updateProgressBar: function updateProgressBar() {
-      this.energy += this.getRandomInt(5, 25);
+      this.energy += this.getRandomInt(5, 15);
       this.calculatePercentage();
     },
     getGoals: function getGoals() {
