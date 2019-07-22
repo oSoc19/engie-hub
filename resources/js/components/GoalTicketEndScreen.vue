@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center goal-ticket-container">
-        <div v-for="goal in goals" class=" goal-tickets" v-bind:id="goal.id">
+        <div v-for="goal in goals" class=" goal-end-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
             <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[acquiredGoalsAmount(goal.threshold) > 0 ? {backgroundColor: goal.emblem_color } : {backgroundColor: '#E0E0E0' }]" />
             <h3>{{acquiredGoalsAmount(goal.threshold)}} x</h3>
@@ -46,7 +46,7 @@ export default {
     background-color: #E0E0E0;
 }
 
-.goal-tickets {
+.goal-end-tickets {
     flex: 1 0 25%;
     margin-left: 2rem;
     margin-right:2rem;

@@ -2,8 +2,8 @@
     <div class="row justify-content-center">
         <div v-for="goal in goals" class="col-md-2 goal-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
-            <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goal.id-1) >= current ? {backgroundColor: '#E0E0E0' } : {backgroundColor:  goal.emblem_color }]" />
-            <!-- <h4>{{goal.name}}</h4> -->
+            <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goal.id-1) >= current ? {backgroundColor: defaultColor } : {backgroundColor:  goal.emblem_color }]" />
+            <h4>{{goal.name}}</h4>
         </div>
     </div>
 </template>
@@ -14,7 +14,8 @@ export default {
     props: ['current'],
     data() {
         return {
-            goals: []
+            goals: [],
+            defaultColor: '#E0E0E0'
         }
     },
     created() {

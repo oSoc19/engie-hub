@@ -2,14 +2,16 @@
   <div id="sidebar" class="col-md-3" align="center">
           <div class="nj-card__body">
               <div>
-                  <p id="donate">Donate your {{this.energy}} watts of clean energy to a good cause</p>
+                  <p id="donate">
+                      Donate your {{energy}} watts of clean energy to a good cause
+                  </p>
               </div>
               <br><hr><br>
               <div>
                   <p>
                       Scan to donate
                   </p>
-                  <img id="qr-code" src="../../img/qr-code-svgrepo-com.svg"/>
+                  <img id="qr-code" src="/images/qr_code.svg"/>
               </div>
           </div>
     </div>
@@ -18,20 +20,8 @@
 <script>
 
     export default {
-        name: 'SideBar',
-        data() {
-            return {
-                energy: 456
-            }
-        },
-        created() {
-          //this.getEnergy()
-        },
-        methods: {
-            getEnergy(){
-              //TODO api call to get information about energy generated
-            }
-        }
+        name: 'FinishSidebar',
+        props: ['energy']
     }
 </script>
 <style>

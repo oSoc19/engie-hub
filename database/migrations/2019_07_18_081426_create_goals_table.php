@@ -28,7 +28,7 @@ class CreateGoalsTable extends Migration
             [
               'name' => 'LED bulb',
               'threshold' => 20,
-              'emblem_path' => 'images/noun_boiled egg_1962709.svg',
+              'emblem_path' => 'images/lamp.svg',
               'emblem_color' => '#272382',
               'lottie_path' => '',
               'description' => 'You generated enough energy to fuel a street light for 5 minutes!'
@@ -36,42 +36,42 @@ class CreateGoalsTable extends Migration
             [
               'name' => 'Boiled eggs',
               'threshold' => 50,
-              'emblem_path' => 'images/noun_boiled egg_1962709.svg',
+              'emblem_path' => 'images/boiled_egg.svg',
               'emblem_color' => '#E62B87',
               'lottie_path' => '',
-              'description' => 'During a timespan of 10 hours the average adult brain consumes 200Wh'
+              'description' => 'The energy you generated is enough to boil eggs!'
             ],
             [
               'name' => 'Coffee cans',
               'threshold' => 100,
-              'emblem_path' => 'images/noun_coffee_pot_1967444.svg',
+              'emblem_path' => 'images/coffee_pot.svg',
               'emblem_color' => '#FACA08',
               'lottie_path' => '',
-              'description' => 'You generated enough energy to fuel a street light for 5 minutes!'
+              'description' => 'With the energy you generated, you could make coffee!'
             ],
             [
               'name' => 'Fresh fruit smoothie',
               'threshold' => 200,
-              'emblem_path' => 'images/noun_blending machine_1967442.svg',
+              'emblem_path' => 'images/blender.svg',
               'emblem_color' => '#552382',
               'lottie_path' => '',
-              'description' => 'During a timespan of 10 hours the average adult brain consumes 200Wh'
+              'description' => 'You generated enough energy to make smoothies!'
             ],
             [
               'name' => 'Minute of gameplay',
               'threshold' => 350,
-              'emblem_path' => 'images/noun_game_1967460.svg',
+              'emblem_path' => 'images/game.svg',
               'emblem_color' => '#552382',
               'lottie_path' => '',
-              'description' => 'During a timespan of 10 hours the average adult brain consumes 200Wh'
+              'description' => 'The energy generated is enough for a 2 hours Playstation 4 game session!'
             ],
             [
               'name' => 'Batteries charged',
               'threshold' => 450,
-              'emblem_path' => 'images/noun_laptop_1967457.svg',
+              'emblem_path' => 'images/laptop.svg',
               'emblem_color' => '#552382',
               'lottie_path' => '',
-              'description' => 'During a timespan of 10 hours the average adult brain consumes 200Wh',
+              'description' => 'With the energy generated a laptop could be charged for an hour!',
             ],
         ]);
     }

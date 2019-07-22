@@ -13,7 +13,7 @@
                     <div class="col-md-1 live" align="center">live</div>
                 </div>
                 <div class="d-flex justify-content-center energy">
-                    <img class="spark" src="../../img/icons/blue-energy.svg"/>
+                    <img class="spark" src="/images/blue_energy.svg"/>
                     <h1>{{energy}} watts</h1>
                 </div>
                 <div class="row progression">

@@ -16,7 +16,7 @@ class GoalsController extends Controller
      */
     public function index()
     {
-        $goals = Goal::paginate(5);
+        $goals = Goal::paginate(6);
         return GoalResource::collection($goals);
     }
 
