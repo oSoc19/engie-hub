@@ -1,9 +1,9 @@
 <template>
     <div class="row justify-content-center">
-        <div v-for="goal in goals" class="col-md-2 goal-tickets" v-bind:id="goal.id">
+        <div v-for="goal in goals" class=" goal-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
             <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goal.id-1) >= current ? {backgroundColor: defaultColor } : {backgroundColor:  goal.emblem_color }]" />
-            <h4>{{goal.name}}</h4>
+            <!-- <h4>{{goal.name}}</h4> -->
         </div>
     </div>
 </template>
@@ -37,8 +37,11 @@ export default {
 <style>
 .goal-icons {
     fill: white;
-    box-shadow: 0px 0px 15px #E0E0E0;
+    box-shadow: 0px 0px 15px #a3a3a3;
     background-color: #E0E0E0;
+}
+.goal-tickets {
+    width: 14%;
 }
 
 </style>

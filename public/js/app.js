@@ -1779,6 +1779,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
+/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lottie-web */ "./node_modules/lottie-web/build/player/lottie.js");
+/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lottie_web__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_lottie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-lottie */ "./node_modules/vue-lottie/src/lottie.vue");
+/* harmony import */ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lottie/data.json */ "./resources/js/lottie/data.json");
+var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/data.json */ "./resources/js/lottie/data.json", 1);
+//
+//
+//
 //
 //
 //
@@ -1816,17 +1824,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GeneralScreen',
+  components: {
+    Lottie: vue_lottie__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
+      activeIndex: 0,
+      defaultOptions: {
+        animationData: _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__,
+        loop: true
+      },
+      animationSpeed: 1,
       energy: 0,
       nextThreshold: 20,
       previousThreshold: 0,
       percentageCompleted: 15,
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 20,
+      timeLeftOfSession: 15,
       // progressBarColor: '#272382',
       goals: [],
       goalsCompleted: [],
@@ -1920,7 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
       return Math.floor(Math.random() * (max - min)) + min;
     },
     updateProgressBar: function updateProgressBar() {
-      this.energy += this.getRandomInt(5, 25);
+      this.energy += this.getRandomInt(5, 10);
       this.calculatePercentage();
     },
     getGoals: function getGoals() {
@@ -2141,7 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'GoalTicket',
+  name: 'GoalTicketEndScreen',
   props: ['totalEnergy'],
   data: function data() {
     return {
@@ -2162,7 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     acquiredGoalsAmount: function acquiredGoalsAmount(threshold) {
-      return Math.floor(this.amountEnergy / threshold);
+      return Math.floor(this.totalEnergy / threshold);
     }
   }
 });
@@ -6812,7 +6832,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\n#qr-code{\n    width: 50%;\n}\n#donate {\n    font-size: 3rem;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 3rem;\n    margin-right: 2rem;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6831,7 +6851,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n  margin-bottom: 1%;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\n.lottie-animation {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 2%;\r\n    top: -1%;\r\n    width: 8%;\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n  margin-bottom: 1%;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -6850,7 +6870,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
 
 // exports
 
@@ -6869,7 +6889,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n\n", ""]);
+exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #a3a3a3;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    width: 14%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6888,7 +6908,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n.goal-tickets {\n    flex: 1 0 25%;\n    margin-left: 2rem;\n    margin-right:2rem;\n}\n.goal-ticket-container {\n    flex-wrap: wrap;\n}\n\n", ""]);
+exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\r\n    text-align: center;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6907,7 +6927,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#engie_logo {\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n/* .progression{\n  margin-left: 5%;\n} */\n/* .first-pic  {\n  margin-right: -15%;\n} */\n/* .live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n} */\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n*/\n/* .nj-progress__text{\n  margin-left: 3%;\n} */\n.round {\n  border-radius: 100px;\n}\n\n/* .info-generated {\n  background-color: #00AAFF;\n} */\n\n/* .goals {\n  background-color: white;\n  color: #707070;\n}\n\n.goal-icons {\n    width: 29%;\n} */\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n    padding-top: 3rem;\n    padding-bottom: 2rem;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n/*\n.goal-ticket-container {\n    flex-wrap: wrap;\n\n} */\n\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#engie_logo {\r\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 1rem;\r\n    margin-left: 1rem;\r\n    width: 8%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 3rem;\r\n    padding-bottom: 2rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n/*\r\n.goal-ticket-container {\r\n    flex-wrap: wrap;\r\n\r\n} */\r\n\r\n", ""]);
 
 // exports
 
@@ -6926,7 +6946,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -61943,6 +61963,86 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lottie-web */ "./node_modules/lottie-web/build/player/lottie.js");
+/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lottie_web__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    options: {
+      type: Object,
+      required: true
+    },
+    height: Number,
+    width: Number,
+  },
+
+  data () {
+    return {
+      style: {
+        width: this.width ? `${this.width}px` : '100%',
+        height: this.height ? `${this.height}px` : '100%',
+        overflow: 'hidden',
+        margin: '0 auto'
+      }
+    }
+  },
+
+  mounted () {
+    this.anim = lottie_web__WEBPACK_IMPORTED_MODULE_0___default.a.loadAnimation({
+        container: this.$refs.lavContainer,
+        renderer: 'svg',
+        loop: this.options.loop !== false,
+        autoplay: this.options.autoplay !== false,
+        animationData: this.options.animationData,
+        rendererSettings: this.options.rendererSettings
+      }
+    );
+    this.$emit('animCreated', this.anim)
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { ref: "lavContainer", style: _vm.style })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/App.vue?vue&type=template&id=f348271a&":
 /*!*******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/App.vue?vue&type=template&id=f348271a& ***!
@@ -62114,6 +62214,13 @@ var render = function() {
             ]
           )
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "lottie-animation" },
+          [_c("lottie", { attrs: { options: _vm.defaultOptions } })],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row align-items-center progression" }, [
           _c("div", { staticClass: "col-md-9 progress-bar round bar" }, [
@@ -62319,7 +62426,7 @@ var render = function() {
     _vm._l(_vm.goals, function(goal) {
       return _c(
         "div",
-        { staticClass: "col-md-2 goal-tickets", attrs: { id: goal.id } },
+        { staticClass: " goal-tickets", attrs: { id: goal.id } },
         [
           _c("img", {
             staticClass: "goal-icons",
@@ -62329,9 +62436,7 @@ var render = function() {
                 : { backgroundColor: goal.emblem_color }
             ],
             attrs: { src: goal.emblem_path }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v(_vm._s(goal.name))])
+          })
         ]
       )
     }),
@@ -62366,7 +62471,7 @@ var render = function() {
     _vm._l(_vm.goals, function(goal) {
       return _c(
         "div",
-        { staticClass: " goal-tickets", attrs: { id: goal.id } },
+        { staticClass: "goal-end-tickets", attrs: { id: goal.id } },
         [
           _c("img", {
             staticClass: "goal-icons",
@@ -62411,155 +62516,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "row justify-content-center container-flex",
-      staticStyle: { border: "solid 1px black" }
-    },
-    [
-      _c("div", { staticClass: "col-md-9" }, [
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "row justify-content-center container-flex",
+        staticStyle: { border: "solid 1px black" }
+      },
+      [
         _c(
           "div",
-          { staticClass: "watts-container", attrs: { align: "center" } },
+          { staticClass: "col-md-9" },
           [
-            _vm._m(0),
+            _c(
+              "div",
+              { staticClass: "watts-container", attrs: { align: "center" } },
+              [
+                _c("h3", [_vm._v("You have generated")]),
+                _vm._v(" "),
+                _c("h2", [
+                  _c("img", {
+                    staticClass: "spark",
+                    attrs: { src: "/images/white_energy.svg" }
+                  }),
+                  _vm._v(" "),
+                  _vm.totalEnergy
+                    ? _c("span", [_vm._v(_vm._s(_vm.totalEnergy))])
+                    : _vm._e(),
+                  _vm._v(" watts")
+                ]),
+                _vm._v(" "),
+                _c("h3", [_vm._v("which equals")])
+              ]
+            ),
             _vm._v(" "),
-            _c("h3", [_vm._v("You have generated")]),
-            _vm._v(" "),
-            _c("h2", [
-              _c("img", {
-                staticClass: "spark",
-                attrs: { src: "/images/white_energy.svg" }
-              }),
-              _vm._v(" "),
-              _vm.totalEnergy
-                ? _c("span", [_vm._v(_vm._s(_vm.totalEnergy))])
-                : _vm._e(),
-              _vm._v(" watts")
-            ]),
-            _vm._v(" "),
-            _c("h3", [_vm._v("which equals")])
-          ]
+            _c("goalTicketEndScreen", {
+              attrs: { totalEnergy: _vm.totalEnergy }
+            })
+          ],
+          1
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "p-2 goals" },
-          [
-            _vm.goals != null
-              ? [
-                  _c(
-                    "div",
-                    { staticClass: "row justify-content-center" },
-                    [
-                      _vm._l(_vm.goals, function(goal, index) {
-                        return [
-                          index < 3
-                            ? _c(
-                                "div",
-                                {
-                                  key: index,
-                                  staticClass: "col-md-3 goal-tickets"
-                                },
-                                [
-                                  _c("img", {
-                                    staticClass: "goal-icons",
-                                    style: [
-                                      _vm.goals.includes(
-                                        _vm.goalsCompleted[index]
-                                      )
-                                        ? { backgroundColor: goal.emblem_color }
-                                        : { backgroundColor: _vm.defaultColor }
-                                    ],
-                                    attrs: { src: goal.emblem_path }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _vm._v(
-                                      _vm._s(_vm.fueledObjects[index]) + "x"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", [_vm._v(_vm._s(goal.name))])
-                                ]
-                              )
-                            : _vm._e()
-                        ]
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row justify-content-center" },
-                    [
-                      _vm._l(_vm.goals, function(goal, index) {
-                        return [
-                          index >= 3
-                            ? _c(
-                                "div",
-                                {
-                                  key: index,
-                                  staticClass: "col-md-3 goal-tickets"
-                                },
-                                [
-                                  _c("img", {
-                                    staticClass: "goal-icons",
-                                    style: [
-                                      _vm.goals.includes(
-                                        _vm.goalsCompleted[index]
-                                      )
-                                        ? { backgroundColor: goal.emblem_color }
-                                        : { backgroundColor: _vm.defaultColor }
-                                    ],
-                                    attrs: { src: goal.emblem_path }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _vm._v(
-                                      _vm._s(_vm.fueledObjects[index]) + "x"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", [_vm._v(_vm._s(goal.name))])
-                                ]
-                              )
-                            : _vm._e()
-                        ]
-                      })
-                    ],
-                    2
-                  )
-                ]
-              : [
-                  _c(
-                    "div",
-                    { staticClass: "row justify-content-center" },
-                    [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("GoalTicketEndScreen", {
-                        attrs: { acquiredAmount: _vm.calculateGoalsCollected() }
-                      })
-                    ],
-                    1
-                  )
-                ]
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("finishSidebar", { attrs: { energy: _vm.totalEnergy } })
-    ],
-    1
-  )
+        _c("finishSidebar", { attrs: { energy: _vm.totalEnergy } })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -62575,51 +62579,6 @@ var staticRenderFns = [
           alt: "ENGIE"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: "/images/lamp.svg" }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("0x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object 1")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: "/images/boiled_egg.svg" }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("0x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object 2")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: "/images/coffee_pot.svg" }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("0x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object 3")])
     ])
   }
 ]
@@ -62833,6 +62792,75 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-lottie/src/lottie.vue":
+/*!************************************************!*\
+  !*** ./node_modules/vue-lottie/src/lottie.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lottie.vue?vue&type=template&id=547741c8& */ "./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8&");
+/* harmony import */ var _lottie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lottie.vue?vue&type=script&lang=js& */ "./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _lottie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/vue-lottie/src/lottie.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_lottie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib??vue-loader-options!./lottie.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-lottie/src/lottie.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_lottie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8&":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib??vue-loader-options!./lottie.vue?vue&type=template&id=547741c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-lottie/src/lottie.vue?vue&type=template&id=547741c8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_lottie_vue_vue_type_template_id_547741c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
 
 
 /***/ }),
@@ -77686,6 +77714,7 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('goalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 Vue.component('finishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var routes = [{
   name: 'home',
@@ -78453,6 +78482,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/lottie/data.json":
+/*!***************************************!*\
+  !*** ./resources/js/lottie/data.json ***!
+  \***************************************/
+/*! exports provided: v, fr, ip, op, w, h, nm, ddd, assets, layers, markers, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"v\":\"5.5.6\",\"fr\":25,\"ip\":0,\"op\":19,\"w\":1920,\"h\":1080,\"nm\":\"Comp 2\",\"ddd\":0,\"assets\":[],\"layers\":[{\"ddd\":0,\"ind\":1,\"ty\":4,\"nm\":\"Artwork 9 Outlines\",\"sr\":1,\"ks\":{\"o\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.833],\"y\":[0.833]},\"o\":{\"x\":[0.167],\"y\":[0.167]},\"t\":0,\"s\":[0]},{\"t\":2,\"s\":[100]}],\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":0,\"k\":[964,578,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[1118.5,266,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.61,0.61,0.667],\"y\":[1.393,1.393,1]},\"o\":{\"x\":[0.333,0.333,0.333],\"y\":[0,0,0]},\"t\":0,\"s\":[0,0,100]},{\"t\":8,\"s\":[77.969,77.969,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[8.46,2.57]],\"o\":[[-8.12,-1.63],[0,0]],\"v\":[[12.43,3.14],[-12.43,-3.14]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1834.074,312.151],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 1\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.39,-18.95],[15.57,-12.66],[12.27,-15.4],[10.38,-30.47],[17.75,3.45],[8.36,2.15],[0,0],[-0.04,0.17],[-9.59,19.46],[-13.69,16.41],[-15.1,13.61],[-18.4,8.96],[-22.19,3.4],[-20.32,-3.61],[-2.83,-8.46]],\"o\":[[-21.24,7.16],[-15.57,12.68],[-21.69,25.12],[-25.36,-2.52],[-11.66,-2.27],[-21.08,-5.41],[0.04,-0.17],[4.94,-22.11],[9.66,-19.59],[13.68,-16.39],[11.33,-9.72],[18.39,-8.97],[19.56,-2.99],[-8.52,18.62],[2.65,7.92]],\"v\":[[135.695,-37.064],[80.495,-7.334],[38.755,34.796],[-9.355,118.166],[-74.025,108.846],[-104.045,102.116],[-135.695,92.326],[-135.575,91.806],[-113.765,29.456],[-78.745,-24.544],[-35.585,-69.544],[9.005,-97.584],[69.865,-116.134],[129.685,-115.204],[124.735,-75.514]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1848.679,118.166],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 2\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":2,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[45.12,-67.689],[4.82,-1.09],[11.47,-0.851],[22.05,3.67],[34.93,27.44],[13.94,29.391],[3,8.08],[0,0],[0,0],[-14.54,4.49],[-17.22,-4.341],[0,0],[-1.65,-9.871],[-5.66,-9.281],[-9.67,-7.761],[-15.59,-4.321],[-13.23,1],[-12.84,6.04]],\"o\":[[-4.68,1.33],[-10.95,2.489],[-20.4,1.509],[-34.44,-5.719],[-30.18,-23.779],[-3.9,-8.24],[0,0],[0,0],[11.12,-11.131],[16.42,-5.09],[0,0],[-0.46,10.411],[1.64,9.869],[5.65,9.309],[9.67,7.799],[13.8,3.859],[13.44,-1.011],[0,0]],\"v\":[[123.5,88.325],[109.26,91.966],[75.62,96.966],[11.95,93.725],[-92.1,43.955],[-158.29,-35.805],[-168.62,-60.275],[-168.62,-60.285],[-159.74,-69.154],[-120.6,-92.765],[-69.2,-94.134],[-68.77,-94.025],[-67,-63.614],[-56.02,-34.864],[-33.01,-9.244],[4.86,8.926],[45.41,13.216],[84.83,2.645]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1890.414,403.036],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 3\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":3,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[4.01,-8.11],[3.29,-6.68],[11.54,-15.88],[10.37,-11.59],[24.77,-16.21],[24.85,-7.05],[0,0],[-20.77,20.361],[-14.87,22.58],[-7.54,13.43],[-3.06,8.11],[-6.6,3.95],[-8.5,-1.67],[-8.49,-5.45],[-5.9,-6.94],[-0.47,-6.58]],\"o\":[[-4.01,8.13],[-18.88,34.47],[-11.57,15.871],[-15.1,17.391],[-20.84,13.639],[45.12,-67.69],[25.47,-11.97],[20.74,-20.35],[14.85,-22.55],[3.3,-6.67],[3.08,-8.09],[7.07,-3.02],[8.5,1.69],[8.5,5.46],[5.89,6.93],[1.42,8.46]],\"v\":[[126.037,-72.125],[115.077,-49.895],[69.447,25.625],[36.537,66.815],[-23.253,117.206],[-91.813,148.235],[-130.483,62.555],[-61.133,14.055],[-7.713,-50.325],[25.887,-104.295],[35.437,-126.485],[49.947,-144.555],[73.297,-146.565],[98.777,-135.885],[120.367,-117.305],[129.927,-97.015]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.630450678807,0.007719527974,0.39481159285,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[2105.727,343.126],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 4\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":4,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[0,0]],\"o\":[[0,0],[0,0],[-0.001,0]],\"v\":[[1821.644,309.014],[1821.644,309.014],[1821.645,309.014]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 5\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":5,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[1.4,-16.08],[19.1,-26.45],[28.77,-14.89],[3.12,-1.36],[23.22,-3.03],[22.23,4.45],[0,0],[0,0],[16.42,-5.09],[11.12,-11.13],[0,0],[0,0],[16.97,-0.43],[17.16,4.33],[0,10.63],[0,0],[-3.67,0.59],[-8.02,4.93],[-4.48,8.15],[-6.61,7.74],[-2.57,1.44],[0.04,-0.17],[-21.08,-5.41],[-11.66,-2.27],[-25.36,-2.52],[-12.27,2.21],[-18.88,21.26],[-8.01,23.81],[1.4,9.41],[0.15,0.72],[1.83,2.65],[2.82,1.23],[2.65,7.92],[-8.52,18.62],[-2.71,-0.59],[-5.3,-1.93],[-15.89,-14.04],[-3.78,-18.78]],\"o\":[[-4.24,33.17],[-19.1,26.46],[-3.03,1.5],[-19.7,8.59],[-19.7,2.57],[0,0],[0,0],[-17.22,-4.34],[-14.54,4.49],[0,0],[0,0],[-13.66,5.03],[-16.47,0.41],[-12.92,-12.8],[0,-23.65],[3.92,0.14],[10.62,-1.69],[8.97,-4.95],[4.49,-8.12],[1.99,-2.33],[-0.04,0.17],[0,0],[8.36,2.15],[17.75,3.45],[12.27,1.59],[32.07,-6.48],[18.86,-21.24],[3.3,-8.58],[-0.12,-0.77],[-0.83,-4.07],[-1.82,-2.65],[-1.39,-18.95],[-2.83,-8.46],[2.7,0.48],[5.43,1.2],[17.26,6.27],[18.87,16.52],[3.78,18.81]],\"v\":[[240.21,-32.16],[205.19,57.25],[133.37,119.26],[124.14,123.54],[59.77,140.96],[-3.13,138.13],[-27.99,131.85],[-28.42,131.74],[-79.82,133.11],[-118.96,156.72],[-127.84,165.59],[-127.84,165.6],[-173.79,173.79],[-224.23,167.9],[-241.61,132.35],[-219.53,92.44],[-208.13,91.8],[-180.18,81.89],[-160.01,62.25],[-143.38,38.46],[-136.53,32.81],[-136.65,33.33],[-105,43.12],[-74.98,49.85],[-10.31,59.17],[26.49,58.24],[102.92,16.64],[143.24,-50.95],[146.07,-77.93],[145.67,-80.16],[141.69,-90.24],[134.74,-96.06],[123.78,-134.51],[128.73,-174.2],[136.85,-172.6],[152.95,-167.9],[202.68,-137.44],[236.66,-84.48]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1849.634,177.161],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 6\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":6,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,-23.65],[-12.92,-12.8],[5.06,1.66],[0,0],[0.07,0.03],[0,0],[36.29,38.23],[0.01,0.01],[0,0],[5.19,29.14],[-20.29,31.68],[-6.6,6.79],[-9.2,3.55],[-11.32,-0.64],[-15.11,-9.04],[-7.52,-11.09],[7.76,-71.65],[14.14,-39.88],[-67.97,-31.9],[0,0],[-7.43,-0.27]],\"o\":[[0,10.63],[-5,-1.26],[0,0],[-0.07,-0.03],[0,0],[-0.06,-0.04],[0,-0.01],[0,0],[-18.39,-25.01],[-7.55,-43.23],[3.76,-5.76],[6.61,-6.76],[9.18,-3.53],[11.31,0.67],[12.41,7.6],[-0.46,-0.1],[0,0],[0,0],[0,0],[8.33,2.89],[0,0]],\"v\":[[73.495,129.305],[90.875,164.855],[75.785,160.465],[47.395,149.145],[47.185,149.055],[47.175,149.065],[-52.625,68.015],[-52.635,67.995],[-52.645,67.985],[-88.025,-13.235],[-68.945,-125.615],[-53.375,-144.425],[-29.665,-159.895],[1.115,-164.215],[40.755,-149.645],[70.635,-121.605],[-6.535,-63.445],[-26.915,8.485],[71.945,84.665],[71.945,84.685],[95.575,89.395]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.067147206325,0.001290032677,0.354056085325,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1534.529,180.207],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 7\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":7,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-0.06,-0.04],[14.39,-22.54],[18.87,-19.36],[17.91,-8.949],[18.14,-2.74],[0,0],[-5.87,6.03],[-10.85,15.391],[-8.95,16.29],[-8.49,22.88]],\"o\":[[-11.31,24.84],[-14.38,22.571],[-12.27,11.64],[-16.22,8.1],[0,0],[5.64,-3.5],[12.26,-13.52],[10.85,-15.37],[9.91,-20.08],[36.29,38.23]],\"v\":[[104.515,-50.01],[65.965,21.06],[16.085,83.94],[-29.205,114.83],[-80.755,131.06],[-104.515,38.46],[-87.255,24.24],[-52.585,-19.13],[-22.875,-66.62],[4.715,-131.06]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.987949625651,0.796498556698,0.006627641005,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1477.189,379.281],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 8\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":8,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0.22,-24.09],[5.43,-20.43],[2.73,-9.46],[0.18,-0.62],[0.17,-0.61],[0.11,-0.37],[0,0],[0,0],[-0.46,-0.1],[-2.85,-9.04]],\"o\":[[-0.24,24.08],[-4.56,17.22],[-0.2,0.64],[-0.18,0.62],[-0.12,0.4],[-67.97,-31.9],[14.14,-39.88],[7.76,-71.65],[5.06,7.45],[7.08,22.48]],\"v\":[[59.745,-1.81],[51.265,64.97],[40.335,104.94],[39.775,106.84],[39.255,108.67],[38.895,109.88],[-59.965,33.7],[-39.585,-38.23],[37.585,-96.39],[49.475,-71.66]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.987949625651,0.796498556698,0.006627641005,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1567.579,154.992],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 9\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":9,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[1.93,-0.23],[22.88,7.449],[22.19,21.17],[9.69,25.73],[2.39,9.63],[0.29,13.05],[-8.1,28.15],[0,0],[-4.95,11.16],[-14.63,35.32],[-3.78,7.67],[-4.71,7.69],[-21.7,-8.88],[-11.82,-19.53],[-0.94,-4.69],[1.88,-5.72],[16.5,-34.41],[7.54,-39.85],[-3.3,-15.01],[-7.57,-8.3],[-12.03,0.8],[-7.05,4.371]],\"o\":[[-1.92,0.29],[-20.28,2.42],[-22.87,-7.43],[-23.58,-22.07],[-3.86,-10.261],[-3.61,-14.49],[-0.66,-31.9],[0,0],[3.4,-11.82],[16.75,-37.72],[3.29,-8.58],[3.77,-7.64],[9.43,-13.45],[22.19,9.84],[4.71,7.45],[0.95,4.71],[-15.1,40.03],[-16.51,34.42],[-4.73,17.11],[3.31,15.03],[7.54,8.309],[6.68,-0.42],[0,0]],\"v\":[[101.965,243.2],[96.195,244],[31.435,236.44],[-36.165,193.54],[-86.075,121.86],[-95.445,92.03],[-101.305,50.72],[-90.145,-39.35],[-90.145,-39.36],[-77.625,-73.81],[-30.575,-183.36],[-19.965,-207.71],[-7.235,-230.69],[39.475,-237.54],[90.445,-193.51],[98.935,-175.31],[97.525,-159.69],[50.125,-48.02],[14.055,63.38],[11.945,111.59],[28.235,146.58],[57.605,157.87],[78.205,150.599]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.259373055252,0.002366053123,0.392836836273,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1294.469,267.142],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 10\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":10,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[],\"o\":[],\"v\":[],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0.5,0.5],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 11\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":11,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0.46,-14.18],[0,0],[5.69,5.41],[0,0],[0,0],[1.13,14.01],[0.3,2.84],[-48.75,-25.41],[-1.15,-7.16]],\"o\":[[0,0],[-72.35,-7.67],[0,0],[0,0],[3.84,-15.42],[-0.23,-2.9],[20.16,-17.42],[1.85,7.15],[3.06,19.28]],\"v\":[[58.158,29.375],[56.048,67.675],[-57.792,23.225],[-58.618,22.42],[-58.112,20.415],[-54.032,-23.725],[-54.842,-32.325],[49.758,-42.265],[54.258,-20.805]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1060.236,213.896],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 12\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":12,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[],\"o\":[],\"v\":[],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0.5,0.5],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 13\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":13,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-0.66,-31.9],[-3.61,-14.49],[0.57,-0.11],[23.45,2.24],[9.61,1.89],[24.47,8.14],[17.48,19.76],[6.64,4.98],[9.5,9.25],[3.87,4.23],[12.75,21.4],[-122.58,18.32],[-6.62,-1.87],[-7.06,-2.73],[-15.57,-17.53],[-8.25,-19.13],[-3.14,-12.08],[20.16,-17.42],[2.27,10.55],[5.18,6.48],[2.28,1.76],[3.81,0.75],[6.83,-2.52],[5.19,-4.85],[-3.55,-8.87],[-5.42,-10.7],[-2.56,-4.2],[-5.22,-6.82],[-3.36,-3.81],[-6.57,-5.8],[0,0],[-72.35,-7.67],[-12.38,5.59],[-7.87,12.9],[-3.95,4.2]],\"o\":[[0.29,13.05],[-0.56,0.13],[-21.15,4.27],[-9.26,-0.88],[0,0],[-24.48,-8.14],[-7.17,-4.59],[-10.92,-8.19],[-4.14,-4.03],[-18.17,-19.83],[0,0],[6.49,1.16],[6.92,1.95],[23.58,10.73],[15.56,17.55],[5.19,12.04],[-48.75,-25.41],[-1.21,-11.47],[-3.3,-12.17],[-2.1,-2.6],[-3.38,-2.61],[-6.37,-1.25],[-6.85,2.54],[0.93,5.64],[3.54,8.9],[2.1,4.15],[4.06,6.68],[3.11,4.07],[5.83,6.6],[0,0],[5.69,5.41],[17.21,-0.87],[14.43,-6.51],[2.85,-5.79],[-8.1,28.15]],\"v\":[[171.11,122.23],[176.97,163.54],[175.28,163.9],[108.38,166.93],[80.09,162.78],[35.52,151.44],[-35.28,110.46],[-55.98,96.1],[-86.61,69.93],[-98.64,57.54],[-145.01,-4.31],[-59.69,-169.17],[-40.03,-164.63],[-19.06,-157.64],[39.69,-115.22],[75.44,-60.19],[87.94,-24],[-16.66,-14.06],[-21.87,-47.1],[-34.61,-75.1],[-41.18,-81.64],[-51.96,-86.7],[-71.77,-84.78],[-89.82,-73.7],[-83.09,-51.92],[-69.64,-22.52],[-62.65,-10],[-48.75,10.24],[-39.04,22.06],[-20.44,40.68],[-19.61,41.49],[94.23,85.94],[138.62,76.25],[172.07,47.14],[182.27,32.16]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[1022.054,195.632],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 14\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":14,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[13.2,-21.1],[17.93,-13.67],[30.68,-7.38],[35.39,15.18],[14.88,17.11],[7.7,13.96],[2.19,4.8],[3.09,19.29],[0.46,13.04],[0.01,2.69],[-0.34,6.14],[-35.83,-15.94],[-7.11,-5.08],[0.63,-11.08],[-5.37,-23.71],[-7.08,-5.49],[-8.27,1.62],[-8.01,6.82],[-5.66,5.82],[-9.2,17.72],[-6.61,19.07],[-24.48,-8.14]],\"o\":[[-11.81,31.46],[-13.21,21.11],[-20.3,14.68],[-30.66,7.39],[-25,-11.62],[-11.14,-12.8],[-2.58,-4.66],[-8.72,-19.12],[-2.51,-15.84],[-0.1,-2.81],[0.12,-6.24],[24.54,-9.75],[7.09,3.15],[-2.2,10.9],[-1.31,22.95],[3.79,18.81],[7.07,5.48],[8.25,-1.63],[8.03,-6.8],[14.16,-15.45],[9.18,-17.69],[17.48,19.76],[24.47,8.14]],\"v\":[[188.62,-41.14],[151.12,37.71],[104.42,89.88],[27.99,122.98],[-71.09,111.32],[-130.9,68.22],[-159.15,28.07],[-166.3,13.88],[-184.01,-43.74],[-188.45,-87.05],[-188.62,-95.32],[-187.93,-113.89],[-92.88,-114.43],[-71.54,-102.16],[-75.78,-69.18],[-69.7,0.81],[-53.41,37.23],[-30.41,43.02],[-6,30.36],[14.52,11.42],[49.55,-38.33],[73.25,-93.46],[144.05,-52.48]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[913.524,399.552],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 15\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":15,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[8.24,-35.61],[0.45,-2.27],[7.09,3.15],[24.54,-9.75],[-2.06,13.83],[-9.46,25.86],[-35.84,25.47],[-31.39,5.04],[-19.93,-3.57]],\"o\":[[-14.15,30.58],[-0.53,2.26],[-7.11,-5.08],[-35.83,-15.94],[0.8,-14.43],[4.2,-28.35],[16.03,-43.83],[19.34,-16.54],[18.8,-3.03],[-122.58,18.32]],\"v\":[[33.065,31.33],[-0.525,130.61],[-1.995,137.4],[-23.335,125.13],[-118.385,125.67],[-114.105,83.28],[-93.625,1.96],[-15.795,-101.99],[60.285,-134.37],[118.385,-133.53]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.699641268861,0.811973362343,0.061531751296,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[843.979,159.992],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 16\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":16,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[],\"o\":[],\"v\":[],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 2\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.21031293682,0.577633846507,0.155920021207,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0.5,0.5],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 17\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":17,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-0.965,0.479],[0,0]],\"o\":[[0,0],[0,0]],\"v\":[[0.767,-0.356],[-0.767,0.356]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[869.707,407.997],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 18\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":18,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-2.58,-4.66],[3.04,-4.659],[18.4,-14.63],[19.57,-4.739],[3.16,-0.52],[4.48,-0.25],[0.47,0.43],[-0.64,23.65],[-3.45,1.67],[-6.84,5.37],[-0.63,0.511],[-5.57,6.149],[-2.83,5.74],[-9.2,21.48],[-11.8,20.13],[-2.83,7.641],[-1.67,2.531],[0.8,-14.431],[0.12,-6.239],[-0.1,-2.809],[-2.51,-15.839],[-8.72,-19.121]],\"o\":[[-3.37,5.29],[-14.15,23.021],[-18.4,14.63],[-3.13,0.761],[-4.43,0.73],[-0.48,-0.431],[-24.19,-22.65],[2.62,0.28],[6.13,-3],[0.64,-0.49],[6.14,-4.979],[6.13,-6.75],[15.1,-19.26],[9.2,-21.48],[2.83,-5.739],[1.17,-3.159],[-2.06,13.83],[-0.34,6.14],[0.01,2.691],[0.46,13.04],[3.09,19.29],[2.19,4.799]],\"v\":[[83.64,40.26],[74.03,55.169],[25.21,111.65],[-31.76,140.71],[-41.19,142.611],[-54.55,144.09],[-55.97,142.801],[-83,59.611],[-73.89,57.51],[-54.43,44.97],[-52.54,43.46],[-34.97,26.771],[-21.53,8.021],[14.91,-53.1],[46.39,-115.51],[54.88,-135.551],[59.14,-144.09],[54.86,-101.699],[54.17,-83.13],[54.34,-74.861],[58.78,-31.551],[76.49,26.07]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.259373055252,0.002366053123,0.392836836273,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[670.734,387.361],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 19\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":19,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[2.12,-10.9],[2.83,-9.5],[12.97,-26.29],[9.42,-28.57],[0.21,-9.92],[-3.55,-3.2],[-2.05,-0.22],[-24.19,-22.65],[-0.48,-0.43],[12.63,2.88],[17.46,15.63],[7.79,20.12],[0.93,16.97],[-15.8,36.77],[-23.13,48.74],[-0.25,7.09],[13.67,-5.06],[13.2,-14.49],[7.51,-10.01],[3.49,-5.17],[9.78,-18.16],[8.76,-23.5],[10.85,-46.52],[0,0],[8.49,-2.1],[10.84,2.56],[10.85,6.35],[5.18,8.37],[-0.24,7.09],[-0.48,6.63],[-12.02,32.88],[-0.55,1.49],[-5,13.41],[0,0],[-11.41,9.47],[-9.44,6.01],[-33.97,-4.8],[-22.66,-23.97],[-4.71,-12.14],[-0.72,-11.78]],\"o\":[[-2.13,10.92],[-9.44,30.47],[-12.98,26.31],[-6.6,20.94],[-0.25,9.92],[1.55,1.42],[-0.64,23.65],[0.47,0.43],[-12.28,0.69],[-20.52,-4.66],[-19.35,-17.43],[-7.8,-20.09],[-1.42,-36.79],[15.8,-36.74],[4.24,-8.61],[0.22,-7.09],[-18.87,8.05],[-8.78,9.62],[-3.82,5.07],[-11.99,17.57],[-12.16,22.59],[-15.79,42.43],[0,0],[-2.83,7.64],[-8.49,2.11],[-10.86,-2.56],[-10.86,-6.31],[-5.67,-7.4],[0.22,-7.08],[3.75,-39.75],[0.55,-1.49],[4.88,-13.33],[48.7,-105.94],[9.28,-11.16],[8.31,-6.91],[22.4,-14.25],[29.73,3.98],[10.85,12.01],[4.73,12.16],[0.71,11.8]],\"v\":[[214.535,-99.136],[207.115,-68.496],[173.515,16.634],[139.915,98.924],[129.665,145.214],[134.615,164.914],[140.015,167.364],[167.045,250.554],[168.465,251.844],[131.095,248.574],[74.115,218.144],[33.415,161.814],[20.305,106.204],[41.875,-4.116],[100.235,-132.356],[106.955,-155.896],[86.785,-158.926],[38.665,-125.136],[14.255,-95.686],[3.285,-80.326],[-29.355,-26.736],[-60.745,42.394],[-100.705,175.834],[-106.355,198.644],[-123.345,213.244],[-152.355,212.554],[-184.915,199.214],[-208.985,177.164],[-217.125,155.414],[-216.065,134.854],[-192.385,25.904],[-190.735,21.424],[-175.905,-18.676],[-35.665,-182.736],[-4.615,-213.676],[22.005,-233.056],[106.575,-247.246],[185.145,-205.326],[208.505,-169.096],[216.655,-133.186]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.987949625651,0.796498556698,0.006627641005,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[447.719,279.607],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 20\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":20,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.41,-2.8],[48.7,-105.94],[-7,18.35],[-4.25,9.56],[-3.29,10.49],[-0.24,7.09],[8.01,-3.04],[13.91,-14.03],[11.32,-15.39],[9.66,-18.65],[3.72,-7.63],[5.04,-11.36],[3.88,-10.58],[-9.65,73.81],[-0.16,1.09],[-0.05,-0.06],[-7.08,5.8],[-8.73,5.21],[-20.77,2.43],[-19.82,-6.09],[-16.05,-18.47],[-1.66,-2.31]],\"o\":[[0,0],[6.78,-18.19],[0.46,-0.94],[4.25,-9.54],[3.3,-10.46],[0.22,-7.08],[-19.81,8.07],[-13.92,14.05],[-12.73,16.38],[-3.92,7.56],[-5.47,11.21],[-4.81,10.48],[11.48,-42.39],[0.15,-1.09],[0.05,0.06],[6.44,-6.84],[7.94,-6.51],[16.52,-9.85],[17.92,-2.34],[19.81,6.12],[2.35,2.77],[1.65,2.32]],\"v\":[[134.945,-94.485],[-5.295,69.575],[15.365,14.775],[22.435,-0.985],[33.755,-31.015],[39.055,-57.355],[27.375,-63.425],[-23.215,-30.275],[-61.075,13.885],[-94.675,66.425],[-106.135,89.205],[-121.915,123.065],[-134.945,154.655],[-87.895,-94.255],[-87.435,-97.525],[-87.285,-97.355],[-66.985,-116.295],[-41.995,-133.905],[13.915,-152.315],[70.535,-146.675],[124.325,-109.795],[130.345,-102.155]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.92510878619,0.075792185465,0.443284337661,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[277.109,191.356],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 21\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":21,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-11.31,-12.84],[0.15,-1.09],[11.48,-42.39],[3.8,-17.711],[1.89,-30.25],[0.24,-7.08],[6.15,-2.99],[18.89,7.089],[11.81,13.871],[0.47,6.6],[-0.93,5.7],[-3.76,28.42],[-5.19,26.57],[-8.49,26.67],[-13.68,31.51],[-3.53,6.24],[-3.78,2],[-16.52,-8.08]],\"o\":[[-0.16,1.09],[-9.65,73.81],[-6.36,17.42],[-6.15,28.479],[-1.4,6.65],[-0.22,7.09],[-11.79,5.03],[-18.86,-7.061],[-6.61,-7.379],[-0.47,-6.59],[3.78,-34.08],[3.77,-28.43],[5.19,-26.56],[8.49,-26.64],[7.54,-17.19],[3.53,-6.22],[10.85,-4.99],[16.43,8.04]],\"v\":[[94.837,-196.39],[94.377,-193.12],[47.327,55.79],[32.067,108.481],[20.047,196.6],[17.577,217.2],[8.027,232.32],[-37.973,229.231],[-83.983,197.82],[-94.603,176.85],[-93.903,158.41],[-82.593,64.65],[-69.163,-17.84],[-48.663,-97.68],[-15.413,-184.92],[1.207,-220.04],[12.177,-232.36],[53.227,-227.73]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.067147206325,0.001290032677,0.354056085325,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[94.837,290.221],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 22\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":22,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-5.31,11.54],[4.88,-13.33],[0,0],[-0.45,1.4]],\"o\":[[-5,13.41],[0,0],[0.45,-1.38],[4.11,-12.66]],\"v\":[[7.79,-20.23],[-7.04,19.87],[-7.79,20.23],[-6.44,16.07]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.987949625651,0.796498556698,0.006627641005,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[264.024,281.162],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 23\",\"np\":2,\"cix\":2,\"bm\":0,\"ix\":23,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":19,\"st\":0,\"bm\":0},{\"ddd\":0,\"ind\":2,\"ty\":4,\"nm\":\"Artwork 4 Outlines\",\"sr\":1,\"ks\":{\"o\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.833],\"y\":[0.833]},\"o\":{\"x\":[0.167],\"y\":[0.167]},\"t\":4,\"s\":[0]},{\"t\":6,\"s\":[100]}],\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":1,\"k\":[{\"i\":{\"x\":0.833,\"y\":0.833},\"o\":{\"x\":0.167,\"y\":0.167},\"t\":4,\"s\":[944,305,0],\"to\":[12.5,-14,0],\"ti\":[-12.5,14,0]},{\"t\":7,\"s\":[1019,221,0]}],\"ix\":2},\"a\":{\"a\":0,\"k\":[6,171.5,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.638,0.638,0.667],\"y\":[1.221,1.221,1]},\"o\":{\"x\":[0.244,0.244,0.333],\"y\":[1.144,1.144,0]},\"t\":4,\"s\":[0,0,100]},{\"t\":13,\"s\":[100,100,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0.051,-0.39],[8.483,-2.353],[-10.098,-20.674],[-7.088,6.852],[-1.067,1.937],[0.3,7.176],[-12.83,-2.495],[2.064,13.037],[-5.184,1.789],[-1.828,0.139],[-3.036,17],[27.644,-23.5],[3.727,-21.929],[4.21,-0.575],[2.799,-1.854],[0.591,-7.287]],\"o\":[[-1.138,8.728],[-10.176,2.823],[11.486,23.518],[1.59,-1.538],[4.01,-7.279],[-0.346,-8.312],[18.288,3.557],[-1.481,-9.36],[1.733,-0.598],[6.745,-0.514],[3.571,-19.99],[-27.646,23.499],[-2.563,15.075],[-3.326,0.455],[-6.336,4.198],[-0.032,0.401]],\"v\":[[-44.806,25.692],[-60.908,43.903],[-77.66,75.327],[-38.61,75.351],[-34.61,70.11],[-23.863,37.113],[4.579,23.038],[29.773,-27.96],[42.455,-43.601],[47.818,-44.694],[80.372,-65.199],[36.705,-74.978],[-5.454,-16.775],[-19.363,2.151],[-28.637,5.769],[-44.681,24.505]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.995813945695,0.055836146486,0.043826593137,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[80.792,87.482],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 1\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":19,\"st\":0,\"bm\":0},{\"ddd\":0,\"ind\":3,\"ty\":4,\"nm\":\"Artwork 7 Outlines\",\"sr\":1,\"ks\":{\"o\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.833],\"y\":[0.833]},\"o\":{\"x\":[0.167],\"y\":[0.167]},\"t\":4,\"s\":[0]},{\"t\":6,\"s\":[100]}],\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":1,\"k\":[{\"i\":{\"x\":0.833,\"y\":0.833},\"o\":{\"x\":0.167,\"y\":0.167},\"t\":4,\"s\":[1707,200,0],\"to\":[7,-8,0],\"ti\":[-7,8,0]},{\"t\":7,\"s\":[1749,152,0]}],\"ix\":2},\"a\":{\"a\":0,\"k\":[3,95,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.812,0.812,0.667],\"y\":[1.116,1.116,1]},\"o\":{\"x\":[0.302,0.302,0.333],\"y\":[1.179,1.179,0]},\"t\":4,\"s\":[0,0,100]},{\"t\":11,\"s\":[100,100,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[37.94,-54.994],[-36.365,8.683],[8.388,-2.772]],\"o\":[[0,0],[8.593,-2.051],[-18.046,5.966]],\"v\":[[-44.613,46.898],[36.182,-46.677],[39.784,-33.156]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.951268932866,0.099388152478,0.486505755256,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[44.613,46.898],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 1\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":19,\"st\":0,\"bm\":0},{\"ddd\":0,\"ind\":4,\"ty\":4,\"nm\":\"Artwork 6 Outlines\",\"sr\":1,\"ks\":{\"o\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.833],\"y\":[0.833]},\"o\":{\"x\":[0.167],\"y\":[0.167]},\"t\":4,\"s\":[0]},{\"t\":6,\"s\":[100]}],\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":1,\"k\":[{\"i\":{\"x\":0.833,\"y\":0.833},\"o\":{\"x\":0.167,\"y\":0.167},\"t\":4,\"s\":[1378,525,0],\"to\":[2.833,-9,0],\"ti\":[-2.833,9,0]},{\"t\":7,\"s\":[1395,471,0]}],\"ix\":2},\"a\":{\"a\":0,\"k\":[7.5,364.5,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.135,0.135,0.667],\"y\":[1.245,1.245,1]},\"o\":{\"x\":[0.333,0.333,0.333],\"y\":[0,0,0]},\"t\":4,\"s\":[0,0,100]},{\"t\":16,\"s\":[100,100,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-39.605,-5.828],[-27.644,2.468],[0,0],[-55.422,-10.984],[-24.685,-22.08],[14.241,-12.227],[1.886,-12.749],[-13.822,-0.578],[-54.301,12.546],[0,0],[38.349,-16.391],[0,0],[-26.456,-0.504],[0.127,89.255],[17.476,6.209],[24.034,-10.348],[0,0],[59.474,9.631],[38.069,-9.351],[0,0],[15.281,10.402],[6.793,-5.931],[28.966,-23.98],[3.193,-35.458],[0,0],[8.028,42.351]],\"o\":[[0,0],[27.644,-2.467],[0,0],[55.423,10.983],[17.543,15.692],[-9.778,8.396],[-1.614,10.907],[29.097,1.215],[54.302,-12.546],[0,0],[-38.349,16.391],[0,0],[26.455,0.503],[-0.127,-89.255],[-17.478,-6.21],[-24.033,10.348],[0,0],[-59.474,-9.632],[-38.069,9.351],[0,0],[-15.279,-10.402],[0,0],[-28.965,23.98],[-3.194,35.458],[0,0],[-8.028,-42.352]],\"v\":[[-144.259,-130.75],[-106.501,-85.351],[-84.676,-117.242],[1.225,-144.993],[97.197,-98.596],[78.429,-47.277],[60.039,-14.614],[74.337,7.41],[164.697,-7.183],[233.037,50.187],[201.404,108.795],[163.337,152.605],[182.07,181.034],[263.305,82.448],[214.873,-31.197],[134.249,-37.696],[137.116,-100.136],[92.445,-169.217],[-49.423,-176.693],[-86.908,-155.796],[-108.769,-158.037],[-141.838,-154.358],[-216.027,-146.06],[-263.127,-57.229],[-225.415,-28.623],[-209.387,-72.925]],\"c\":true},\"ix\":2},\"nm\":\"Path 1\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[1,0.819863831763,0.002480180591,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[263.305,181.051],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Group 1\",\"np\":4,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":19,\"st\":0,\"bm\":0}],\"markers\":[]}");
+
+/***/ }),
+
 /***/ "./resources/js/pusher/index.js":
 /*!**************************************!*\
   !*** ./resources/js/pusher/index.js ***!
@@ -78491,8 +78531,8 @@ pusher_js__WEBPACK_IMPORTED_MODULE_0___default.a.logToConsole = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

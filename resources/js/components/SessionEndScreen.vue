@@ -1,16 +1,17 @@
 <template>
+    <div>
+    <div id='engie_logo'>
+        <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
+    </div>
     <div class="row justify-content-center container-flex" style="border:solid 1px black;">
         <div class="col-md-9">
             <div class="watts-container" align="center">
-              <div id='engie_logo'>
-                  <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
-              </div>
               <h3>You have generated</h3>
               <h2><img class="spark" src="/images/white_energy.svg"/> <span v-if="totalEnergy">{{totalEnergy}}</span> watts</h2>
               <h3>which equals</h3>
             </div>
-            <div class="p-2 goals">
-              <template v-if="goals!=null">
+            <!-- <div class="p-2 goals"> -->
+              <!-- <template v-if="goals!=null">
                 <div class="row justify-content-center">
                   <template v-for="(goal, index) in goals">
                     <div class="col-md-3 goal-tickets" v-if="index < 3" :key="index">
@@ -46,15 +47,14 @@
                       <img src="/images/coffee_pot.svg" class="goal-icons"/>
                       <h4>0x</h4>
                       <p>Object 3</p>
-                  </div>
+                  </div> -->
 
-                  <GoalTicketEndScreen :acquiredAmount="calculateGoalsCollected()"></GoalTicketEndScreen>
+                  <goalTicketEndScreen :totalEnergy="totalEnergy"></goalTicketEndScreen>
                 </div>
-              </template>
+                <finishSidebar :energy="totalEnergy"></finishSidebar>
             </div>
-          </div>
-          <finishSidebar :energy="totalEnergy"></finishSidebar>
-    </div>
+        </div>
+
 </template>
 
 <script>
@@ -108,9 +108,12 @@ body {
 }
 
 .nj-navbar__logo {
-  margin-top: 3%;
-  margin-left: 3%;
-  width: 11%;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 8%;
 }
 .energy {
   margin-top: 3%;

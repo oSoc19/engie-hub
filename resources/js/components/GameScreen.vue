@@ -27,9 +27,9 @@
                   <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
 
-              <!--<div class="next-goal round ">
+              <div class="next-goal round ">
                   <img :src="goals[currentGoal].emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goals[currentGoal].emblem_color}"/>
-              </div>-->
+              </div>
             </div>
                 <goalTicket :current="currentGoal"></goalTicket>
         </div>
@@ -59,7 +59,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 200,
+        timeLeftOfSession: 15,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
@@ -153,7 +153,7 @@ export default {
         },
 
         updateProgressBar: function(){
-          this.energy += this.getRandomInt(5, 25);
+          this.energy += this.getRandomInt(5, 10);
           this.calculatePercentage();
       },
 
