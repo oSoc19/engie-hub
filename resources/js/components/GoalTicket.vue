@@ -3,7 +3,7 @@
         <div v-for="goal in goals" class="col-md-2 goal-tickets" v-bind:id="goal.id">
             <!-- <img :src="goal.emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goal.emblem_color}"/> -->
             <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goal.id-1) >= current ? {backgroundColor: '#E0E0E0' } : {backgroundColor:  goal.emblem_color }]" />
-            <h4>{{goal.name}}</h4>
+            <!-- <h4>{{goal.name}}</h4> -->
         </div>
     </div>
 </template>

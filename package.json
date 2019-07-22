@@ -28,6 +28,7 @@
         "fs": "0.0.1-security",
         "lottie-web": "^5.5.6",
         "net": "^1.0.2",
+        "ng-lottie": "^0.3.2",
         "pusher": "^2.2.1",
         "pusher-js": "^4.4.0",
         "tls": "0.0.1",
