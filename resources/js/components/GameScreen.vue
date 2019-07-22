@@ -18,6 +18,9 @@
                     <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
                 </div>
             </div>
+            <div class="lottie-animation">
+                <lottie :options="defaultOptions" />
+            </div>
 
             <div class="row align-items-center progression">
               <div class="col-md-9 progress-bar round bar">
@@ -36,22 +39,31 @@
 
 <script>
 import {router} from '../app.js'
+import lottie from 'lottie-web';
+import Lottie from 'vue-lottie';
+import animationData from '../lottie/data.json';
 
 export default {
     name: 'GeneralScreen',
+    components: {
+        Lottie
+    },
     data: function() {
         return {
-          energy: 0,
-          nextThreshold: 20,
-          previousThreshold: 0,
-          percentageCompleted: 15,
-          idOfNextGoal: 0,
-          show: false,
-          timeLeftOfSession: 20,
-          // progressBarColor: '#272382',
-          goals: [],
-          goalsCompleted: [],
-          currentGoal: 0
+        activeIndex: 0,
+        defaultOptions: { animationData: animationData, loop: true },
+        animationSpeed: 1,
+        energy: 0,
+        nextThreshold: 20,
+        previousThreshold: 0,
+        percentageCompleted: 15,
+        idOfNextGoal: 0,
+        show: false,
+        timeLeftOfSession: 200,
+        // progressBarColor: '#272382',
+        goals: [],
+        goalsCompleted: [],
+        currentGoal: 0
         }
     },
 
@@ -174,6 +186,13 @@ export default {
 body {
     background-color: #F5F5F5;
     font-family: 'Lato', sans-serif;
+}
+.lottie-animation {
+    position: absolute;
+    z-index: 2;
+    left: 2%;
+    top: -1%;
+    width: 8%;
 }
 
 #energy {
