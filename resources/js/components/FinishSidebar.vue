@@ -3,7 +3,7 @@
           <div class="nj-card__body">
               <div>
                   <p id="donate">
-                      Donate your {{this.energy}} watts of clean energy to a good cause
+                      Donate your {{energy}} watts of clean energy to a good cause
                   </p>
               </div>
               <br><hr><br>
@@ -11,28 +11,17 @@
                   <p>
                       Scan to donate
                   </p>
-                  <img src="../../img/qr-code-svgrepo-com.svg"/>
+                  <img id="qr-code" src="/images/qr_code.svg"/>
               </div>
           </div>
     </div>
 </template>
 
 <script>
+
     export default {
-        name: 'SideBar',
-        data() {
-            return {
-                energy: 456
-            }
-        },
-        created() {
-          //this.getEnergy()
-        },
-        methods: {
-            getEnergy(){
-              //TODO api call to get information about energy generated
-            }
-        }
+        name: 'FinishSidebar',
+        props: ['energy']
     }
 </script>
 <style>
@@ -53,18 +42,16 @@
     flex-direction: column;
 }
 
-p{
-    font-family: Lato;
-}
-img{
+#qr-code{
     width: 50%;
 }
 
 #donate {
-    font-size: 54px;
+    font-size: 3rem;
     text-align: left;
     line-height: 1.1;
-    margin-left: 86px;
+    margin-left: 3rem;
+    margin-right: 2rem;
     color: #707070;
 }
 

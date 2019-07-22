@@ -1,83 +1,65 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div id='topbar'>
-                <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE">
+            <div id='topbar' class="d-flex justify-content-center">
+                <!-- <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE"> -->
                 <div id="timer-box">
                     <p class="timer-elements">Time left to move</p>
-                    <p id="timer" class="timer-elements "></p>
+                    <p id="timer" class="timer-elements ">01:00</p>
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <b>YOU'VE GENERATED</b>
-            </div>
-            <div class="d-flex justify-content-center energy">
-                <img class="spark" src="../../img/icons/blue-energy.svg"/>
-                <h1>{{energy}} joules</h1>
+
+            <div class="energy-container">
+                <div class="d-flex align-items-center justify-content-center ">
+                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
+                    <img class="spark" src="/images/white_energy.svg"/>
+                    <p id="energy">{{energy}}</p><p id="watt">W</p>
+                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
+                </div>
             </div>
 
             <div class="row align-items-center progression">
-              <div class="col-md-9 progress-bar round">
-                <div id="progress-bar-filling" class="round" v-bind:style="{ width: percentageCompleted + '%', 'background-color': progressBarColor, height: '100%' }" >&nbsp;</div>
+              <div class="col-md-9 progress-bar round bar">
+                  <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
-              <div class="next-goal round">
-                  <img src="../../img/noun_Microwave_1967465.svg" alt="microwave">
+
+              <div class="next-goal round ">
+                  <img :src="goals[currentGoal].emblem_path" class="goal-icons" v-bind:style="{ backgroundColor: goals[currentGoal].emblem_color}"/>
               </div>
             </div>
-                <GoalTicket></GoalTicket>
-                <!-- <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_pizza slice_1204552.svg" class="goal-icons"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Game_1967460.svg" class="goal-icons goal-icon-empty"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div>
-                <div class="col-md-2 goal-tickets">
-                    <img src="../../img/icons/noun_Microwave_1967465.svg" class="goal-icons goal-icon-empty"/>
-                    <h4>GOAL</h4>
-                    <p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-                </div> -->
+                <goalTicket :current="currentGoal"></goalTicket>
         </div>
     </div>
 
 </template>
 
 <script>
+import {router} from '../app.js'
+
 export default {
     name: 'GeneralScreen',
     data: function() {
         return {
           energy: 0,
-          nextThreshold: 600,
+          nextThreshold: 20,
           previousThreshold: 0,
           percentageCompleted: 15,
           idOfNextGoal: 0,
           show: false,
-          timeLeftOfSession: 60,
-          progressBarColor: '#272382',
+          timeLeftOfSession: 20,
+          // progressBarColor: '#272382',
+          goals: [],
+          goalsCompleted: [],
+          currentGoal: 0
         }
     },
 
     created() {
-        //energy of yesterday
-      // this.getEnergy();
-      this.calculatePercentage();
-      this.timer()
+      this.timer();
       this.lottieDisplay();
+      this.getGoals();
+      this.calculatePercentage();
       var simulation = setInterval(this.updateProgressBar, 1500);
       let timeLeft = this.timeLeftOfSession * 1000;
       setTimeout(function(){ clearInterval(simulation); }, timeLeft);
@@ -99,25 +81,45 @@ export default {
             let percentage = (this.energy / this.nextThreshold);
             console.log(percentage);
             if(percentage<1) {
+                console.log("lower");
                 this.percentageCompleted = percentage*100;
-            } else {
-                // this.lottieDisplay("path");
-                this.previousThreshold = this.nextThreshold;
-                this.idOfNextGoal ++;
+            }
+            if(percentage >= 1) {
+                console.log("hello");
+                this.percentageCompleted = 100;
+                this.changeOnGoalReached();
                 //get nextThreshold with the new itemId
             }
         },
 
+        changeOnGoalReached: function() {
+            let goalReached = this.goals[this.currentGoal];
+            this.goalsCompleted.push(goalReached);
+
+            this.percentageCompleted = 0;
+            // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
+            // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
+            this.previousThreshold = this.nextThreshold;
+            console.log(this.previousThreshold);
+            this.currentGoal ++;
+            console.log(this.currentGoal);
+            this.nextThreshold = this.goals[this.currentGoal].threshold;
+            console.log(this.nextThreshold);
+        },
+
         timer: function(){
             let sec = this.timeLeftOfSession
-            let timer = setInterval(function(){
+            let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    sec = 60;
+                    this.endSession();
                     clearInterval(timer);
                 }
-                console.log(sec);
-                document.getElementById("timer").innerHTML = sec;
+                if (sec > 9) {
+                    document.getElementById("timer").innerHTML = '00:' + sec;
+                } else {
+                    document.getElementById("timer").innerHTML = '00:0' + sec;
+                }
             }, 1000);
         },
 
@@ -141,6 +143,25 @@ export default {
         updateProgressBar: function(){
           this.energy += this.getRandomInt(5, 25);
           this.calculatePercentage();
+      },
+
+        getGoals: function(){
+            axios.get('/api/goals')
+            .then(response => {
+                this.goals = response.data.data;
+                console.log(response.data.data);
+            })
+        },
+
+        endSession: function() {
+          router.push({
+              name: 'end',
+              params: {
+                goals: this.goals,
+                goalsCompleted: this.goalsCompleted,
+                totalEnergy: this.energy
+              }
+          });
         }
     }
 
@@ -149,22 +170,42 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 body {
     background-color: #F5F5F5;
+    font-family: 'Lato', sans-serif;
+}
+
+#energy {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 9.5rem;
+    margin-right: 0.5rem;
+}
+#watt {
+    color: #FFFFFF;
+    font-size: 4rem;
+    height: 2.5rem;
 }
 
 #topbar {
-  margin-bottom: 15%;
+    margin-top: 1%;
+  margin-bottom: 1%;
 }
 #timer {
-    /* margin-top: 15px; */
+    font-size: 3.5rem;
+    font-weight: 700;
 }
 #timer-box {
-    margin-left: 34%;
+    /* margin-left: 34%; */
     text-align: center;
     display: inline-block;
 }
-
+.engie-mascotte {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 11%;
+}
 .row {
     margin-top: 25px;
     margin-bottom: 15px;
@@ -194,8 +235,12 @@ body {
     width: 10%;
 
 }
-.energy {
-  margin-top: 3%;
+.energy-container {
+    background-color: #00AAFF;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-bottom: 5%;
+
 }
 .live {
   border-style: solid;
@@ -204,8 +249,8 @@ body {
   color: white;
 }
 .spark {
-  height: 100px;
-  width: 9%;
+  height: 8.5rem;
+  width: 6%;
   margin-left: -5%;
 }
 
@@ -220,13 +265,20 @@ body {
   opacity: 0;
 }
 .progress-bar {
-  margin-left: 10%;
-  padding-left: 0;
-  padding-right: 0;
-  max-height: 30px;
+  background-color: #e2dce8;
+}
+.progression {
+    line-height: 2;
+}
+.bar {
+    margin-left: 10%;
+    padding-left: 0;
+    padding-right: 0;
+    max-height: 30px;
 }
 .progress-bar-filling {
-  background-color: #272382;
+  background-color: #552382;
+  z-index: 1;
 }
 .round {
   -webkit-border-radius: 100px;

@@ -17,12 +17,14 @@ import SideBar from './components/SideBar.vue';
 import GameScreen from './components/GameScreen.vue';
 import SessionEndScreen from './components/SessionEndScreen.vue';
 import GoalTicket from './components/GoalTicket.vue';
-import FinishSidebar from './components/FinishSidebar.vue';
+import GoalTicketEndScreen from './components/GoalTicketEndScreen.vue';
 
+import FinishSidebar from './components/FinishSidebar.vue';
+import NotFound from './components/404.vue';
 
 Vue.component('sideBar', SideBar);
-Vue.component('GoalTicket', GoalTicket);
-Vue.component('FinishSidebar', FinishSidebar);
+Vue.component('goalTicket', GoalTicket);
+Vue.component('finishSidebar', FinishSidebar);
 
 
 
@@ -30,7 +32,7 @@ const routes = [
   {
       name: 'home',
       path: '/',
-      component: GeneralScreen
+      component: GeneralScreen,
   },{
       name: 'game',
       path: '/game',
@@ -38,9 +40,17 @@ const routes = [
   },{
       name: 'end',
       path: '/end',
-      component: SessionEndScreen
+      component: SessionEndScreen,
+      props: true
+  },{
+    name: 'error',
+    path: '*',
+    component: NotFound
   }
 ];
 
-const router = new VueRouter({ mode: 'history', routes: routes});
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+
+export const router = new VueRouter({ mode: 'history', routes: routes});
 const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app');

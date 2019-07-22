@@ -1,55 +1,80 @@
 <template>
-    <div>
-        <div class="row justify-content-center" style="border:solid 1px black;">
-            <div class="col-md-9">
-              <div id='topbar'>
+    <div class="row justify-content-center container-flex" style="border:solid 1px black;">
+        <div class="col-md-9">
+            <div class="watts-container" align="center">
+              <div id='engie_logo'>
                   <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
               </div>
-                <div class="d-flex flex-column info-generated">
-                  <div class="p-2 total-generated-box" align="center">
-                    <h4>You have generated</h4>
-                    <h1><img class="spark" src="../../img/icons/white-energy.svg"/> {{totalEnergy}} watts</h1>
-                    <h4>which equals</h4>
-                  </div>
-                  <div class="p-2 goals">
-                    <div class="row justify-content-center">
-                      <!--<<div v-for="(goal, index) in goals" :key="index" class="col-md-2 goal-tickets">
-                        <img :src="goal.emblem_path" class="goal-icons"/>
-                        img v-else class="goal-icons goal-icon-empty"/>
-                        <h4>{{goalsCompleted[index]}}x</h4>
-                        <p>{{goal.name}}</p>
-                      </div>-->
-                      <div v-for="(goal, index) in goals" :key="index" class="col-md-2 goal-tickets">
-                        <img :src="goal.emblem_path" class="goal-icons"/>
-                        <h4>{{goalsCompleted[index]}}x</h4>
-                        <p>{{goal.name}}</p>
-                      </div>
+              <h3>You have generated</h3>
+              <h2><img class="spark" src="/images/white_energy.svg"/> <span v-if="totalEnergy">{{totalEnergy}}</span> watts</h2>
+              <h3>which equals</h3>
+            </div>
+            <div class="p-2 goals">
+              <template v-if="goals!=null">
+                <div class="row justify-content-center">
+                  <template v-for="(goal, index) in goals">
+                    <div class="col-md-3 goal-tickets" v-if="index < 3" :key="index">
+                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
+                      <h4>{{fueledObjects[index]}}x</h4>
+                      <p>{{goal.name}}</p>
                     </div>
-                  </div>
+                  </template>
                 </div>
-              </div>
-              <FinishSidebar></FinishSidebar>
-        </div>
+                <div class="row justify-content-center">
+                  <template v-for="(goal, index) in goals">
+                    <div class="col-md-3 goal-tickets" v-if="index >= 3" :key="index">
+                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
+                      <h4>{{fueledObjects[index]}}x</h4>
+                      <p>{{goal.name}}</p>
+                    </div>
+                  </template>
+                </div>
+              </template>
+              <template v-else>
+                <div class="row justify-content-center">
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/lamp.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 1</p>
+                  </div>
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/boiled_egg.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 2</p>
+                  </div>
+                  <div class="col-md-3 goal-tickets">
+                      <img src="/images/coffee_pot.svg" class="goal-icons"/>
+                      <h4>0x</h4>
+                      <p>Object 3</p>
+                  </div>
+
+                  <GoalTicketEndScreen :acquiredAmount="calculateGoalsCollected()"></GoalTicketEndScreen>
+                </div>
+              </template>
+            </div>
+          </div>
+          <finishSidebar :energy="totalEnergy"></finishSidebar>
     </div>
 </template>
 
 <script>
+import {router} from '../app.js'
+
     export default {
         name: 'SessionEndScreen',
+        props: ['goals', 'goalsCompleted', 'totalEnergy'],
         data: function() {
           return {
             timeLeftBeforeInitialScreen: 10,
-            totalEnergy: 32,
-            goals: [],
-            goalsCompleted: [10, 5, 8, 2]
+            defaultColor: '#E0E0E0',
+            fueledObjects: []
           }
         },
-
-        created() {
-          this.timer();
-          this.getGoals();
+        mounted() {
+          if (this.goals != null) {
+            this.calculateFueledObjects();
+          }
         },
-
         methods: {
             timer: function(){
                 let sec = this.timeLeftBeforeInitialScreen
@@ -62,19 +87,12 @@
                     console.log(sec);
                 }, 1000);
             },
-            getGoals: function(){
-                axios.get('/api/goals')
-                .then(response => {
-                    this.goals = response.data.data;
-                    console.log(response.data.data);
-                })
-                .catch(e => {
-                    this.errors.push(e);
-                })
-            },
-
-            calculateGoalsCollected: function() {
-                this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor((this.totalEnergy / goal.threshold)));
+            calculateFueledObjects: function() {
+              for (var i = 0; i < this.goals.length; i++) {
+                let threshold = this.goals[i].threshold;
+                let result =  Math.floor(this.totalEnergy / threshold);
+                this.fueledObjects.push(result);
+              };
             }
         }
     };
@@ -97,34 +115,71 @@ h4 {
   background-color: #00AAFF;
 }
 
+#engie_logo {
+  margin-bottom: 5%;
+}
+
 .nj-navbar__logo {
   margin-top: 3%;
   margin-left: 3%;
   width: 11%;
 }
-.live {
+.energy {
+  margin-top: 3%;
+}
+/* .progression{
+  margin-left: 5%;
+} */
+/* .first-pic  {
+  margin-right: -15%;
+} */
+/* .live {
   border-style: solid;
   border-color: #cc0033;
   background-color: #cc0033;
   color: white;
-}
-img.spark {
-  height: 80px;
-  width: 2%
+} */
+.spark {
+  height: 8.5rem;
+  width: 6%;
 }
 
-.info-generated {
+.lottie-popup {
+    z-index: 1;
+}
+
+h1 {
+  color: #00aaff;
+  margin-bottom: 10%;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+.progress-div {
+  margin-top: 10%;
+} */
+/* .nj-progress__text{
+  margin-left: 3%;
+} */
+.round {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+}
+
+/* .info-generated {
   background-color: #00AAFF;
-}
+} */
 
-.goals {
+/* .goals {
   background-color: white;
   color: #707070;
 }
 
 .goal-icons {
     width: 29%;
-}
+} */
 
 .container-flex {
     display: flex;
@@ -138,6 +193,8 @@ img.spark {
 .watts-container {
     background-color: #00AAFF;
     color: #FFFFFF;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 
 .container-flex > div{
@@ -147,6 +204,10 @@ img.spark {
     padding-left: 0;
     padding-right: 0;
 }
+/*
+.goal-ticket-container {
+    flex-wrap: wrap;
 
+} */
 
 </style>
