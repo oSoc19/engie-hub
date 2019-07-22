@@ -6,9 +6,10 @@
             <h3>{{acquiredGoalsAmount(goal.threshold)}} x</h3>
             <p>{{goal.name}}</p>
         </div>
-      </template>
     </div>
-    <div v-else>
+
+      </template>
+    <!-- <div v-else>
         <div class="d-flex justify-content-center">
         <div class="col-md-4 goal-tickets">
             <img src="/images/lamp.svg" class="goal-icons"/>
@@ -28,7 +29,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> -->
 
 <script>
 export default {
