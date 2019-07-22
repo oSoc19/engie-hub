@@ -1715,6 +1715,25 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/404.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/404.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FinishSidebar.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FinishSidebar.vue?vue&type=script&lang=js& ***!
@@ -1744,18 +1763,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SideBar',
-  data: function data() {
-    return {
-      energy: 456
-    };
-  },
-  created: function created() {//this.getEnergy()
-  },
-  methods: {
-    getEnergy: function getEnergy() {//TODO api call to get information about energy generated
-    }
-  }
+  name: 'FinishSidebar',
+  props: ['energy']
 });
 
 /***/ }),
@@ -1820,6 +1829,7 @@ __webpack_require__.r(__webpack_exports__);
       timeLeftOfSession: 15,
       // progressBarColor: '#272382',
       goals: [],
+      goalsCompleted: [],
       currentGoal: 0
     };
   },
@@ -1863,6 +1873,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     changeOnGoalReached: function changeOnGoalReached() {
+      var goalReached = this.goals[this.currentGoal];
+      this.goalsCompleted.push(goalReached);
       this.percentageCompleted = 0; // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
       // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
 
@@ -1874,12 +1886,15 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.nextThreshold);
     },
     timer: function timer() {
+      var _this2 = this;
+
       var sec = this.timeLeftOfSession;
       var timer = setInterval(function () {
         sec--;
 
         if (sec <= 0) {
-          // router.push('/end');
+          _this2.endSession();
+
           clearInterval(timer);
         }
 
@@ -1905,15 +1920,25 @@ __webpack_require__.r(__webpack_exports__);
       return Math.floor(Math.random() * (max - min)) + min;
     },
     updateProgressBar: function updateProgressBar() {
-      this.energy += this.getRandomInt(5, 5);
+      this.energy += this.getRandomInt(5, 25);
       this.calculatePercentage();
     },
     getGoals: function getGoals() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/goals').then(function (response) {
-        _this2.goals = response.data.data;
+        _this3.goals = response.data.data;
         console.log(response.data.data);
+      });
+    },
+    endSession: function endSession() {
+      _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
+        name: 'end',
+        params: {
+          goals: this.goals,
+          goalsCompleted: this.goalsCompleted,
+          totalEnergy: this.energy
+        }
       });
     }
   }
@@ -2074,7 +2099,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['current'],
   data: function data() {
     return {
-      goals: []
+      goals: [],
+      defaultColor: '#E0E0E0'
     };
   },
   created: function created() {
@@ -2155,18 +2181,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SessionEndScreen',
   data: function data() {
     return {
       timeLeftBeforeInitialScreen: 10,
-      totalEnergy: 540,
-      goals: [],
-      goalsCompleted: []
+      defaultColor: '#E0E0E0',
+      fueledObjects: []
     };
   },
-  created: function created() {
-    this.timer();
+  props: ['goals', 'goalsCompleted', 'totalEnergy'],
+  mounted: function mounted() {
+    if (this.goals != null) {
+      this.calculateFueledObjects();
+    }
   },
   methods: {
     timer: function timer() {
@@ -2182,8 +2232,14 @@ __webpack_require__.r(__webpack_exports__);
         console.log(sec);
       }, 1000);
     },
-    calculateGoalsCollected: function calculateGoalsCollected() {
-      this.goals.foreach(this.goalsCompleted[goal.id - 1] = floor(this.totalEnergy / goal.threshold));
+    calculateFueledObjects: function calculateFueledObjects() {
+      for (var i = 0; i < this.goals.length; i++) {
+        var threshold = this.goals[i].threshold;
+        var result = Math.floor(this.totalEnergy / threshold);
+        this.fueledObjects.push(result);
+      }
+
+      ;
     }
   }
 });
@@ -6720,7 +6776,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\nimg{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 54px;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 86px;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\nimg{\n    width: 50%;\n}\n#donate {\n    font-size: 54px;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 86px;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -6739,7 +6795,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n  margin-bottom: 1%;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n  margin-bottom: 1%;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -6758,7 +6814,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
 
 // exports
 
@@ -6777,7 +6833,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n\n", ""]);
 
 // exports
 
@@ -6796,7 +6852,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\n#topbar {\r\n  /* margin-bottom: 5%; */\n}\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.progression{\r\n  margin-left: 5%;\n}\n.first-pic  {\r\n  margin-right: -15%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n.nj-progress__text{\r\n  margin-left: 3%;\n}\n.round {\r\n  border-radius: 100px;\n}\n.info-generated {\r\n  background-color: #00AAFF;\n}\n.goals {\r\n  background-color: white;\r\n  color: #707070;\n}\n.goal-icons {\r\n    width: 29%;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n#engie_logo {\n  margin-bottom: 5%;\n}\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.round {\n  border-radius: 100px;\n}\n.info-generated {\n  background-color: #00AAFF;\n}\n.goals {\n  background-color: white;\n  color: #707070;\n}\n.goal-icons {\n    width: 29%;\n}\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n\n", ""]);
 
 // exports
 
@@ -6815,7 +6871,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -61830,6 +61886,39 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/404.vue?vue&type=template&id=73992586&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/404.vue?vue&type=template&id=73992586& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hello" }, [
+      _c("h1", [_vm._v("(404) Page NotFound")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FinishSidebar.vue?vue&type=template&id=6961aa6e&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FinishSidebar.vue?vue&type=template&id=6961aa6e& ***!
@@ -61854,7 +61943,7 @@ var render = function() {
           _c("p", { attrs: { id: "donate" } }, [
             _vm._v(
               "\n                    Donate your " +
-                _vm._s(this.energy) +
+                _vm._s(_vm.energy) +
                 " watts of clean energy to a good cause\n                "
             )
           ])
@@ -61879,9 +61968,7 @@ var staticRenderFns = [
         _vm._v("\n                    Scan to donate\n                ")
       ]),
       _vm._v(" "),
-      _c("img", {
-        attrs: { src: __webpack_require__(/*! ../../img/qr-code-svgrepo-com.svg */ "./resources/img/qr-code-svgrepo-com.svg") }
-      })
+      _c("img", { attrs: { src: "/images/qr_code.svg" } })
     ])
   }
 ]
@@ -61922,12 +62009,12 @@ var render = function() {
             [
               _c("img", {
                 staticClass: "engie-mascotte",
-                attrs: { src: __webpack_require__(/*! ../../img/blue_dancing_man.jpg */ "./resources/img/blue_dancing_man.jpg") }
+                attrs: { src: "/images/blue_dancing_man.jpg" }
               }),
               _vm._v(" "),
               _c("img", {
                 staticClass: "spark",
-                attrs: { src: __webpack_require__(/*! ../../img/icons/white-energy.svg */ "./resources/img/icons/white-energy.svg") }
+                attrs: { src: "/images/white_energy.svg" }
               }),
               _vm._v(" "),
               _c("p", { attrs: { id: "energy" } }, [
@@ -61937,7 +62024,7 @@ var render = function() {
               _vm._v(" "),
               _c("img", {
                 staticClass: "engie-mascotte",
-                attrs: { src: __webpack_require__(/*! ../../img/blue_dancing_man.jpg */ "./resources/img/blue_dancing_man.jpg") }
+                attrs: { src: "/images/blue_dancing_man.jpg" }
               })
             ]
           )
@@ -61951,7 +62038,7 @@ var render = function() {
                 staticClass: "progress-bar-filling round",
                 style: {
                   width: _vm.percentageCompleted + "%",
-                  backgroundColor: _vm.goals[this.currentGoal].emblem_color,
+                  backgroundColor: _vm.goals[_vm.currentGoal].emblem_color,
                   height: "100%"
                 }
               },
@@ -61963,14 +62050,14 @@ var render = function() {
             _c("img", {
               staticClass: "goal-icons",
               style: {
-                backgroundColor: _vm.goals[this.currentGoal].emblem_color
+                backgroundColor: _vm.goals[_vm.currentGoal].emblem_color
               },
-              attrs: { src: _vm.goals[this.currentGoal].emblem_path }
+              attrs: { src: _vm.goals[_vm.currentGoal].emblem_path }
             })
           ])
         ]),
         _vm._v(" "),
-        _c("GoalTicket", { attrs: { current: _vm.currentGoal } })
+        _c("goalTicket", { attrs: { current: _vm.currentGoal } })
       ],
       1
     )
@@ -62035,7 +62122,7 @@ var render = function() {
           _c("div", { staticClass: "d-flex justify-content-center energy" }, [
             _c("img", {
               staticClass: "spark",
-              attrs: { src: __webpack_require__(/*! ../../img/icons/blue-energy.svg */ "./resources/img/icons/blue-energy.svg") }
+              attrs: { src: "/images/blue_energy.svg" }
             }),
             _vm._v(" "),
             _c("h1", [_vm._v(_vm._s(_vm.energy) + " watts")])
@@ -62153,7 +62240,7 @@ var render = function() {
             staticClass: "goal-icons",
             style: [
               goal.id - 1 >= _vm.current
-                ? { backgroundColor: "#E0E0E0" }
+                ? { backgroundColor: _vm.defaultColor }
                 : { backgroundColor: goal.emblem_color }
             ],
             attrs: { src: goal.emblem_path }
@@ -62202,43 +62289,121 @@ var render = function() {
           [
             _vm._m(0),
             _vm._v(" "),
-            _c("h4", [_vm._v("You have generated")]),
+            _c("h3", [_vm._v("You have generated")]),
             _vm._v(" "),
             _c("h2", [
               _c("img", {
                 staticClass: "spark",
-                attrs: { src: __webpack_require__(/*! ../../img/icons/white-energy.svg */ "./resources/img/icons/white-energy.svg") }
+                attrs: { src: "/images/white_energy.svg" }
               }),
-              _vm._v(" " + _vm._s(_vm.totalEnergy) + " watts")
+              _vm._v(" "),
+              _vm.totalEnergy
+                ? _c("span", [_vm._v(_vm._s(_vm.totalEnergy))])
+                : _vm._e(),
+              _vm._v(" watts")
             ]),
             _vm._v(" "),
-            _c("h4", [_vm._v("which equals")])
+            _c("h3", [_vm._v("which equals")])
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "p-2 goals" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-              _c("img", {
-                staticClass: "goal-icons",
-                attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
-              }),
-              _vm._v(" "),
-              _c("h4", [_vm._v(_vm._s(this.totalEnergy) + "x")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Object")])
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
-        ])
+        _c(
+          "div",
+          { staticClass: "p-2 goals" },
+          [
+            _vm.goals != null
+              ? [
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._l(_vm.goals, function(goal, index) {
+                        return [
+                          index < 3
+                            ? _c(
+                                "div",
+                                {
+                                  key: index,
+                                  staticClass: "col-md-3 goal-tickets"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "goal-icons",
+                                    style: [
+                                      _vm.goals.includes(
+                                        _vm.goalsCompleted[index]
+                                      )
+                                        ? { backgroundColor: goal.emblem_color }
+                                        : { backgroundColor: _vm.defaultColor }
+                                    ],
+                                    attrs: { src: goal.emblem_path }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(
+                                      _vm._s(_vm.fueledObjects[index]) + "x"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v(_vm._s(goal.name))])
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._l(_vm.goals, function(goal, index) {
+                        return [
+                          index >= 3
+                            ? _c(
+                                "div",
+                                {
+                                  key: index,
+                                  staticClass: "col-md-3 goal-tickets"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "goal-icons",
+                                    style: [
+                                      _vm.goals.includes(
+                                        _vm.goalsCompleted[index]
+                                      )
+                                        ? { backgroundColor: goal.emblem_color }
+                                        : { backgroundColor: _vm.defaultColor }
+                                    ],
+                                    attrs: { src: goal.emblem_path }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(
+                                      _vm._s(_vm.fueledObjects[index]) + "x"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v(_vm._s(goal.name))])
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              : [_vm._m(1), _vm._v(" "), _vm._m(2)]
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
-      _c("FinishSidebar")
+      _c("finishSidebar", { attrs: { energy: _vm.totalEnergy } })
     ],
     1
   )
@@ -62248,7 +62413,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "topbar" } }, [
+    return _c("div", { attrs: { id: "engie_logo" } }, [
       _c("img", {
         staticClass: "nj-navbar__logo",
         attrs: {
@@ -62263,30 +62428,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
-      }),
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: "/images/lamp.svg" }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("0x")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Object 1")])
+      ]),
       _vm._v(" "),
-      _c("h4", [_vm._v("{{}}x")]),
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: "/images/boiled_egg.svg" }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("0x")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Object 2")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Object")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 goal-tickets" }, [
-      _c("img", {
-        staticClass: "goal-icons",
-        attrs: { src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg") }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("{{}}x")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Object")])
+      _c("div", { staticClass: "col-md-3 goal-tickets" }, [
+        _c("img", {
+          staticClass: "goal-icons",
+          attrs: { src: "/images/coffee_pot.svg" }
+        }),
+        _vm._v(" "),
+        _c("h4", [_vm._v("0x")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Object 3")])
+      ])
     ])
   },
   function() {
@@ -62297,36 +62471,34 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-3 goal-tickets" }, [
         _c("img", {
           staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Game_1967460.svg */ "./resources/img/icons/noun_Game_1967460.svg") }
+          attrs: { src: "/images/blender.svg" }
         }),
         _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
+        _c("h4", [_vm._v("0x")]),
         _vm._v(" "),
-        _c("p", [_vm._v("Object")])
+        _c("p", [_vm._v("Object 4")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 goal-tickets" }, [
         _c("img", {
           staticClass: "goal-icons",
-          attrs: { src: __webpack_require__(/*! ../../img/icons/noun_Microwave_1967465.svg */ "./resources/img/icons/noun_Microwave_1967465.svg") }
+          attrs: { src: "/images/game.svg" }
         }),
         _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
+        _c("h4", [_vm._v("0x")]),
         _vm._v(" "),
-        _c("p", [_vm._v("Object")])
+        _c("p", [_vm._v("Object 5")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 goal-tickets" }, [
         _c("img", {
           staticClass: "goal-icons",
-          attrs: {
-            src: __webpack_require__(/*! ../../img/icons/noun_pizza slice_1204552.svg */ "./resources/img/icons/noun_pizza slice_1204552.svg")
-          }
+          attrs: { src: "/images/laptop.svg" }
         }),
         _vm._v(" "),
-        _c("h4", [_vm._v("{{}}x")]),
+        _c("h4", [_vm._v("0x")]),
         _vm._v(" "),
-        _c("p", [_vm._v("Object")])
+        _c("p", [_vm._v("Object 6")])
       ])
     ])
   }
@@ -62367,7 +62539,7 @@ var render = function() {
           _c("h2", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/icons/black-energy.svg */ "./resources/img/icons/black-energy.svg"),
+                src: "/images/black_energy.svg",
                 width: "40",
                 height: "40"
               }
@@ -62396,7 +62568,7 @@ var render = function() {
           _c("h4", [
             _c("img", {
               attrs: {
-                src: __webpack_require__(/*! ../../img/icons/black-energy.svg */ "./resources/img/icons/black-energy.svg"),
+                src: "/images/black_energy.svg",
                 width: "30",
                 height: "30"
               }
@@ -62417,11 +62589,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", { attrs: { id: "rcorners", align: "center" } }, [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../img/washing-machine.png */ "./resources/img/washing-machine.png"),
-          width: "65",
-          height: "80"
-        }
+        attrs: { src: "/images/washing_machine.png", width: "65", height: "80" }
       })
     ])
   },
@@ -77265,105 +77433,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/img/blue_dancing_man.jpg":
-/*!********************************************!*\
-  !*** ./resources/img/blue_dancing_man.jpg ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/blue_dancing_man.jpg?8c859d5f50703b8ca7f0b1239f3d4079";
-
-/***/ }),
-
-/***/ "./resources/img/icons/black-energy.svg":
-/*!**********************************************!*\
-  !*** ./resources/img/icons/black-energy.svg ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/black-energy.svg?bba574ab3bfacfe78ee07421509051f1";
-
-/***/ }),
-
-/***/ "./resources/img/icons/blue-energy.svg":
-/*!*********************************************!*\
-  !*** ./resources/img/icons/blue-energy.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/blue-energy.svg?dd41a576df47ef9ea036612d71e84233";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_Game_1967460.svg":
-/*!***************************************************!*\
-  !*** ./resources/img/icons/noun_Game_1967460.svg ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Game_1967460.svg?68ebe09b7e1957c746343d338ee0787a";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_Microwave_1967465.svg":
-/*!********************************************************!*\
-  !*** ./resources/img/icons/noun_Microwave_1967465.svg ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_Microwave_1967465.svg?d69e0f3bad1408248be799c910da287c";
-
-/***/ }),
-
-/***/ "./resources/img/icons/noun_pizza slice_1204552.svg":
-/*!**********************************************************!*\
-  !*** ./resources/img/icons/noun_pizza slice_1204552.svg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/noun_pizza slice_1204552.svg?aed4b446190d476d61e88283cae51ef3";
-
-/***/ }),
-
-/***/ "./resources/img/icons/white-energy.svg":
-/*!**********************************************!*\
-  !*** ./resources/img/icons/white-energy.svg ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/white-energy.svg?8ecd695936f4332033077a1bee3adc4c";
-
-/***/ }),
-
-/***/ "./resources/img/qr-code-svgrepo-com.svg":
-/*!***********************************************!*\
-  !*** ./resources/img/qr-code-svgrepo-com.svg ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/qr-code-svgrepo-com.svg?720f943b138846f65e91832b63a4343b";
-
-/***/ }),
-
-/***/ "./resources/img/washing-machine.png":
-/*!*******************************************!*\
-  !*** ./resources/img/washing-machine.png ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/washing-machine.png?d8c9f05df92c6cd688d7405955019fd4";
-
-/***/ }),
-
 /***/ "./resources/js/App.vue":
 /*!******************************!*\
   !*** ./resources/js/App.vue ***!
@@ -77476,6 +77545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/SessionEndScreen.vue */ "./resources/js/components/SessionEndScreen.vue");
 /* harmony import */ var _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/GoalTicket.vue */ "./resources/js/components/GoalTicket.vue");
 /* harmony import */ var _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/FinishSidebar.vue */ "./resources/js/components/FinishSidebar.vue");
+/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -77491,9 +77561,10 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 
 
+
 Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('GoalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('FinishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('goalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('finishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 var routes = [{
   name: 'home',
   path: '/',
@@ -77505,8 +77576,15 @@ var routes = [{
 }, {
   name: 'end',
   path: '/end',
-  component: _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  props: true
+}, {
+  name: 'error',
+  path: '*',
+  component: _components_404_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }];
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: routes
@@ -77572,6 +77650,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/404.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/components/404.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./404.vue?vue&type=template&id=73992586& */ "./resources/js/components/404.vue?vue&type=template&id=73992586&");
+/* harmony import */ var _404_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./404.vue?vue&type=script&lang=js& */ "./resources/js/components/404.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _404_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/404.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/404.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/404.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./404.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/404.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/404.vue?vue&type=template&id=73992586&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/404.vue?vue&type=template&id=73992586& ***!
+  \************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./404.vue?vue&type=template&id=73992586& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/404.vue?vue&type=template&id=73992586&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_73992586___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -78135,8 +78282,8 @@ pusher_js__WEBPACK_IMPORTED_MODULE_0___default.a.logToConsole = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
