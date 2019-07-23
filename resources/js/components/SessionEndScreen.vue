@@ -1,9 +1,9 @@
 <template>
     <div>
-    <div id='engie_logo'>
-        <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar__logo" alt="ENGIE">
-    </div>
-    <div class="row justify-content-center container-flex" style="border:solid 1px black;">
+    <!-- <div id='engie_logo'> -->
+        <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar-logo" alt="ENGIE">
+    <!-- </div> -->
+    <div class="row justify-content-center container-flex">
         <div class="col-md-9">
             <div class="watts-container" align="center">
               <h3>You have generated</h3>
@@ -100,17 +100,17 @@ h4 {
   margin-bottom: 0;
 }
 
-#engie_logo {
+/* #engie_logo {
   margin-bottom: 5%;
-}
+} */
 
-.nj-navbar__logo {
+.nj-navbar-logo {
     position: absolute;
     z-index: 2;
     left: 0;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    width: 8%;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    width: 7%;
 }
 .energy {
   margin-top: 3%;
@@ -181,8 +181,9 @@ h4 {
 .watts-container {
     background-color: #00AAFF;
     color: #FFFFFF;
-    padding-top: 3rem;
+    padding-top: 7rem;
     padding-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .container-flex > div{

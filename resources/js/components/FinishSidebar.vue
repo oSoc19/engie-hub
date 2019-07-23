@@ -11,7 +11,7 @@
                   <p>
                       Scan to donate
                   </p>
-                  <img id="qr-code" src="/images/qr_code.svg"/>
+                  <img id="qr-code" src="/images/qr-engiemove-be.svg"/>
               </div>
           </div>
     </div>
