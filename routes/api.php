@@ -33,7 +33,7 @@ Route::get('event/{id}', 'EventsController@show');
 Route::get('goals', 'GoalsController@index');
 Route::get('goal/{id}', 'GoalsController@show');
 
-// Route::post('webhook', 'ParticleController@store');
+Route::post('webhook', 'ParticleController@store');
 
 //indeplaats van request naar text te veranderen, direct de request doorgeven naar uw particledata event?..
 Route::post('webhook', function() {

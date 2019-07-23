@@ -8,20 +8,26 @@
             <p id="timer" class="timer-elements ">01:00</p>
         </div>
     </div>
-    <div class="lottie-animation">
-        <lottie :options="defaultOptions" />
+    <div class="lottie-move">
+        <lottie :options="defaultOptions1" />
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center center-row">
         <div class="col-md-12">
             <div class="energy-container">
                 <div class="d-flex align-items-center justify-content-center ">
-                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
+                    <!-- <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/> -->
+                    <div class="lottie-mascotte">
+                        <lottie :options="defaultOptions2" />
+                    </div>
                     <img class="spark" src="/images/white_energy.svg"/>
                     <p id="energy">{{energy}}</p><p id="watt">W</p>
-                    <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/>
+                    <div class="lottie-mascotte">
+                        <lottie :options="defaultOptions2" />
+                    </div>
+                    <!-- <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/> -->
                 </div>
             </div>
-            <div class="row align-items-center progression" v-if="goals.length">
+            <div class="row align-items-center progression center-row" v-if="goals.length">
               <div class="col-md-9 progress-bar round bar">
                   <div class="progress-bar-filling round" v-bind:style="{ width: percentageCompleted + '%', backgroundColor: goals[currentGoal].emblem_color, height: '100%' }" >&nbsp;</div>
               </div>
@@ -43,6 +49,9 @@ import {router} from '../app.js'
 import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
+import animationData2 from '../lottie/blue-dancing-blob.json';
+import Pusher from "../../../public/js/pusher/index.js";
+
 
 export default {
     name: 'GeneralScreen',
@@ -52,7 +61,8 @@ export default {
     data: function() {
         return {
         activeIndex: 0,
-        defaultOptions: { animationData: animationData, loop: true },
+        defaultOptions1: { animationData: animationData, loop: true },
+        defaultOptions2: { animationData: animationData2, loop: true },
         animationSpeed: 1,
         energy: 0,
         nextThreshold: 20,
@@ -60,7 +70,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 60,
+        timeLeftOfSession: 300,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
@@ -72,6 +82,7 @@ export default {
       this.lottieDisplay();
       this.getGoals();
       this.calculatePercentage();
+      this.getEnergy();
       var simulation = setInterval(this.updateProgressBar, 1500);
       let timeLeft = this.timeLeftOfSession * 1000;
       setTimeout(function(){ clearInterval(simulation); }, timeLeft);
@@ -155,10 +166,10 @@ export default {
           return Math.floor(Math.random() * (max - min)) + min;
         },
 
-        updateProgressBar: function(){
-          this.energy += this.getRandomInt(5, 10);
-          this.calculatePercentage();
-      },
+      //   updateProgressBar: function(){
+      //     this.energy += this.getRandomInt(5, 10);
+      //     this.calculatePercentage();
+      // },
 
         getGoals: function(){
             axios.get('/api/goals')
@@ -190,12 +201,19 @@ body {
     background-color: #F5F5F5;
     font-family: 'Lato', sans-serif;
 }
-.lottie-animation {
+.lottie-move {
     position: absolute;
     z-index: 2;
     left: 2rem;
     top: 1rem;
     width: 9%;
+}
+.lottie-mascotte {
+    margin-left: 1%;
+    margin-top: -4rem;
+    margin-bottom: -3rem;
+    margin-right: 5%;
+    width: 22%;
 }
 
 #energy {
@@ -228,7 +246,7 @@ body {
     margin-right: 5%;
     width: 11%;
 }
-.row {
+.center-row {
     margin-top: 25px;
     margin-bottom: 15px;
 }
