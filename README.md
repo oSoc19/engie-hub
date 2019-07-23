@@ -21,7 +21,7 @@ Our answer: "With the help of a dashboard, an energy generating floor and a part
 * Node.JS (^v10.x.x)
 * npm (^v6.x.x)
 * Laravel (^v5.x.x)
-* Pusher application ([pusher site](https://pusher.com/))
+* Pusher application ([pusher website](https://pusher.com/))
 
 ### Before anything
 
@@ -47,7 +47,7 @@ php artisan key:generate
 
 #### In the .env file
 Add database information
-Add pusher app information
+Add pusher application information
 
 Run this in a terminal
 
