@@ -47,6 +47,7 @@ php artisan key:generate
 
 #### In the .env file
 Add database information
+
 Add pusher application information
 
 Run this in a terminal
