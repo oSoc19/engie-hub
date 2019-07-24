@@ -37,6 +37,7 @@ Route::post('webhook', 'ParticleController@store');
 
 //indeplaats van request naar text te veranderen, direct de request doorgeven naar uw particledata event?..
 Route::post('webhook', function() {
-    $data = request()->text;
+    // $data = request()->text;
+    $data = request()->all();
     event(new ParticleData($data));
 });
