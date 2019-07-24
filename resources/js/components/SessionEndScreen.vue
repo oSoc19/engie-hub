@@ -92,10 +92,10 @@ import {router} from '../app.js'
 body {
     background-color: #F5F5F5;
 }
-h1 {
+/* h1 {
   color: white;
   margin-bottom: 0;
-}
+} */
 h4 {
   margin-bottom: 0;
 }
