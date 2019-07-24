@@ -11,7 +11,8 @@ import axios from 'axios';
 import App from './App.vue';
 Vue.use(VueAxios, axios);
 
-
+import GithubPage from './components/GithubPage.vue';
+import QR from './components/QR.vue';
 import GeneralScreen from './components/GeneralScreen.vue';
 import SideBar from './components/SideBar.vue';
 import GameScreen from './components/GameScreen.vue';
@@ -33,6 +34,14 @@ const routes = [
   {
       name: 'home',
       path: '/',
+      component: GithubPage,
+  },{
+      name: 'qr',
+      path: '/qr',
+      component: QR,
+  },{
+      name: 'old',
+      path: '/old',
       component: GeneralScreen,
   },{
       name: 'game',
