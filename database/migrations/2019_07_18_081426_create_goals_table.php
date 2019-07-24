@@ -26,52 +26,52 @@ class CreateGoalsTable extends Migration
 
         DB::table('goals')->insert([
             [
-              'name' => 'LED bulb',
-              'threshold' => 20,
-              'emblem_path' => 'images/lamp.svg',
+              'name' => 'Laptop battery',
+              'threshold' => 75,
+              'emblem_path' => 'images/laptop.svg',
               'emblem_color' => '#272382',
               'lottie_path' => '',
               'description' => 'You generated enough energy to fuel a street light for 5 minutes!'
             ],
             [
-              'name' => 'Boiled eggs',
-              'threshold' => 50,
-              'emblem_path' => 'images/boiled_egg.svg',
+              'name' => 'Playing PS4',
+              'threshold' => 250,
+              'emblem_path' => 'images/game.svg',
               'emblem_color' => '#E62B87',
               'lottie_path' => '',
               'description' => 'The energy you generated is enough to boil eggs!'
             ],
             [
-              'name' => 'Coffee cans',
-              'threshold' => 100,
-              'emblem_path' => 'images/coffee_pot.svg',
+              'name' => 'Electric scooter',
+              'threshold' => 500,
+              'emblem_path' => 'images/scooter.svg',
+              'emblem_color' => '#DB0015',
+              'lottie_path' => '',
+              'description' => 'With the energy generated a laptop could be charged for an hour!',
+            ],
+            [
+              'name' => 'Using a blender',
+              'threshold' => 800,
+              'emblem_path' => 'images/blender.svg',
               'emblem_color' => '#FACA08',
               'lottie_path' => '',
               'description' => 'With the energy you generated, you could make coffee!'
             ],
             [
-              'name' => 'Fresh fruit smoothie',
-              'threshold' => 200,
-              'emblem_path' => 'images/blender.svg',
+              'name' => 'Warming a lasagna',
+              'threshold' => 1250,
+              'emblem_path' => 'images/oven.svg',
               'emblem_color' => '#552382',
               'lottie_path' => '',
               'description' => 'You generated enough energy to make smoothies!'
             ],
             [
-              'name' => 'Minute of gameplay',
-              'threshold' => 350,
-              'emblem_path' => 'images/game.svg',
+              'name' => '750.000 Searches on Google',
+              'threshold' => 3750,
+              'emblem_path' => 'images/google_search.svg',
               'emblem_color' => '#00AAFF',
               'lottie_path' => '',
               'description' => 'The energy generated is enough for a 2 hours Playstation 4 game session!'
-            ],
-            [
-              'name' => 'Batteries charged',
-              'threshold' => 450,
-              'emblem_path' => 'images/laptop.svg',
-              'emblem_color' => '#DB0015',
-              'lottie_path' => '',
-              'description' => 'With the energy generated a laptop could be charged for an hour!',
             ],
         ]);
     }

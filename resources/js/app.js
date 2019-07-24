@@ -18,6 +18,9 @@ import GameScreen from './components/GameScreen.vue';
 import SessionEndScreen from './components/SessionEndScreen.vue';
 import GoalTicket from './components/GoalTicket.vue';
 import GoalTicketEndScreen from './components/GoalTicketEndScreen.vue';
+import InactiveScreen from './components/InactiveScreen.vue';
+import InstructionScreen from './components/InstructionScreen.vue';
+
 
 import FinishSidebar from './components/FinishSidebar.vue';
 import NotFound from './components/404.vue';
@@ -44,10 +47,18 @@ const routes = [
       component: SessionEndScreen,
       props: true
   },{
-    name: 'error',
-    path: '*',
-    component: NotFound
-  }
+      name: 'error',
+      path: '*',
+      component: NotFound
+  },{
+      name: 'inactive',
+      path: '/inactive',
+      component: InactiveScreen
+  },{
+      name: 'instruction',
+      path: '/instruction',
+      component: InstructionScreen
+    }
 ];
 
 Vue.config.productionTip = false;
