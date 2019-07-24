@@ -21,7 +21,7 @@
                     </div>
                     <img class="spark" src="/images/white_energy.svg"/>
                     <p id="energy">{{energy}}</p><p id="watt">W</p>
-                    <div class="lottie-mascotte">
+                    <div class="lottie-mascotte invert">
                         <lottie :options="defaultOptions2" />
                     </div>
                     <!-- <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/> -->
@@ -51,9 +51,11 @@ import animationData from '../lottie/data.json';
 import animationData2 from '../lottie/blue-dancing-blob.json';
 import Pusher from "../../../public/js/pusher/index.js";
 
+import Status from '../status.js';
+
 
 export default {
-    name: 'GeneralScreen',
+    name: 'GameScreen',
     components: {
         Lottie
     },
@@ -69,7 +71,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 300,
+        timeLeftOfSession: 10,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
@@ -91,8 +93,9 @@ export default {
         getEnergy: function(){
             let channel = Pusher.subscribe('particle-channel');
             channel.bind('particle-data', (data) => {
-                this.energy++;
-                console.log(this.energy);
+                // this.energy++;
+                this.energy = this.energy + 20;
+                console.log(data.data);
                 console.log(this.percentageCompleted);
                 this.calculatePercentage();
             });
@@ -136,9 +139,10 @@ export default {
             let sec = this.timeLeftOfSession
             let timer = setInterval(() => {
                 sec--;
-                if (sec <= 0) {
-                    this.endSession();
+                if (sec <= -5) {
                     clearInterval(timer);
+                    Status.gameHasEnded = true;
+                    this.endSession();
                 }
                 if (sec > 9) {
                     document.getElementById("timer").innerHTML = '00:' + sec;
@@ -184,7 +188,8 @@ export default {
               params: {
                 goals: this.goals,
                 goalsCompleted: this.goalsCompleted,
-                totalEnergy: this.energy
+                totalEnergy: this.energy,
+                gameIsStarted: this.gameIsStarted
               }
           });
         }
@@ -204,7 +209,7 @@ body {
     position: absolute;
     z-index: 2;
     left: 2rem;
-    top: 1rem;
+    top: 2rem;
     width: 9%;
 }
 .lottie-mascotte {
@@ -213,6 +218,9 @@ body {
     margin-bottom: -3rem;
     margin-right: 5%;
     width: 22%;
+}
+
+.invert {
 }
 
 #energy {
