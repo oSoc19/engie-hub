@@ -1,40 +1,43 @@
 <template>
         <div class="InstructionScreen ">
-                <lottie :options="defaultOptions"/>
+                <lottie :options="instructionOptions"/>
         </div>
 </template>
 <script>
 import {router} from '../app.js';
-// import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/instructions.json';
-import Pusher from "../../../public/js/pusher/index.js";
-
 
 export default {
     name: 'InstructionScreen',
+    props: [
+        'gameIsStarted'
+    ],
     components: {
         Lottie
     },
     data: function() {
         return {
         activeIndex: 0,
-        defaultOptions: { animationData: animationData, loop: false, speed: 0.1},
+        instructionOptions: { animationData: animationData, loop: false, speed: 0.1},
         }
     },
     mounted() {
-        this.timer(8.3);
+        this.timerToStartGame(8.3);
     },
 
     methods: {
-
-      timer: function(sec){
+      timerToStartGame: function(sec){
           let timer = setInterval(() => {
               sec--;
               if (sec <= 0) {
                   router.push({
-                      name: 'game'
+                      name: 'game',
+                      props: {
+                          gameIsStarted: this.gameIsStarted
+                      }
                   });
+                  return;
               }
           }, 1000);
       },

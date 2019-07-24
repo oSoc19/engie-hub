@@ -58,6 +58,9 @@ export default {
     components: {
         Lottie
     },
+    props: [
+        'gameIsStarted'
+    ],
     data: function() {
         return {
         activeIndex: 0,
@@ -70,7 +73,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 60,
+        timeLeftOfSession: 10,
         // progressBarColor: '#272382',
         goals: [],
         goalsCompleted: [],
@@ -94,7 +97,7 @@ export default {
             channel.bind('particle-data', (data) => {
                 // this.energy++;
                 this.energy = this.energy + 20;
-                console.log(this.energy);
+                console.log(data.data);
                 console.log(this.percentageCompleted);
                 this.calculatePercentage();
             });
@@ -139,8 +142,8 @@ export default {
             let timer = setInterval(() => {
                 sec--;
                 if (sec <= 0) {
-                    this.endSession();
                     clearInterval(timer);
+                    this.endSession();
                 }
                 if (sec > 9) {
                     document.getElementById("timer").innerHTML = '00:' + sec;
@@ -186,7 +189,8 @@ export default {
               params: {
                 goals: this.goals,
                 goalsCompleted: this.goalsCompleted,
-                totalEnergy: this.energy
+                totalEnergy: this.energy,
+                gameIsStarted: this.gameIsStarted
               }
           });
         }

@@ -20,6 +20,8 @@ import GoalTicket from './components/GoalTicket.vue';
 import GoalTicketEndScreen from './components/GoalTicketEndScreen.vue';
 import InactiveScreen from './components/InactiveScreen.vue';
 import InstructionScreen from './components/InstructionScreen.vue';
+import InactiveOverlay from './components/InactiveOverlay.vue';
+import TestScreen from './components/TestScreen.vue';
 
 
 import FinishSidebar from './components/FinishSidebar.vue';
@@ -30,7 +32,7 @@ Vue.component('goalTicket', GoalTicket);
 Vue.component('goalTicketEndScreen', GoalTicketEndScreen);
 Vue.component('finishSidebar', FinishSidebar);
 Vue.component('goalTicketEndScreen', GoalTicketEndScreen);
-
+Vue.component('inactiveOverlay', InactiveOverlay);
 
 const routes = [
   {
@@ -40,7 +42,8 @@ const routes = [
   },{
       name: 'game',
       path: '/game',
-      component: GameScreen
+      component: GameScreen,
+      props: true
   },{
       name: 'end',
       path: '/end',
@@ -53,12 +56,18 @@ const routes = [
   },{
       name: 'inactive',
       path: '/inactive',
-      component: InactiveScreen
+      component: InactiveScreen,
+      props: true
   },{
       name: 'instruction',
       path: '/instruction',
       component: InstructionScreen
-    }
+  },
+  {
+      name: 'test',
+      path: '/test',
+      component: TestScreen
+  }
 ];
 
 Vue.config.productionTip = false;

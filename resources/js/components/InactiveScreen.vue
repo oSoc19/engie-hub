@@ -22,10 +22,15 @@ import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
 import Pusher from "../../../public/js/pusher/index.js";
+// import {gameHasStarted} from '../gameHasStarted.js';
 
 
 export default {
     name: 'InactiveScreen',
+    props:[
+        'gameHasEnded'
+    ],
+
     components: {
         Lottie
     },
@@ -33,20 +38,35 @@ export default {
         return {
         activeIndex: 0,
         defaultOptions: { animationData: animationData, loop: true},
+        instructionScreenCanActivate: true
         }
     },
     mounted() {
+        // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
+        //     this.instructionScreenCanActivate = true;
+        // }
         this.startInstructions();
+
     },
 
     methods: {
         startInstructions: function(){
             let channel = Pusher.subscribe('particle-channel');
-            channel.bind('particle-data', (data) => {
-                router.push({
-                    name: 'instruction'
+                channel.bind('particle-data', (data) => {
+                    console.log(data);
+                    if(this.instructionScreenCanActivate == true || this.gameHasEnded == true) {
+                        console.log("pushed???");
+                        router.push({
+                            name: 'instruction',
+                            params: {
+                                gameIsStarted: true
+                            }
+                        });
+                    this.instructionScreenCanActivate = false;
+                };
+                    return;
                 });
-            });
+
       }
   }
 }

@@ -51,28 +51,38 @@ import {router} from '../app.js'
 
     export default {
         name: 'SessionEndScreen',
-        props: ['goals', 'goalsCompleted', 'totalEnergy'],
+        props: ['goals', 'goalsCompleted', 'totalEnergy', 'gameIsStarted'],
         data: function() {
           return {
-            timeLeftBeforeInitialScreen: 10,
+            timeLeftBeforeInitialScreen: 3,
             defaultColor: '#E0E0E0',
             fueledObjects: []
           }
         },
         mounted() {
+            this.timerToInactiveScreen();
+            console.log("GOOOO");
           if (this.goals != null) {
             console.log(this.goals);
             this.calculateFueledObjects();
           }
         },
         methods: {
-            timer: function(){
-                let sec = this.timeLeftBeforeInitialScreen
+            timerToInactiveScreen: function(){
+                let sec = this.timeLeftBeforeInitialScreen;
+                console.log(sec);
+                console.log("GOOOOO");
+
                 let timer = setInterval(function(){
                     sec--;
                     if (sec <= 0) {
-                        sec = 60;
                         clearInterval(timer);
+                        router.push({
+                            name: 'inactive',
+                            params: {
+                                gameHasEnded: true
+                            }
+                        });
                     }
                     console.log(sec);
                 }, 1000);
