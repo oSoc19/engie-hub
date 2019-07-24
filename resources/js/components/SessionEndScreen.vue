@@ -47,14 +47,15 @@
 </template>
 
 <script>
-import {router} from '../app.js'
+import {router} from '../app.js';
+import Status from '../status.js';
 
     export default {
         name: 'SessionEndScreen',
-        props: ['goals', 'goalsCompleted', 'totalEnergy', 'gameIsStarted'],
+        props: ['goals', 'goalsCompleted', 'totalEnergy'],
         data: function() {
           return {
-            timeLeftBeforeInitialScreen: 3,
+            timeLeftBeforeInitialScreen: 8,
             defaultColor: '#E0E0E0',
             fueledObjects: []
           }
@@ -77,10 +78,11 @@ import {router} from '../app.js'
                     sec--;
                     if (sec <= 0) {
                         clearInterval(timer);
+                        Status.gameHasEnded = true;
                         router.push({
                             name: 'inactive',
                             params: {
-                                gameHasEnded: true
+                              gameHasEnded: true
                             }
                         });
                     }

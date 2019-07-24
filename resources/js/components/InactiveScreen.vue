@@ -23,6 +23,7 @@ import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
 import Pusher from "../../../public/js/pusher/index.js";
 // import {gameHasStarted} from '../gameHasStarted.js';
+import Status from '../status.js';
 
 
 export default {
@@ -38,15 +39,30 @@ export default {
         return {
         activeIndex: 0,
         defaultOptions: { animationData: animationData, loop: true},
-        instructionScreenCanActivate: true
+        instructionScreenCanActivate: true,
+        Status: Status
         }
     },
     mounted() {
         // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
         //     this.instructionScreenCanActivate = true;
         // }
-        this.startInstructions();
-
+        //if (this.gameHasEnded == true) {
+          //setInterval(this.startInstructions(), 5000);
+        //}
+        //else {
+          //this.startInstructions();
+        //}
+        let sec = 5;
+        let timer = setInterval(() => {
+              sec--;
+              console.log(sec);
+              if (sec <= 0) {
+                  clearInterval(timer);
+                  console.log("GOOO");
+                  this.startInstructions();
+              }
+          }, 1000);
     },
 
     methods: {
@@ -54,15 +70,12 @@ export default {
             let channel = Pusher.subscribe('particle-channel');
                 channel.bind('particle-data', (data) => {
                     console.log(data);
-                    if(this.instructionScreenCanActivate == true || this.gameHasEnded == true) {
+                    if(Status.gameHasEnded == true) {
                         console.log("pushed???");
+                        Status.gameHasEnded = false;
                         router.push({
-                            name: 'instruction',
-                            params: {
-                                gameIsStarted: true
-                            }
+                            name: 'instruction'
                         });
-                    this.instructionScreenCanActivate = false;
                 };
                     return;
                 });

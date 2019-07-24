@@ -52,15 +52,14 @@ import animationData from '../lottie/data.json';
 import animationData2 from '../lottie/blue-dancing-blob.json';
 import Pusher from "../../../public/js/pusher/index.js";
 
+import Status from '../status.js';
+
 
 export default {
     name: 'GameScreen',
     components: {
         Lottie
     },
-    props: [
-        'gameIsStarted'
-    ],
     data: function() {
         return {
         activeIndex: 0,
@@ -141,8 +140,9 @@ export default {
             let sec = this.timeLeftOfSession
             let timer = setInterval(() => {
                 sec--;
-                if (sec <= 0) {
+                if (sec <= -5) {
                     clearInterval(timer);
+                    Status.gameHasEnded = true;
                     this.endSession();
                 }
                 if (sec > 9) {

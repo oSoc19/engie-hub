@@ -1787,6 +1787,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
 /* harmony import */ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json");
 var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json", 1);
 /* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
+/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
 //
 //
 //
@@ -1833,6 +1834,7 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
 //
 //
 //
+
 
 
 
@@ -1844,7 +1846,6 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
   components: {
     Lottie: vue_lottie__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  props: ['gameIsStarted'],
   data: function data() {
     return {
       activeIndex: 0,
@@ -1934,8 +1935,9 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
       var timer = setInterval(function () {
         sec--;
 
-        if (sec <= 0) {
+        if (sec <= -5) {
           clearInterval(timer);
+          _status_js__WEBPACK_IMPORTED_MODULE_6__["default"].gameHasEnded = true;
 
           _this2.endSession();
         }
@@ -2291,6 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lottie/data.json */ "./resources/js/lottie/data.json");
 var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/data.json */ "./resources/js/lottie/data.json", 1);
 /* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
+/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
 //
 //
 //
@@ -2315,6 +2318,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
 
  // import {gameHasStarted} from '../gameHasStarted.js';
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'InactiveScreen',
   props: ['gameHasEnded'],
@@ -2328,32 +2332,47 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
         animationData: _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__,
         loop: true
       },
-      instructionScreenCanActivate: true
+      instructionScreenCanActivate: true,
+      Status: _status_js__WEBPACK_IMPORTED_MODULE_5__["default"]
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
     //     this.instructionScreenCanActivate = true;
     // }
-    this.startInstructions();
+    //if (this.gameHasEnded == true) {
+    //setInterval(this.startInstructions(), 5000);
+    //}
+    //else {
+    //this.startInstructions();
+    //}
+    var sec = 5;
+    var timer = setInterval(function () {
+      sec--;
+      console.log(sec);
+
+      if (sec <= 0) {
+        clearInterval(timer);
+        console.log("GOOO");
+
+        _this.startInstructions();
+      }
+    }, 1000);
   },
   methods: {
     startInstructions: function startInstructions() {
-      var _this = this;
-
       var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_4__["default"].subscribe('particle-channel');
       channel.bind('particle-data', function (data) {
         console.log(data);
 
-        if (_this.instructionScreenCanActivate == true || _this.gameHasEnded == true) {
+        if (_status_js__WEBPACK_IMPORTED_MODULE_5__["default"].gameHasEnded == true) {
           console.log("pushed???");
+          _status_js__WEBPACK_IMPORTED_MODULE_5__["default"].gameHasEnded = false;
           _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
-            name: 'instruction',
-            params: {
-              gameIsStarted: true
-            }
+            name: 'instruction'
           });
-          _this.instructionScreenCanActivate = false;
         }
 
         ;
@@ -2388,7 +2407,6 @@ var _lottie_instructions_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'InstructionScreen',
-  props: ['gameIsStarted'],
   components: {
     Lottie: vue_lottie__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -2407,17 +2425,13 @@ var _lottie_instructions_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE
   },
   methods: {
     timerToStartGame: function timerToStartGame(sec) {
-      var _this = this;
-
       var timer = setInterval(function () {
         sec--;
 
         if (sec <= 0) {
+          clearInterval(timer);
           _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
-            name: 'game',
-            props: {
-              gameIsStarted: _this.gameIsStarted
-            }
+            name: 'game'
           });
           return;
         }
@@ -2438,6 +2452,7 @@ var _lottie_instructions_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
+/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
 //
 //
 //
@@ -2487,12 +2502,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SessionEndScreen',
-  props: ['goals', 'goalsCompleted', 'totalEnergy', 'gameIsStarted'],
+  props: ['goals', 'goalsCompleted', 'totalEnergy'],
   data: function data() {
     return {
-      timeLeftBeforeInitialScreen: 3,
+      timeLeftBeforeInitialScreen: 8,
       defaultColor: '#E0E0E0',
       fueledObjects: []
     };
@@ -2516,6 +2532,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (sec <= 0) {
           clearInterval(timer);
+          _status_js__WEBPACK_IMPORTED_MODULE_1__["default"].gameHasEnded = true;
           _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
             name: 'inactive',
             params: {
@@ -7093,7 +7110,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\n#qr-code{\n    width: 50%;\n}\n#donate {\n    font-size: 3rem;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 3rem;\n    margin-right: 2rem;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -7112,7 +7129,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\n.lottie-move {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 2rem;\r\n    top: 2rem;\r\n    width: 9%;\n}\n.lottie-mascotte {\r\n    margin-left: 1%;\r\n    margin-top: -4rem;\r\n    margin-bottom: -3rem;\r\n    margin-right: 5%;\r\n    width: 22%;\n}\n.invert {\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n    margin-bottom: 1rem;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.center-row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\n.lottie-move {\n    position: absolute;\n    z-index: 2;\n    left: 2rem;\n    top: 2rem;\n    width: 9%;\n}\n.lottie-mascotte {\n    margin-left: 1%;\n    margin-top: -4rem;\n    margin-bottom: -3rem;\n    margin-right: 5%;\n    width: 22%;\n}\n.invert {\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n    margin-bottom: 1rem;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.center-row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -7131,7 +7148,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
 
 // exports
 
@@ -7150,7 +7167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #a3a3a3;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    width: 14%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #a3a3a3;\n    background-color: #E0E0E0;\n}\n.goal-tickets {\n    width: 14%;\n}\n\n", ""]);
 
 // exports
 
@@ -7169,7 +7186,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\r\n    text-align: center;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\n    flex: 1 0 25%;\n    margin-left: 2rem;\n    margin-right:2rem;\n    text-align: center;\n}\n.goal-ticket-container {\n    flex-wrap: wrap;\n}\n\n", ""]);
 
 // exports
 
@@ -7188,7 +7205,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.transparant-overlay {\r\n    background-color: rgba(0,0,0,0.4);\r\n    z-index: 20;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\n.popup {\r\n  margin: auto;\r\n  padding: 20px;\r\n  background: #EE7;\r\n  border-radius: 5px;\r\n  width: 54%;\r\n  position: relative;\n}\n.overlay {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  background: rgba(0, 0, 0, 0.7);\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.transparant-overlay {\n    background-color: rgba(0,0,0,0.4);\n    z-index: 20;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n.popup {\n  margin: auto;\n  padding: 20px;\n  background: #EE7;\n  border-radius: 5px;\n  width: 54%;\n  position: relative;\n}\n.overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.7);\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -7207,7 +7224,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#blue-man-flex {\r\n    align-self: flex-end;\n}\n#bottom-line {\r\n    position: absolute;\r\n    bottom: 0;\n}\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n#blue-man-flex {\n    align-self: flex-end;\n}\n#bottom-line {\n    position: absolute;\n    bottom: 0;\n}\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -7226,7 +7243,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.inactive-lottie {\r\n    width: 50%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.inactive-lottie {\n    width: 50%;\n}\n\n", ""]);
 
 // exports
 
@@ -7245,7 +7262,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\r\n/* h1 {\r\n  color: white;\r\n  margin-bottom: 0;\r\n} */\nh4 {\r\n  margin-bottom: 0;\n}\r\n\r\n/* #engie_logo {\r\n  margin-bottom: 5%;\r\n} */\n.nj-navbar-logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 2rem;\r\n    margin-left: 2rem;\r\n    width: 7%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.total-generated-box {\r\n  color: white;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 7rem;\r\n    padding-bottom: 2rem;\r\n    margin-bottom: 3rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n/* h1 {\n  color: white;\n  margin-bottom: 0;\n} */\nh4 {\n  margin-bottom: 0;\n}\n\n/* #engie_logo {\n  margin-bottom: 5%;\n} */\n.nj-navbar-logo {\n    position: absolute;\n    z-index: 2;\n    left: 0;\n    margin-top: 2rem;\n    margin-left: 2rem;\n    width: 7%;\n}\n.energy {\n  margin-top: 3%;\n}\n/* .progression{\n  margin-left: 5%;\n} */\n/* .first-pic  {\n  margin-right: -15%;\n} */\n/* .live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n} */\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n*/\n/* .nj-progress__text{\n  margin-left: 3%;\n} */\n.round {\n  border-radius: 100px;\n}\n\n/* .info-generated {\n  background-color: #00AAFF;\n} */\n\n/* .goals {\n  background-color: white;\n  color: #707070;\n}\n\n.goal-icons {\n    width: 29%;\n} */\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.total-generated-box {\n  color: white;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n    padding-top: 7rem;\n    padding-bottom: 2rem;\n    margin-bottom: 3rem;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n\n", ""]);
 
 // exports
 
@@ -7264,7 +7281,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -7283,7 +7300,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#test {\r\n    margin: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#test {\n    margin: auto;\n}\n", ""]);
 
 // exports
 
@@ -79559,6 +79576,24 @@ module.exports = JSON.parse("{\"v\":\"5.5.6\",\"fr\":25,\"ip\":0,\"op\":226,\"w\
 
 /***/ }),
 
+/***/ "./resources/js/status.js":
+/*!********************************!*\
+  !*** ./resources/js/status.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var instructionScreenCanActivate = true;
+var gameHasEnded = true;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  instructionScreenCanActivate: instructionScreenCanActivate,
+  gameHasEnded: gameHasEnded
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -79577,8 +79612,8 @@ module.exports = JSON.parse("{\"v\":\"5.5.6\",\"fr\":25,\"ip\":0,\"op\":226,\"w\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

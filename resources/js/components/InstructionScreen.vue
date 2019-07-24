@@ -10,9 +10,6 @@ import animationData from '../lottie/instructions.json';
 
 export default {
     name: 'InstructionScreen',
-    props: [
-        'gameIsStarted'
-    ],
     components: {
         Lottie
     },
@@ -31,11 +28,9 @@ export default {
           let timer = setInterval(() => {
               sec--;
               if (sec <= 0) {
+                clearInterval(timer);
                   router.push({
-                      name: 'game',
-                      props: {
-                          gameIsStarted: this.gameIsStarted
-                      }
+                      name: 'game'
                   });
                   return;
               }
