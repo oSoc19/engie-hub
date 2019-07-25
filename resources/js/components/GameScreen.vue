@@ -74,7 +74,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 30,
+        timeLeftOfSession: 15,
         goals: [],
         goalsCompleted: [],
         currentGoal: 0,
@@ -95,7 +95,7 @@ export default {
         getEnergy: function(){
             let channel = Pusher.subscribe('particle-channel');
             channel.bind('particle-data', (data) => {
-                this.energy = this.energy + 20;
+                this.energy = this.energy + 40;
                 console.log(data.data);
                 console.log(this.percentageCompleted);
                 this.calculatePercentage();

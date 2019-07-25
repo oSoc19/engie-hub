@@ -48,7 +48,7 @@ export default {
 
         // THIS HAS TO CHANGE
 
-        this.startInstructions();
+        // this.startInstructions();
 
         // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
         //     this.instructionScreenCanActivate = true;

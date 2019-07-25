@@ -1786,8 +1786,10 @@ __webpack_require__.r(__webpack_exports__);
 var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/data.json */ "./resources/js/lottie/data.json", 1);
 /* harmony import */ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json");
 var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json", 1);
-/* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
-/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
+/* harmony import */ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json");
+var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json", 1);
+/* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
+/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
 //
 //
 //
@@ -1833,7 +1835,7 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
 //
 //
 //
-//
+
 
 
 
@@ -1857,6 +1859,11 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
         animationData: _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4__,
         loop: true
       },
+      stepoffOptions: {
+        animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__,
+        loop: true
+      },
+      stepoffDisplay: "hidden",
       animationSpeed: 1,
       energy: 0,
       nextThreshold: 20,
@@ -1864,16 +1871,15 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
       percentageCompleted: 15,
       idOfNextGoal: 0,
       show: false,
-      timeLeftOfSession: 10,
-      // progressBarColor: '#272382',
+      timeLeftOfSession: 15,
       goals: [],
       goalsCompleted: [],
-      currentGoal: 0
+      currentGoal: 0,
+      secOfInactivity: 3
     };
   },
   mounted: function mounted() {
     this.timer();
-    this.lottieDisplay();
     this.getGoals();
     this.calculatePercentage();
     this.getEnergy();
@@ -1887,29 +1893,26 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
     getEnergy: function getEnergy() {
       var _this = this;
 
-      var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].subscribe('particle-channel');
+      var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].subscribe('particle-channel');
       channel.bind('particle-data', function (data) {
-        // this.energy++;
-        _this.energy = _this.energy + 20;
+        _this.energy = _this.energy + 40;
         console.log(data.data);
         console.log(_this.percentageCompleted);
 
         _this.calculatePercentage();
-      }); //TODO api call to get information about energy generated
+      });
     },
     calculatePercentage: function calculatePercentage() {
       var percentage = this.energy / this.nextThreshold;
       console.log(percentage);
 
       if (percentage < 1) {
-        console.log("lower");
         this.percentageCompleted = percentage * 100;
       }
 
       if (percentage >= 1) {
-        console.log("hello");
         this.percentageCompleted = 100;
-        this.changeOnGoalReached(); //get nextThreshold with the new itemId
+        this.changeOnGoalReached();
       }
     },
     changeOnGoalReached: function changeOnGoalReached() {
@@ -1918,55 +1921,50 @@ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#_
       this.percentageCompleted = 0;
 
       if (this.currentGoal < this.goals.length - 1) {
-        // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
-        // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
         this.previousThreshold = this.nextThreshold;
-        console.log(this.previousThreshold);
         this.currentGoal++;
-        console.log(this.currentGoal);
         this.nextThreshold = this.goals[this.currentGoal].threshold;
-        console.log(this.nextThreshold);
       }
     },
     timer: function timer() {
       var _this2 = this;
 
       var sec = this.timeLeftOfSession;
+      var stepoffActivated = false;
       var timer = setInterval(function () {
         sec--;
 
-        if (sec <= -5) {
+        if (sec <= -7) {
           clearInterval(timer);
-          _status_js__WEBPACK_IMPORTED_MODULE_6__["default"].gameHasEnded = true;
+          _status_js__WEBPACK_IMPORTED_MODULE_7__["default"].gameHasEnded = true;
 
           _this2.endSession();
         }
 
         if (sec > 9) {
           document.getElementById("timer").innerHTML = '00:' + sec;
-        } else {
+        } else if (sec <= 9 && sec >= 0) {
           document.getElementById("timer").innerHTML = '00:0' + sec;
+        } else {
+          if (stepoffActivated == false) {
+            _this2.stepoffOptions = {
+              animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__,
+              loop: false
+            };
+            _this2.stepoffDisplay = "visible";
+          }
+
+          ;
+          stepoffActivated = true;
+          document.getElementById("timer").innerHTML = '00:00';
         }
       }, 1000);
-    },
-    lottieDisplay: function lottieDisplay() {// let animItem = bodymovin.loadAnimation({
-      //     container: document.getElementById('lottie'),
-      //     renderer: 'svg/canvas/html',
-      //     animType: 'svg',
-      //     loop: true,
-      //     autoplay: true,
-      //     path: "../lottie/data.json"
-      // });
     },
     getRandomInt: function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min)) + min;
     },
-    //   updateProgressBar: function(){
-    //     this.energy += this.getRandomInt(5, 10);
-    //     this.calculatePercentage();
-    // },
     getGoals: function getGoals() {
       var _this3 = this;
 
@@ -2256,7 +2254,6 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2339,6 +2336,8 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
   mounted: function mounted() {
     var _this = this;
 
+    // THIS HAS TO CHANGE
+    // this.startInstructions();
     // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
     //     this.instructionScreenCanActivate = true;
     // }
@@ -2473,34 +2472,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2508,7 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['goals', 'goalsCompleted', 'totalEnergy'],
   data: function data() {
     return {
-      timeLeftBeforeInitialScreen: 8,
+      timeLeftBeforeInitialScreen: 25,
       defaultColor: '#E0E0E0',
       fueledObjects: []
     };
@@ -2526,7 +2497,6 @@ __webpack_require__.r(__webpack_exports__);
     timerToInactiveScreen: function timerToInactiveScreen() {
       var sec = this.timeLeftBeforeInitialScreen;
       console.log(sec);
-      console.log("GOOOOO");
       var timer = setInterval(function () {
         sec--;
 
@@ -7110,7 +7080,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\n#qr-code{\n    width: 50%;\n}\n#donate {\n    font-size: 3rem;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 3rem;\n    margin-right: 2rem;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7129,7 +7099,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\n.lottie-move {\n    position: absolute;\n    z-index: 2;\n    left: 2rem;\n    top: 2rem;\n    width: 9%;\n}\n.lottie-mascotte {\n    margin-left: 1%;\n    margin-top: -4rem;\n    margin-bottom: -3rem;\n    margin-right: 5%;\n    width: 22%;\n}\n.invert {\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n    margin-bottom: 1rem;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.center-row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\ninactiveOverlay{\r\n    display: hidden;\n}\n.lottie-move {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 2rem;\r\n    top: 2rem;\r\n    width: 9%;\n}\n.lottie-mascotte {\r\n    margin-left: 2%;\r\n    margin-top: -4rem;\r\n    margin-bottom: -3.6rem;\r\n    margin-right: 5%;\r\n    width: 22%;\n}\n.invert {\r\n    transform: scaleX(-1);\n}\n#stepoff {\r\n    z-index: 5;\r\n    width: 100%;\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n    margin-bottom: 1rem;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n#stepoffBox{\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    width: 100%;\r\n    z-index: 5;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.center-row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\r\n    margin-bottom: 5rem;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -7148,7 +7118,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
 
 // exports
 
@@ -7167,7 +7137,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #a3a3a3;\n    background-color: #E0E0E0;\n}\n.goal-tickets {\n    width: 14%;\n}\n\n", ""]);
+exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #a3a3a3;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    width: 14%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7186,7 +7156,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\n    flex: 1 0 25%;\n    margin-left: 2rem;\n    margin-right:2rem;\n    text-align: center;\n}\n.goal-ticket-container {\n    flex-wrap: wrap;\n}\n\n", ""]);
+exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\r\n    text-align: center;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7205,7 +7175,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.transparant-overlay {\n    background-color: rgba(0,0,0,0.4);\n    z-index: 20;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n.popup {\n  margin: auto;\n  padding: 20px;\n  background: #EE7;\n  border-radius: 5px;\n  width: 54%;\n  position: relative;\n}\n.overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.7);\n}\n\n\n\n", ""]);
+exports.push([module.i, "\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.transparant-overlay {\r\n    background-color: rgba(0,0,0,0.4);\r\n    z-index: 20;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\n.popup {\r\n  margin: auto;\r\n  padding: 20px;\r\n  /* background: #EE7; */\r\n  background: rgba(0, 0, 0, 0.7);\r\n  border-radius: 5px;\r\n  width: 54%;\r\n  position: relative;\n}\n.overlay {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  background: rgba(0, 0, 0, 0.7);\n}\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -7224,7 +7194,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#blue-man-flex {\n    align-self: flex-end;\n}\n#bottom-line {\n    position: absolute;\n    bottom: 0;\n}\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n\n\n\n", ""]);
+exports.push([module.i, "\n#blue-man-flex {\r\n    align-self: flex-end;\r\n    padding-left: 3rem;\n}\n#bottom-line {\r\n    position: absolute;\r\n    bottom: 0;\r\n    width: -webkit-fill-available;\n}\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.inactive-box {\r\n    height: -webkit-fill-available;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -7243,7 +7213,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.inactive-lottie {\n    width: 50%;\n}\n\n", ""]);
+exports.push([module.i, "\n.inactive-lottie {\r\n    width: 50%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7262,7 +7232,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n/* h1 {\n  color: white;\n  margin-bottom: 0;\n} */\nh4 {\n  margin-bottom: 0;\n}\n\n/* #engie_logo {\n  margin-bottom: 5%;\n} */\n.nj-navbar-logo {\n    position: absolute;\n    z-index: 2;\n    left: 0;\n    margin-top: 2rem;\n    margin-left: 2rem;\n    width: 7%;\n}\n.energy {\n  margin-top: 3%;\n}\n/* .progression{\n  margin-left: 5%;\n} */\n/* .first-pic  {\n  margin-right: -15%;\n} */\n/* .live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n} */\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n*/\n/* .nj-progress__text{\n  margin-left: 3%;\n} */\n.round {\n  border-radius: 100px;\n}\n\n/* .info-generated {\n  background-color: #00AAFF;\n} */\n\n/* .goals {\n  background-color: white;\n  color: #707070;\n}\n\n.goal-icons {\n    width: 29%;\n} */\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.total-generated-box {\n  color: white;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n    padding-top: 7rem;\n    padding-bottom: 2rem;\n    margin-bottom: 3rem;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\r\n/* h1 {\r\n  color: white;\r\n  margin-bottom: 0;\r\n} */\nh4 {\r\n  margin-bottom: 0;\n}\r\n\r\n/* #engie_logo {\r\n  margin-bottom: 5%;\r\n} */\n.nj-navbar-logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 2rem;\r\n    margin-left: 2rem;\r\n    width: 7%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.total-generated-box {\r\n  color: white;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 7rem;\r\n    padding-bottom: 2rem;\r\n    margin-bottom: 3rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -7281,7 +7251,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7300,7 +7270,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#test {\n    margin: auto;\n}\n", ""]);
+exports.push([module.i, "\n#test {\r\n    margin: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -62745,7 +62715,22 @@ var render = function() {
         ],
         1
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        style: { visibility: _vm.stepoffDisplay },
+        attrs: { id: "stepoffBox" }
+      },
+      [
+        _c("lottie", {
+          staticClass: "popup",
+          attrs: { options: _vm.stepoffOptions, id: "stepoff" }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -63056,7 +63041,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "row justify-content-center center-row" }, [
+    _c("div", { staticClass: "row inactive-box" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -79576,6 +79561,17 @@ module.exports = JSON.parse("{\"v\":\"5.5.6\",\"fr\":25,\"ip\":0,\"op\":226,\"w\
 
 /***/ }),
 
+/***/ "./resources/js/lottie/stepoff.json":
+/*!******************************************!*\
+  !*** ./resources/js/lottie/stepoff.json ***!
+  \******************************************/
+/*! exports provided: v, fr, ip, op, w, h, nm, ddd, assets, layers, markers, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"v\":\"5.5.6\",\"fr\":25,\"ip\":0,\"op\":125,\"w\":1920,\"h\":1080,\"nm\":\"STEPOFF\",\"ddd\":0,\"assets\":[],\"layers\":[{\"ddd\":0,\"ind\":1,\"ty\":4,\"nm\":\"Please Step Off Outlines\",\"sr\":1,\"ks\":{\"o\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.833],\"y\":[0.833]},\"o\":{\"x\":[0.167],\"y\":[0.167]},\"t\":17,\"s\":[0]},{\"t\":20,\"s\":[100]}],\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":0,\"k\":[929.554,628.246,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100,100],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[-1.937,-1.692],[0,-3.548],[2.311,-1.839],[4.655,0],[0,0]],\"o\":[[0,0],[4.134,0],[1.936,1.693],[0,3.516],[-2.312,1.839],[0,0],[0,0]],\"v\":[[-327.879,-120.985],[-320.994,-120.985],[-311.888,-118.446],[-308.982,-110.585],[-312.449,-102.552],[-322.898,-99.794],[-327.879,-99.794]],\"c\":true},\"ix\":2},\"nm\":\"P\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[4.508,3.728],[8.659,0],[0,0],[0,0],[0,0],[0,0],[0,0],[-4.802,4.07],[0,7.683]],\"o\":[[-4.509,-3.727],[0,0],[0,0],[0,0],[0,0],[0,0],[8.854,0],[4.801,-4.069],[0,-7.389]],\"v\":[[-300.462,-127.796],[-320.213,-133.387],[-343.016,-133.387],[-343.016,-62.001],[-327.879,-62.001],[-327.879,-87.391],[-321.385,-87.391],[-300.901,-93.495],[-293.699,-111.122]],\"c\":true},\"ix\":2},\"nm\":\"P\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"P\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[0,0],[0,0]],\"o\":[[0,0],[0,0],[0,0],[0,0]],\"v\":[[-266.502,-137.977],[-281.395,-137.977],[-281.395,-62.001],[-266.502,-62.001]],\"c\":true},\"ix\":2},\"nm\":\"l\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"l\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":2,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.855,-2.002],[-0.066,-3.678],[0,0],[-1.791,2.002],[-3.158,0]],\"o\":[[1.855,2.002],[0,0],[0.26,-3.678],[1.79,-2.002],[3.157,0]],\"v\":[[-220.75,-104.017],[-217.869,-95.497],[-238.768,-95.497],[-235.691,-104.017],[-228.27,-107.02]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[-2.962,0.635],[-2.605,1.302],[0,0],[2.93,-0.684],[3.288,0],[2.344,2.377],[0.163,4.232],[0,0],[0,0],[4.297,4.395],[7.715,0],[4.573,-4.996],[0,-9.147],[-4.948,-4.85],[-8.789,0]],\"o\":[[2.962,-0.635],[0,0],[-3.191,1.498],[-2.93,0.684],[-4.232,0],[-2.344,-2.376],[0,0],[0,0],[0,-7.747],[-4.297,-4.395],[-8.073,0],[-4.574,4.997],[0,8.887],[4.948,4.851],[4.264,0]],\"v\":[[-215.33,-61.976],[-206.98,-64.881],[-206.98,-76.405],[-216.16,-73.133],[-225.486,-72.108],[-235.35,-75.672],[-239.109,-85.585],[-203.904,-85.585],[-203.904,-92.811],[-210.35,-111.024],[-228.367,-117.616],[-247.337,-110.121],[-254.197,-88.905],[-246.775,-68.299],[-226.17,-61.024]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"e\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":3,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[3.906,3.191],[7.324,0],[6.282,-3.288],[0,0],[-4.362,0],[0,-5.534],[0,0],[0,0],[4.053,-2.75],[0,-5.794],[-3.011,-2.995],[-5.241,0],[-2.654,1.221],[-2.507,3.158],[0,0],[0,0]],\"o\":[[0,0],[0,-6.51],[-3.906,-3.19],[-7.65,0],[0,0],[5.891,-2.637],[5.664,0],[0,0],[0,0],[-8.171,0.293],[-4.053,2.751],[0,5.534],[3.011,2.995],[4.264,0],[2.653,-1.221],[0,0],[0,0],[0,0]],\"v\":[[-146.727,-62.001],[-146.727,-98.378],[-152.586,-112.928],[-169.432,-117.713],[-190.33,-112.782],[-185.398,-102.723],[-170.018,-106.678],[-161.521,-98.378],[-161.521,-95.985],[-170.994,-95.692],[-189.329,-91.127],[-195.408,-78.309],[-190.892,-65.516],[-178.514,-61.024],[-168.138,-62.855],[-160.398,-69.422],[-160.008,-69.422],[-157.127,-62.001]],\"c\":true},\"ix\":2},\"nm\":\"a\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[2.067,-1.985],[3.45,0],[0,4.199],[-2.116,1.433],[-4.33,0.13],[0,0]],\"o\":[[0,3.288],[-2.068,1.986],[-4.818,0],[0,-2.93],[2.116,-1.432],[0,0],[0,0]],\"v\":[[-161.521,-82.801],[-164.622,-74.891],[-172.898,-71.913],[-180.125,-78.211],[-176.951,-84.754],[-167.283,-87.098],[-161.521,-87.294]],\"c\":true},\"ix\":2},\"nm\":\"a\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"a\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":4,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0.944,1.953],[1.985,1.498],[4.264,1.726],[1.416,0.977],[0,1.335],[-4.395,0],[-2.377,-0.748],[-2.734,-1.172],[0,0],[6.575,0],[3.76,-2.653],[0,-4.85],[-0.896,-1.936],[-1.97,-1.497],[-4.199,-1.758],[-1.758,-0.928],[-0.716,-0.732],[0,-1.172],[5.403,0],[3.467,0.879],[2.766,1.302],[0,0],[-2.8,-0.537],[-3.972,0],[-3.89,2.93],[0,5.599]],\"o\":[[-0.945,-1.953],[-1.986,-1.497],[-4.785,-1.92],[-1.416,-0.977],[0,-2.376],[2.473,0],[2.376,0.749],[0,0],[-6.218,-2.864],[-6.902,0],[-3.76,2.654],[0,2.832],[0.895,1.937],[1.969,1.498],[2.93,1.237],[1.758,0.928],[0.716,0.732],[0,3.125],[-2.637,0],[-3.467,-0.879],[0,0],[2.441,1.042],[2.799,0.537],[7.747,0],[3.889,-2.93],[0,-2.702]],\"v\":[[-94.725,-85.194],[-99.119,-90.37],[-108.494,-95.204],[-117.796,-99.549],[-119.92,-103.016],[-113.328,-106.581],[-106.053,-105.458],[-98.387,-102.577],[-93.895,-113.319],[-113.084,-117.616],[-129.075,-113.636],[-134.715,-102.381],[-133.372,-95.228],[-129.075,-90.077],[-119.822,-85.194],[-112.791,-81.947],[-109.08,-79.457],[-108.006,-76.6],[-116.111,-71.913],[-125.267,-73.231],[-134.617,-76.503],[-134.617,-64.198],[-126.756,-61.83],[-116.6,-61.024],[-99.144,-65.419],[-93.309,-78.211]],\"c\":true},\"ix\":2},\"nm\":\"s\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"s\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":5,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.855,-2.002],[-0.066,-3.678],[0,0],[-1.791,2.002],[-3.158,0]],\"o\":[[1.855,2.002],[0,0],[0.26,-3.678],[1.79,-2.002],[3.157,0]],\"v\":[[-51.561,-104.017],[-48.68,-95.497],[-69.578,-95.497],[-66.502,-104.017],[-59.08,-107.02]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[-2.962,0.635],[-2.605,1.302],[0,0],[2.93,-0.684],[3.288,0],[2.344,2.377],[0.163,4.232],[0,0],[0,0],[4.297,4.395],[7.715,0],[4.573,-4.996],[0,-9.147],[-4.948,-4.85],[-8.789,0]],\"o\":[[2.962,-0.635],[0,0],[-3.191,1.498],[-2.93,0.684],[-4.232,0],[-2.344,-2.376],[0,0],[0,0],[0,-7.747],[-4.297,-4.395],[-8.073,0],[-4.574,4.997],[0,8.887],[4.948,4.851],[4.264,0]],\"v\":[[-46.141,-61.976],[-37.791,-64.881],[-37.791,-76.405],[-46.971,-73.133],[-56.297,-72.108],[-66.16,-75.672],[-69.92,-85.585],[-34.715,-85.585],[-34.715,-92.811],[-41.16,-111.024],[-59.178,-117.616],[-78.147,-110.121],[-85.008,-88.905],[-77.586,-68.299],[-56.98,-61.024]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"e\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":6,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[2.473,3.207],[6.673,3.191],[1.35,0.928],[0.618,0.993],[0,1.335],[-1.53,1.335],[-2.865,0],[-2.49,-0.618],[-3.809,-1.563],[0,0],[3.369,0.879],[3.711,0],[4.28,-3.613],[0,-6.315],[-1.302,-2.506],[-2.181,-1.888],[-4.362,-2.051],[-1.514,-1.009],[-0.781,-1.09],[0,-1.399],[1.774,-1.27],[3.32,0],[3.336,0.879],[4.817,2.148],[0,0],[-7.617,0],[-4.639,3.711],[0,6.445]],\"o\":[[-2.474,-3.206],[-5.046,-2.409],[-1.351,-0.928],[-0.619,-0.993],[0,-2.148],[1.53,-1.334],[2.409,0],[2.49,0.619],[0,0],[-3.679,-1.595],[-3.369,-0.879],[-7.552,0],[-4.281,3.613],[0,3.353],[1.302,2.507],[2.18,1.888],[4.655,2.214],[1.514,1.009],[0.781,1.091],[0,2.507],[-1.775,1.27],[-2.767,0],[-3.337,-0.879],[0,0],[5.859,2.865],[8.268,0],[4.639,-3.711],[0,-4.655]],\"v\":[[42.971,-93.617],[29.25,-103.211],[19.655,-108.216],[16.701,-111.097],[15.773,-114.588],[18.068,-119.813],[24.66,-121.815],[32.009,-120.887],[41.457,-117.616],[46.34,-129.383],[35.769,-133.094],[25.148,-134.413],[7.399,-128.993],[0.979,-114.1],[2.932,-105.311],[8.156,-98.719],[17.971,-92.811],[27.224,-87.977],[30.666,-84.828],[31.838,-81.092],[29.177,-75.428],[21.535,-73.524],[12.38,-74.842],[0.148,-79.383],[0.148,-65.321],[20.363,-61.024],[39.724,-66.59],[46.682,-81.825]],\"c\":true},\"ix\":2},\"nm\":\"S\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"S\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":7,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[1.188,1.009],[0,2.116],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[-2.718,-3.011],[-5.957,0],[-3.711,1.66],[0,0],[2.604,0]],\"o\":[[-1.189,-1.009],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,6.023],[2.718,3.011],[5.403,0],[0,0],[-3.646,1.14],[-1.953,0]],\"v\":[[76.735,-74.403],[74.953,-79.09],[74.953,-105.409],[90.236,-105.409],[90.236,-116.59],[74.953,-116.59],[74.953,-128.211],[65.432,-128.211],[61.135,-116.688],[52.932,-111.708],[52.932,-105.409],[60.061,-105.409],[60.061,-79.09],[64.138,-65.541],[77.15,-61.024],[90.822,-63.514],[90.822,-74.598],[81.447,-72.889]],\"c\":true},\"ix\":2},\"nm\":\"t\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"t\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":8,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.855,-2.002],[-0.066,-3.678],[0,0],[-1.791,2.002],[-3.158,0]],\"o\":[[1.855,2.002],[0,0],[0.26,-3.678],[1.79,-2.002],[3.157,0]],\"v\":[[131.984,-104.017],[134.865,-95.497],[113.967,-95.497],[117.043,-104.017],[124.465,-107.02]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[-2.962,0.635],[-2.605,1.302],[0,0],[2.93,-0.684],[3.288,0],[2.344,2.377],[0.163,4.232],[0,0],[0,0],[4.297,4.395],[7.715,0],[4.573,-4.996],[0,-9.147],[-4.948,-4.85],[-8.789,0]],\"o\":[[2.962,-0.635],[0,0],[-3.191,1.498],[-2.93,0.684],[-4.232,0],[-2.344,-2.376],[0,0],[0,0],[0,-7.747],[-4.297,-4.395],[-8.073,0],[-4.574,4.997],[0,8.887],[4.948,4.851],[4.264,0]],\"v\":[[137.404,-61.976],[145.754,-64.881],[145.754,-76.405],[136.574,-73.133],[127.248,-72.108],[117.385,-75.672],[113.625,-85.585],[148.83,-85.585],[148.83,-92.811],[142.385,-111.024],[124.367,-117.616],[105.397,-110.121],[98.537,-88.905],[105.959,-68.299],[126.564,-61.024]],\"c\":true},\"ix\":2},\"nm\":\"e\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"e\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":9,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[-3.158,2.246],[-1.709,4.297],[0,5.827],[3.645,4.98],[6.445,0],[3.483,-5.403],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0.52,4.558],[0,0],[-6.413,0]],\"o\":[[3.157,-2.246],[1.709,-4.297],[0,-8.854],[-3.646,-4.98],[-6.836,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,-0.716],[0,0],[3.645,4.655],[4.264,0]],\"v\":[[202.053,-64.393],[209.353,-74.208],[211.916,-89.393],[206.447,-110.145],[191.311,-117.616],[175.832,-109.51],[175.148,-109.51],[173.049,-116.59],[160.939,-116.59],[160.939,-37.977],[175.832,-37.977],[175.832,-60.096],[175.051,-68.006],[175.832,-68.006],[190.92,-61.024]],\"c\":true},\"ix\":2},\"nm\":\"p\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[-1.644,-2.686],[0,-5.371],[6.673,0],[1.741,2.539],[0,5.859],[0,0],[-1.693,2.263],[-3.679,0]],\"o\":[[1.643,2.686],[0,11.003],[-3.777,0],[-1.742,-2.539],[0,0],[0.065,-5.208],[1.692,-2.262],[3.516,0]],\"v\":[[194.265,-101.673],[196.73,-89.588],[186.721,-73.085],[178.444,-76.893],[175.832,-89.491],[175.832,-91.102],[178.469,-102.308],[186.525,-105.702]],\"c\":true},\"ix\":2},\"nm\":\"p\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"p\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":10,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[5.811,6.316],[10.97,0],[5.875,-6.266],[0,-11.881],[-5.859,-6.348],[-10.938,0],[-5.859,6.348],[0,11.816]],\"o\":[[-5.811,-6.315],[-10.97,0],[-5.876,6.267],[0,11.882],[5.859,6.348],[10.938,0],[5.859,-6.348],[0,-11.848]],\"v\":[[307.448,-125.038],[282.277,-134.51],[257.009,-125.111],[248.195,-97.889],[256.984,-70.545],[282.18,-61.024],[307.375,-70.545],[316.164,-97.792]],\"c\":true},\"ix\":2},\"nm\":\"O\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[-3.06,4.053],[-6.023,0],[0,-16.08],[12.077,0],[3.027,4.037],[0,7.976]],\"o\":[[3.059,-4.053],[12.012,0],[0,16.048],[-6.023,0],[-3.027,-4.036],[0,-7.975]],\"v\":[[268.654,-115.834],[282.277,-121.913],[300.295,-97.792],[282.18,-73.719],[268.605,-79.774],[264.064,-97.792]],\"c\":true},\"ix\":2},\"nm\":\"O\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"O\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":11,\"mn\":\"ADBE Vector Group\",\"hd\":false},{\"ty\":\"gr\",\"it\":[{\"ind\":0,\"ty\":\"sh\",\"ix\":1,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[0,0],[-0.945,1.254],[-2.116,0],[-2.995,-0.944],[0,0],[5.143,0],[3.059,-2.864],[0,-6.217],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\"o\":[[0,0],[0,0],[0,-1.953],[0.944,-1.253],[2.539,0],[0,0],[-4.004,-1.53],[-6.738,0],[-3.06,2.865],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\"v\":[[359.963,-116.59],[347.072,-116.59],[347.072,-120.008],[348.488,-124.818],[353.078,-126.698],[361.379,-125.282],[365.188,-136.219],[351.467,-138.514],[336.77,-134.217],[332.18,-120.594],[332.18,-116.59],[323.977,-112.586],[323.977,-105.409],[332.18,-105.409],[332.18,-62.001],[347.072,-62.001],[347.072,-105.409],[359.963,-105.409]],\"c\":true},\"ix\":2},\"nm\":\"f\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ind\":1,\"ty\":\"sh\",\"ix\":2,\"ks\":{\"a\":0,\"k\":{\"i\":[[0,0],[0,0],[0,0],[-0.945,1.254],[-2.116,0],[-2.995,-0.944],[0,0],[5.143,0],[3.059,-2.864],[0,-6.217],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\"o\":[[0,0],[0,0],[0,-1.953],[0.944,-1.253],[2.539,0],[0,0],[-4.004,-1.53],[-6.738,0],[-3.06,2.865],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\"v\":[[398.684,-116.59],[385.793,-116.59],[385.793,-120.008],[387.209,-124.818],[391.799,-126.698],[400.1,-125.282],[403.908,-136.219],[390.188,-138.514],[375.49,-134.217],[370.9,-120.594],[370.9,-116.59],[362.697,-112.586],[362.697,-105.409],[370.9,-105.409],[370.9,-62.001],[385.793,-62.001],[385.793,-105.409],[398.684,-105.409]],\"c\":true},\"ix\":2},\"nm\":\"f\",\"mn\":\"ADBE Vector Shape - Group\",\"hd\":false},{\"ty\":\"mm\",\"mm\":1,\"nm\":\"Merge Paths 1\",\"mn\":\"ADBE Vector Filter - Merge\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0.129411764706,0.129411764706,0.129411764706,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[0,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[100,100],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"f\",\"np\":5,\"cix\":2,\"bm\":0,\"ix\":12,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":269,\"st\":0,\"bm\":0},{\"ddd\":0,\"ind\":2,\"ty\":4,\"nm\":\"Circle6\",\"sr\":0.85294117647059,\"ks\":{\"o\":{\"a\":0,\"k\":100,\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":0,\"k\":[966,547,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[343,390,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.667,0.667,0.667],\"y\":[1,1,1]},\"o\":{\"x\":[0.333,0.333,0.333],\"y\":[0,0,0]},\"t\":13,\"s\":[0,0,100]},{\"t\":25.0003446691176,\"s\":[100,100,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"d\":1,\"ty\":\"el\",\"s\":{\"a\":0,\"k\":[622,622],\"ix\":2},\"p\":{\"a\":0,\"k\":[0,0],\"ix\":3},\"nm\":\"Ellipse Path 1\",\"mn\":\"ADBE Vector Shape - Ellipse\",\"hd\":false},{\"ty\":\"st\",\"c\":{\"a\":0,\"k\":[0.992156982422,0.976471007104,0.917646998985,1],\"ix\":3},\"o\":{\"a\":0,\"k\":100,\"ix\":4},\"w\":{\"a\":0,\"k\":0,\"ix\":5},\"lc\":1,\"lj\":1,\"ml\":4,\"bm\":0,\"nm\":\"Stroke 1\",\"mn\":\"ADBE Vector Graphic - Stroke\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[1,1,1,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[337,383],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[362.403,362.403],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Ellipse 1\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":4,\"op\":125,\"st\":-82.1470588235294,\"bm\":0},{\"ddd\":0,\"ind\":3,\"ty\":4,\"nm\":\"Circle5\",\"sr\":0.85294117647059,\"ks\":{\"o\":{\"a\":0,\"k\":100,\"ix\":11},\"r\":{\"a\":0,\"k\":0,\"ix\":10},\"p\":{\"a\":0,\"k\":[966,547,0],\"ix\":2},\"a\":{\"a\":0,\"k\":[343,390,0],\"ix\":1},\"s\":{\"a\":1,\"k\":[{\"i\":{\"x\":[0.667,0.667,0.667],\"y\":[1,1,1]},\"o\":{\"x\":[0.333,0.333,0.333],\"y\":[0,0,0]},\"t\":0,\"s\":[0,0,100]},{\"t\":16.0001436121324,\"s\":[100,100,100]}],\"ix\":6}},\"ao\":0,\"shapes\":[{\"ty\":\"gr\",\"it\":[{\"d\":1,\"ty\":\"el\",\"s\":{\"a\":0,\"k\":[622,622],\"ix\":2},\"p\":{\"a\":0,\"k\":[0,0],\"ix\":3},\"nm\":\"Ellipse Path 1\",\"mn\":\"ADBE Vector Shape - Ellipse\",\"hd\":false},{\"ty\":\"st\",\"c\":{\"a\":0,\"k\":[0.992156982422,0.976471007104,0.917646998985,1],\"ix\":3},\"o\":{\"a\":0,\"k\":100,\"ix\":4},\"w\":{\"a\":0,\"k\":0,\"ix\":5},\"lc\":1,\"lj\":1,\"ml\":4,\"bm\":0,\"nm\":\"Stroke 1\",\"mn\":\"ADBE Vector Graphic - Stroke\",\"hd\":false},{\"ty\":\"fl\",\"c\":{\"a\":0,\"k\":[0,0.61568627451,0.913725490196,1],\"ix\":4},\"o\":{\"a\":0,\"k\":100,\"ix\":5},\"r\":1,\"bm\":0,\"nm\":\"Fill 1\",\"mn\":\"ADBE Vector Graphic - Fill\",\"hd\":false},{\"ty\":\"tr\",\"p\":{\"a\":0,\"k\":[337,383],\"ix\":2},\"a\":{\"a\":0,\"k\":[0,0],\"ix\":1},\"s\":{\"a\":0,\"k\":[362.403,362.403],\"ix\":3},\"r\":{\"a\":0,\"k\":0,\"ix\":6},\"o\":{\"a\":0,\"k\":100,\"ix\":7},\"sk\":{\"a\":0,\"k\":0,\"ix\":4},\"sa\":{\"a\":0,\"k\":0,\"ix\":5},\"nm\":\"Transform\"}],\"nm\":\"Ellipse 1\",\"np\":3,\"cix\":2,\"bm\":0,\"ix\":1,\"mn\":\"ADBE Vector Group\",\"hd\":false}],\"ip\":0,\"op\":29,\"st\":-86.1470588235294,\"bm\":0}],\"markers\":[]}");
+
+/***/ }),
+
 /***/ "./resources/js/status.js":
 /*!********************************!*\
   !*** ./resources/js/status.js ***!
@@ -79612,8 +79608,8 @@ var gameHasEnded = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -27,7 +27,7 @@ import Status from '../status.js';
         props: ['goals', 'goalsCompleted', 'totalEnergy'],
         data: function() {
           return {
-            timeLeftBeforeInitialScreen: 8,
+            timeLeftBeforeInitialScreen: 25,
             defaultColor: '#E0E0E0',
             fueledObjects: []
           }
