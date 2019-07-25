@@ -73,7 +73,7 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 15,
+        timeLeftOfSession: 30,
         goals: [],
         goalsCompleted: [],
         currentGoal: 0,
@@ -94,16 +94,13 @@ export default {
         getEnergy: function(){
             let channel = Pusher.subscribe('particle-channel');
             channel.bind('particle-data', (data) => {
-                this.energy = this.energy + 40;
-                console.log(data.data);
-                console.log(this.percentageCompleted);
+                this.energy = this.energy + 20;
                 this.calculatePercentage();
             });
       },
 
         calculatePercentage: function () {
             let percentage = (this.energy / this.nextThreshold);
-            console.log(percentage);
             if(percentage<1) {
                 this.percentageCompleted = percentage*100;
             }
@@ -162,7 +159,6 @@ export default {
             axios.get('/api/goals')
             .then(response => {
                 this.goals = response.data.data;
-                console.log(response.data.data);
             })
         },
 

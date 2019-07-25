@@ -35,12 +35,8 @@
             }
         },
         created() {
-          //this.getEnergy()
         },
         methods: {
-            getEnergy(){
-              //TODO api call to get information about energy generated
-            }
         }
     }
 </script>

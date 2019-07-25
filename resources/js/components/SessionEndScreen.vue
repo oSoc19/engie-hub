@@ -1,8 +1,6 @@
 <template>
     <div>
-    <!-- <div id='engie_logo'> -->
         <img src="https://assets.design.digital.engie.com/brand/logo-engie-white.svg" class="nj-navbar-logo" alt="ENGIE">
-    <!-- </div> -->
     <div class="row justify-content-center container-flex">
         <div class="col-md-9">
             <div class="watts-container" align="center">
@@ -34,16 +32,13 @@ import Status from '../status.js';
         },
         mounted() {
             this.timerToInactiveScreen();
-            console.log("GOOOO");
           if (this.goals != null) {
-            console.log(this.goals);
             this.calculateFueledObjects();
           }
         },
         methods: {
             timerToInactiveScreen: function(){
                 let sec = this.timeLeftBeforeInitialScreen;
-                console.log(sec);
 
                 let timer = setInterval(function(){
                     sec--;
@@ -57,7 +52,6 @@ import Status from '../status.js';
                             }
                         });
                     }
-                    console.log(sec);
                 }, 1000);
             },
             calculateFueledObjects: function() {
@@ -75,17 +69,10 @@ import Status from '../status.js';
 body {
     background-color: #F5F5F5;
 }
-/* h1 {
-  color: white;
-  margin-bottom: 0;
-} */
+
 h4 {
   margin-bottom: 0;
 }
-
-/* #engie_logo {
-  margin-bottom: 5%;
-} */
 
 .nj-navbar-logo {
     position: absolute;
@@ -98,18 +85,7 @@ h4 {
 .energy {
   margin-top: 3%;
 }
-/* .progression{
-  margin-left: 5%;
-} */
-/* .first-pic  {
-  margin-right: -15%;
-} */
-/* .live {
-  border-style: solid;
-  border-color: #cc0033;
-  background-color: #cc0033;
-  color: white;
-} */
+
 .spark {
   height: 8.5rem;
   width: 6%;
@@ -130,27 +106,12 @@ h4 {
 .progress-div {
   margin-top: 10%;
 } */
-/* .nj-progress__text{
-  margin-left: 3%;
-} */
+
 .round {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
-
-/* .info-generated {
-  background-color: #00AAFF;
-} */
-
-/* .goals {
-  background-color: white;
-  color: #707070;
-}
-
-.goal-icons {
-    width: 29%;
-} */
 
 .container-flex {
     display: flex;
