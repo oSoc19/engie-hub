@@ -1,8 +1,6 @@
 <template>
     <div>
-
     <div id='topbar' class="d-flex justify-content-center">
-        <!-- <img src="https://assets.design.digital.engie.com/brand/logo-engie-blue.svg" class="nj-navbar__logo" alt="ENGIE"> -->
         <div id="timer-box">
             <p class="timer-elements">Time left to move</p>
             <p id="timer" class="timer-elements ">01:00</p>
@@ -15,7 +13,6 @@
         <div class="col-md-12">
             <div class="energy-container">
                 <div class="d-flex align-items-center justify-content-center ">
-                    <!-- <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/> -->
                     <div class="lottie-mascotte">
                         <lottie :options="defaultOptions2" />
                     </div>
@@ -24,7 +21,6 @@
                     <div class="lottie-mascotte invert">
                         <lottie :options="defaultOptions2" />
                     </div>
-                    <!-- <img class="engie-mascotte" src="/images/blue_dancing_man.jpg"/> -->
                 </div>
             </div>
             <div class="row align-items-center progression center-row" v-if="goals.length">
@@ -39,6 +35,9 @@
                 <goalTicket :current="currentGoal"></goalTicket>
         </div>
     </div>
+    <div id="stepoffBox" v-bind:style="{visibility: stepoffDisplay}">
+        <lottie :options="stepoffOptions" id="stepoff" class="popup"/>
+    </div>
 </div>
 
 
@@ -50,6 +49,7 @@ import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
 import animationData2 from '../lottie/blue-dancing-blob.json';
+import stepoff from '../lottie/stepoff.json';
 import Pusher from "../../../public/js/pusher/index.js";
 
 
@@ -66,6 +66,8 @@ export default {
         activeIndex: 0,
         defaultOptions1: { animationData: animationData, loop: true },
         defaultOptions2: { animationData: animationData2, loop: true },
+        stepoffOptions: { animationData: stepoff, loop: true },
+        stepoffDisplay: "hidden",
         animationSpeed: 1,
         energy: 0,
         nextThreshold: 20,
@@ -73,16 +75,15 @@ export default {
         percentageCompleted: 15,
         idOfNextGoal: 0,
         show: false,
-        timeLeftOfSession: 10,
-        // progressBarColor: '#272382',
+        timeLeftOfSession: 30,
         goals: [],
         goalsCompleted: [],
-        currentGoal: 0
+        currentGoal: 0,
+        secOfInactivity: 3
         }
     },
     mounted() {
       this.timer();
-      this.lottieDisplay();
       this.getGoals();
       this.calculatePercentage();
       this.getEnergy();
@@ -95,27 +96,22 @@ export default {
         getEnergy: function(){
             let channel = Pusher.subscribe('particle-channel');
             channel.bind('particle-data', (data) => {
-                // this.energy++;
                 this.energy = this.energy + 20;
                 console.log(data.data);
                 console.log(this.percentageCompleted);
                 this.calculatePercentage();
             });
-          //TODO api call to get information about energy generated
       },
 
         calculatePercentage: function () {
             let percentage = (this.energy / this.nextThreshold);
             console.log(percentage);
             if(percentage<1) {
-                console.log("lower");
                 this.percentageCompleted = percentage*100;
             }
             if(percentage >= 1) {
-                console.log("hello");
                 this.percentageCompleted = 100;
                 this.changeOnGoalReached();
-                //get nextThreshold with the new itemId
             }
         },
 
@@ -126,54 +122,42 @@ export default {
             this.percentageCompleted = 0;
 
             if (this.currentGoal < this.goals.length - 1) {
-              // $('#'+this.currentGoal).css({'backGroundColor' : this.goals[this.currentGoal].emblem_color});
-              // document.getElementById(this.currentGoal).style.backgroundColor= this.goals[this.currentGoal].emblem_color;
               this.previousThreshold = this.nextThreshold;
-              console.log(this.previousThreshold);
               this.currentGoal ++;
-              console.log(this.currentGoal);
               this.nextThreshold = this.goals[this.currentGoal].threshold;
-              console.log(this.nextThreshold);
             }
         },
 
         timer: function(){
-            let sec = this.timeLeftOfSession
+            let sec = this.timeLeftOfSession;
+            let stepoffActivated = false;
             let timer = setInterval(() => {
                 sec--;
-                if (sec <= 0) {
+                if (sec <= -7) {
                     clearInterval(timer);
                     this.endSession();
                 }
                 if (sec > 9) {
                     document.getElementById("timer").innerHTML = '00:' + sec;
-                } else {
+                }else if(sec <= 9 && sec >= 0) {
                     document.getElementById("timer").innerHTML = '00:0' + sec;
+                }else {
+                    if(stepoffActivated == false) {
+                        this.stepoffOptions = { animationData: stepoff, loop: false };
+                        this.stepoffDisplay = "visible";
+                    };
+                    stepoffActivated = true;
+                    document.getElementById("timer").innerHTML = '00:00';
                 }
             }, 1000);
         },
 
-        lottieDisplay: function () {
-            // let animItem = bodymovin.loadAnimation({
-            //     container: document.getElementById('lottie'),
-            //     renderer: 'svg/canvas/html',
-            //     animType: 'svg',
-            //     loop: true,
-            //     autoplay: true,
-            //     path: "../lottie/data.json"
-            // });
-        },
 
         getRandomInt(min, max) {
           min = Math.ceil(min);
           max = Math.floor(max);
           return Math.floor(Math.random() * (max - min)) + min;
         },
-
-      //   updateProgressBar: function(){
-      //     this.energy += this.getRandomInt(5, 10);
-      //     this.calculatePercentage();
-      // },
 
         getGoals: function(){
             axios.get('/api/goals')
@@ -206,6 +190,11 @@ body {
     background-color: #F5F5F5;
     font-family: 'Lato', sans-serif;
 }
+
+inactiveOverlay{
+    display: hidden;
+}
+
 .lottie-move {
     position: absolute;
     z-index: 2;
@@ -214,14 +203,23 @@ body {
     width: 9%;
 }
 .lottie-mascotte {
-    margin-left: 1%;
+    margin-left: 2%;
     margin-top: -4rem;
-    margin-bottom: -3rem;
+    margin-bottom: -3.6rem;
     margin-right: 5%;
     width: 22%;
 }
 
 .invert {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#stepoff {
+    z-index: 5;
+    width: 100%;
 }
 
 #energy {
@@ -249,6 +247,14 @@ body {
     text-align: center;
     display: inline-block;
 }
+#stepoffBox{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+}
+
 .engie-mascotte {
     margin-left: 5%;
     margin-right: 5%;
@@ -317,6 +323,7 @@ body {
 }
 .progression {
     line-height: 2;
+    margin-bottom: 5rem;
 }
 .bar {
     margin-left: 10%;
