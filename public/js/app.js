@@ -1779,17 +1779,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
-/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lottie-web */ "./node_modules/lottie-web/build/player/lottie.js");
-/* harmony import */ var lottie_web__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lottie_web__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_lottie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-lottie */ "./node_modules/vue-lottie/src/lottie.vue");
-/* harmony import */ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lottie/data.json */ "./resources/js/lottie/data.json");
-var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/data.json */ "./resources/js/lottie/data.json", 1);
-/* harmony import */ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json");
-var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json", 1);
-/* harmony import */ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json");
-var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json", 1);
-/* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
-/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
+/* harmony import */ var vue_lottie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-lottie */ "./node_modules/vue-lottie/src/lottie.vue");
+/* harmony import */ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lottie/data.json */ "./resources/js/lottie/data.json");
+var _lottie_data_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/data.json */ "./resources/js/lottie/data.json", 1);
+/* harmony import */ var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json");
+var _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/blue-dancing-blob.json */ "./resources/js/lottie/blue-dancing-blob.json", 1);
+/* harmony import */ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json");
+var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lottie/stepoff.json */ "./resources/js/lottie/stepoff.json", 1);
+/* harmony import */ var _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../public/js/pusher/index.js */ "./public/js/pusher/index.js");
+/* harmony import */ var _status_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../status.js */ "./resources/js/status.js");
 //
 //
 //
@@ -1835,7 +1833,6 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/_
 //
 //
 //
-
 
 
 
@@ -1846,21 +1843,21 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/_
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GameScreen',
   components: {
-    Lottie: vue_lottie__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Lottie: vue_lottie__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       activeIndex: 0,
       defaultOptions1: {
-        animationData: _lottie_data_json__WEBPACK_IMPORTED_MODULE_3__,
-        loop: true
+        animationData: _lottie_data_json__WEBPACK_IMPORTED_MODULE_2__,
+        loop: false
       },
       defaultOptions2: {
-        animationData: _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_4__,
+        animationData: _lottie_blue_dancing_blob_json__WEBPACK_IMPORTED_MODULE_3__,
         loop: true
       },
       stepoffOptions: {
-        animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__,
+        animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4__,
         loop: true
       },
       stepoffDisplay: "hidden",
@@ -1893,7 +1890,7 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/_
     getEnergy: function getEnergy() {
       var _this = this;
 
-      var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].subscribe('particle-channel');
+      var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].subscribe('particle-channel');
       channel.bind('particle-data', function (data) {
         _this.energy = _this.energy + 40;
         console.log(data.data);
@@ -1936,7 +1933,7 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/_
 
         if (sec <= -7) {
           clearInterval(timer);
-          _status_js__WEBPACK_IMPORTED_MODULE_7__["default"].gameHasEnded = true;
+          _status_js__WEBPACK_IMPORTED_MODULE_6__["default"].gameHasEnded = true;
 
           _this2.endSession();
         }
@@ -1948,7 +1945,7 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/_
         } else {
           if (stepoffActivated == false) {
             _this2.stepoffOptions = {
-              animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_5__,
+              animationData: _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4__,
               loop: false
             };
             _this2.stepoffDisplay = "visible";
@@ -2111,6 +2108,30 @@ __webpack_require__.r(__webpack_exports__);
       //     bar.style.width = this.percentageCompleted;
       // }
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GithubPage.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GithubPage.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'GithubPage',
+  created: function created() {
+    window.location.replace("https://osoc19.github.io/engie-hub/");
   }
 });
 
@@ -2436,6 +2457,30 @@ var _lottie_instructions_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE
         }
       }, 1000);
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QR.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/QR.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'RedirectComponent',
+  created: function created() {
+    window.location.replace("https://xd.adobe.com/view/adb203e9-67cc-4522-4fd6-d32966f4ecc1-db83/?fullscreen&hints=off");
   }
 });
 
@@ -7080,7 +7125,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n    background-color: #FFFFFF;\r\n    border-color: #CFCECE;\r\n    border-width: 3px;\r\n    border-left-style: solid;\r\n    border-right-style: solid;\r\n\r\n    display: flex;\r\n\tflex-direction: column;\n}\n.nj-card__body > div {\r\n    display: flex;\r\n    flex: 1;\r\n    justify-content: center;\r\n    flex-direction: column;\n}\n#qr-code{\r\n    width: 50%;\n}\n#donate {\r\n    font-size: 3rem;\r\n    text-align: left;\r\n    line-height: 1.1;\r\n    margin-left: 3rem;\r\n    margin-right: 2rem;\r\n    color: #707070;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n    background-color: #FFFFFF;\n    border-color: #CFCECE;\n    border-width: 3px;\n    border-left-style: solid;\n    border-right-style: solid;\n\n    display: flex;\n\tflex-direction: column;\n}\n.nj-card__body > div {\n    display: flex;\n    flex: 1;\n    justify-content: center;\n    flex-direction: column;\n}\n#qr-code{\n    width: 50%;\n}\n#donate {\n    font-size: 3rem;\n    text-align: left;\n    line-height: 1.1;\n    margin-left: 3rem;\n    margin-right: 2rem;\n    color: #707070;\n}\n#rcorners {\n  border-radius: 100px;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -7099,7 +7144,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\r\n    font-family: 'Lato', sans-serif;\n}\ninactiveOverlay{\r\n    display: hidden;\n}\n.lottie-move {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 2rem;\r\n    top: 2rem;\r\n    width: 9%;\n}\n.lottie-mascotte {\r\n    margin-left: 2%;\r\n    margin-top: -4rem;\r\n    margin-bottom: -3.6rem;\r\n    margin-right: 5%;\r\n    width: 22%;\n}\n.invert {\r\n    transform: scaleX(-1);\n}\n#stepoff {\r\n    z-index: 5;\r\n    width: 100%;\n}\n#energy {\r\n    color: #FFFFFF;\r\n    font-weight: 700;\r\n    font-size: 9.5rem;\r\n    margin-right: 0.5rem;\n}\n#watt {\r\n    color: #FFFFFF;\r\n    font-size: 4rem;\r\n    height: 2.5rem;\n}\n#topbar {\r\n    margin-top: 1%;\r\n    margin-bottom: 1rem;\n}\n#timer {\r\n    font-size: 3.5rem;\r\n    font-weight: 700;\n}\n#timer-box {\r\n    /* margin-left: 34%; */\r\n    text-align: center;\r\n    display: inline-block;\n}\n#stepoffBox{\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    width: 100%;\r\n    z-index: 5;\n}\n.engie-mascotte {\r\n    margin-left: 5%;\r\n    margin-right: 5%;\r\n    width: 11%;\n}\n.center-row {\r\n    margin-top: 25px;\r\n    margin-bottom: 15px;\n}\n.goal-icons {\r\n    width: 37%;\r\n    padding: 8px;\r\n    border-radius: 50%;\r\n    background-color: #0af;\n}\n.goal-icon-empty {\r\n    background-color: #c4ebff;\n}\n.goal-tickets {\r\n    text-align: center;\n}\n.timer-elements {\r\n    display: block;\n}\n.nj-navbar__logo {\r\n    display: inline-block;\r\n    margin-top: 0;\r\n    margin-left: 3%;\r\n    width: 10%;\n}\n.energy-container {\r\n    background-color: #00AAFF;\r\n    padding-top: 3%;\r\n    padding-bottom: 3%;\r\n    margin-bottom: 5%;\n}\n.live {\r\n  border-style: solid;\r\n  border-color: red;\r\n  background-color: red;\r\n  color: white;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\r\n  margin-left: -5%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\n.progress-bar {\r\n  background-color: #e2dce8;\n}\n.progression {\r\n    line-height: 2;\r\n    margin-bottom: 5rem;\n}\n.bar {\r\n    margin-left: 10%;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    max-height: 30px;\n}\n.progress-bar-filling {\r\n  background-color: #552382;\r\n  z-index: 1;\n}\n.round {\r\n  border-radius: 100px;\n}\n.nj-avatar__picture{\r\n  margin-left: -100%;\n}\n.next-goal{\r\n  background-color: #0080FF;\r\n  z-index: 1;\r\n  margin-left: -2%;\n}\n.next-goal img{\r\n  width: 100px;\r\n  height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n    font-family: 'Lato', sans-serif;\n}\ninactiveOverlay{\n    display: hidden;\n}\n.lottie-move {\n    position: absolute;\n    z-index: 2;\n    left: 2rem;\n    top: 2rem;\n    width: 9%;\n}\n.lottie-mascotte {\n    margin-left: 2%;\n    margin-top: -4rem;\n    margin-bottom: -3.6rem;\n    margin-right: 5%;\n    width: 22%;\n}\n.invert {\n    transform: scaleX(-1);\n}\n#stepoff {\n    z-index: 5;\n    width: 100%;\n}\n#energy {\n    color: #FFFFFF;\n    font-weight: 700;\n    font-size: 9.5rem;\n    margin-right: 0.5rem;\n}\n#watt {\n    color: #FFFFFF;\n    font-size: 4rem;\n    height: 2.5rem;\n}\n#topbar {\n    margin-top: 1%;\n    margin-bottom: 1rem;\n}\n#timer {\n    font-size: 3.5rem;\n    font-weight: 700;\n}\n#timer-box {\n    /* margin-left: 34%; */\n    text-align: center;\n    display: inline-block;\n}\n#stepoffBox{\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    width: 100%;\n    z-index: 5;\n}\n.engie-mascotte {\n    margin-left: 5%;\n    margin-right: 5%;\n    width: 11%;\n}\n.center-row {\n    margin-top: 25px;\n    margin-bottom: 15px;\n}\n.goal-icons {\n    width: 37%;\n    padding: 8px;\n    border-radius: 50%;\n    background-color: #0af;\n}\n.goal-icon-empty {\n    background-color: #c4ebff;\n}\n.goal-tickets {\n    text-align: center;\n}\n.timer-elements {\n    display: block;\n}\n.nj-navbar__logo {\n    display: inline-block;\n    margin-top: 0;\n    margin-left: 3%;\n    width: 10%;\n}\n.energy-container {\n    background-color: #00AAFF;\n    padding-top: 3%;\n    padding-bottom: 3%;\n    margin-bottom: 5%;\n}\n.live {\n  border-style: solid;\n  border-color: red;\n  background-color: red;\n  color: white;\n}\n.spark {\n  height: 8.5rem;\n  width: 6%;\n  margin-left: -5%;\n}\n.lottie-popup {\n    z-index: 1;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n.progress-bar {\n  background-color: #e2dce8;\n}\n.progression {\n    line-height: 2;\n    margin-bottom: 5rem;\n}\n.bar {\n    margin-left: 10%;\n    padding-left: 0;\n    padding-right: 0;\n    max-height: 30px;\n}\n.progress-bar-filling {\n  background-color: #552382;\n  z-index: 1;\n}\n.round {\n  border-radius: 100px;\n}\n.nj-avatar__picture{\n  margin-left: -100%;\n}\n.next-goal{\n  background-color: #0080FF;\n  z-index: 1;\n  margin-left: -2%;\n}\n.next-goal img{\n  width: 100px;\n  height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -7118,7 +7163,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* body {\r\n    background-color: #F5F5F5;\r\n}\r\n\r\n#topbar {\r\n  margin-bottom: 15%;\r\n}\r\n\r\n.nj-navbar__logo {\r\n  margin-top: 3%;\r\n  margin-left: 3%;\r\n  width: 11%;\r\n}\r\n.energy {\r\n  margin-top: 3%;\r\n}\r\n.progression{\r\n  margin-left: 5%;\r\n}\r\n.first-pic  {\r\n  margin-right: -15%;\r\n}\r\n.live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n}\r\n.spark {\r\n  height: 100px;\r\n  width: 10%;\r\n}\r\n\r\n.lottie-popup {\r\n    z-index: 1;\r\n}\r\n\r\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\r\n}\r\n\r\n.progress-div {\r\n  margin-top: 10%;\r\n}\r\n.nj-progress__text{\r\n  margin-left: 3%;\r\n}\r\n.progress-bar {\r\n  background-color: #E62B87;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n#progress-bar-filling {\r\n  background-color: #272382;\r\n  height: 100%;\r\n}\r\n.round {\r\n  -webkit-border-radius: 100px;\r\n  -moz-border-radius: 100px;\r\n  border-radius: 100px;\r\n} */\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* body {\n    background-color: #F5F5F5;\n}\n\n#topbar {\n  margin-bottom: 15%;\n}\n\n.nj-navbar__logo {\n  margin-top: 3%;\n  margin-left: 3%;\n  width: 11%;\n}\n.energy {\n  margin-top: 3%;\n}\n.progression{\n  margin-left: 5%;\n}\n.first-pic  {\n  margin-right: -15%;\n}\n.live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n}\n.spark {\n  height: 100px;\n  width: 10%;\n}\n\n.lottie-popup {\n    z-index: 1;\n}\n\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\n\n.progress-div {\n  margin-top: 10%;\n}\n.nj-progress__text{\n  margin-left: 3%;\n}\n.progress-bar {\n  background-color: #E62B87;\n  padding-left: 0;\n  padding-right: 0;\n}\n#progress-bar-filling {\n  background-color: #272382;\n  height: 100%;\n}\n.round {\n  -webkit-border-radius: 100px;\n  -moz-border-radius: 100px;\n  border-radius: 100px;\n} */\n\n", ""]);
 
 // exports
 
@@ -7137,7 +7182,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #a3a3a3;\r\n    background-color: #E0E0E0;\n}\n.goal-tickets {\r\n    width: 14%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #a3a3a3;\n    background-color: #E0E0E0;\n}\n.goal-tickets {\n    width: 14%;\n}\n\n", ""]);
 
 // exports
 
@@ -7156,7 +7201,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.goal-icons {\r\n    fill: white;\r\n    box-shadow: 0px 0px 15px #E0E0E0;\r\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\r\n    flex: 1 0 25%;\r\n    margin-left: 2rem;\r\n    margin-right:2rem;\r\n    text-align: center;\n}\n.goal-ticket-container {\r\n    flex-wrap: wrap;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.goal-icons {\n    fill: white;\n    box-shadow: 0px 0px 15px #E0E0E0;\n    background-color: #E0E0E0;\n}\n.goal-end-tickets {\n    flex: 1 0 25%;\n    margin-left: 2rem;\n    margin-right:2rem;\n    text-align: center;\n}\n.goal-ticket-container {\n    flex-wrap: wrap;\n}\n\n", ""]);
 
 // exports
 
@@ -7175,7 +7220,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.transparant-overlay {\r\n    background-color: rgba(0,0,0,0.4);\r\n    z-index: 20;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\n.popup {\r\n  margin: auto;\r\n  padding: 20px;\r\n  /* background: #EE7; */\r\n  background: rgba(0, 0, 0, 0.7);\r\n  border-radius: 5px;\r\n  width: 54%;\r\n  position: relative;\n}\n.overlay {\r\n  position: fixed;\r\n  top: 0;\r\n  bottom: 0;\r\n  background: rgba(0, 0, 0, 0.7);\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.transparant-overlay {\n    background-color: rgba(0,0,0,0.4);\n    z-index: 20;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n.popup {\n  margin: auto;\n  padding: 20px;\n  /* background: #EE7; */\n  background: rgba(0, 0, 0, 0.7);\n  border-radius: 5px;\n  width: 54%;\n  position: relative;\n}\n.overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.7);\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -7194,7 +7239,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#blue-man-flex {\r\n    align-self: flex-end;\r\n    padding-left: 3rem;\n}\n#bottom-line {\r\n    position: absolute;\r\n    bottom: 0;\r\n    width: -webkit-fill-available;\n}\n#step-on {\r\n    margin-bottom: 0;\r\n    color: #212121;\r\n    font-size: 5rem;\n}\n#inactive {\r\n    width: 0%;\r\n    height: 0%;\n}\n.inactive-box {\r\n    height: -webkit-fill-available;\n}\n.lottie-box {\r\n    width: 77%;\n}\n.inactive-lottie {\r\n    margin-top: 17rem;\r\n    width: 50%;\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n#blue-man-flex {\n    align-self: flex-end;\n    padding-left: 3rem;\n}\n#bottom-line {\n    position: absolute;\n    bottom: 0;\n    width: -webkit-fill-available;\n}\n#step-on {\n    margin-bottom: 0;\n    color: #212121;\n    font-size: 5rem;\n}\n#inactive {\n    width: 0%;\n    height: 0%;\n}\n.inactive-box {\n    height: -webkit-fill-available;\n}\n.lottie-box {\n    width: 77%;\n}\n.inactive-lottie {\n    margin-top: 17rem;\n    width: 50%;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -7213,7 +7258,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.inactive-lottie {\r\n    width: 50%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.inactive-lottie {\n    width: 50%;\n}\n\n", ""]);
 
 // exports
 
@@ -7232,7 +7277,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\r\n/* h1 {\r\n  color: white;\r\n  margin-bottom: 0;\r\n} */\nh4 {\r\n  margin-bottom: 0;\n}\r\n\r\n/* #engie_logo {\r\n  margin-bottom: 5%;\r\n} */\n.nj-navbar-logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 2rem;\r\n    margin-left: 2rem;\r\n    width: 7%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.total-generated-box {\r\n  color: white;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 7rem;\r\n    padding-bottom: 2rem;\r\n    margin-bottom: 3rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\n    background-color: #F5F5F5;\n}\n/* h1 {\n  color: white;\n  margin-bottom: 0;\n} */\nh4 {\n  margin-bottom: 0;\n}\n\n/* #engie_logo {\n  margin-bottom: 5%;\n} */\n.nj-navbar-logo {\n    position: absolute;\n    z-index: 2;\n    left: 0;\n    margin-top: 2rem;\n    margin-left: 2rem;\n    width: 7%;\n}\n.energy {\n  margin-top: 3%;\n}\n/* .progression{\n  margin-left: 5%;\n} */\n/* .first-pic  {\n  margin-right: -15%;\n} */\n/* .live {\n  border-style: solid;\n  border-color: #cc0033;\n  background-color: #cc0033;\n  color: white;\n} */\n.spark {\n  height: 8.5rem;\n  width: 6%;\n}\n.lottie-popup {\n    z-index: 1;\n}\nh1 {\n  color: #00aaff;\n  margin-bottom: 10%;\n}\nh4 {\n  margin-bottom: 0;\n}\n.progress-div {\n  margin-top: 10%;\n}\n*/\n/* .nj-progress__text{\n  margin-left: 3%;\n} */\n.round {\n  border-radius: 100px;\n}\n\n/* .info-generated {\n  background-color: #00AAFF;\n} */\n\n/* .goals {\n  background-color: white;\n  color: #707070;\n}\n\n.goal-icons {\n    width: 29%;\n} */\n.container-flex {\n    display: flex;\n    flex-direction: row;\n}\n.total-generated-box {\n  color: white;\n}\n.watts-container {\n    background-color: #00AAFF;\n    color: #FFFFFF;\n    padding-top: 7rem;\n    padding-bottom: 2rem;\n    margin-bottom: 3rem;\n}\n.container-flex > div{\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    padding-left: 0;\n    padding-right: 0;\n}\n\n\n", ""]);
 
 // exports
 
@@ -7251,7 +7296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nj-card__body {\r\n  background-color: #E0E0E0;\n}\n#rcorners {\r\n  border-radius: 100px;\r\n  background-color: #272382;\r\n  padding: 30px 20px;\r\n  width: 150px;\r\n  height: 150px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.nj-card__body {\n  background-color: #E0E0E0;\n}\n#rcorners {\n  border-radius: 100px;\n  background-color: #272382;\n  padding: 30px 20px;\n  width: 150px;\n  height: 150px;\n}\n\n", ""]);
 
 // exports
 
@@ -7270,7 +7315,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#test {\r\n    margin: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#test {\n    margin: auto;\n}\n", ""]);
 
 // exports
 
@@ -62886,6 +62931,39 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hello" }, [
+      _c("span", [_vm._v("Redirecting...")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GoalTicket.vue?vue&type=template&id=f652ddac& ***!
@@ -63129,6 +63207,39 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hello" }, [
+      _c("h1", [_vm._v("Redirecting...")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -78361,18 +78472,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _components_GeneralScreen_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GeneralScreen.vue */ "./resources/js/components/GeneralScreen.vue");
-/* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SideBar.vue */ "./resources/js/components/SideBar.vue");
-/* harmony import */ var _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/GameScreen.vue */ "./resources/js/components/GameScreen.vue");
-/* harmony import */ var _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/SessionEndScreen.vue */ "./resources/js/components/SessionEndScreen.vue");
-/* harmony import */ var _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/GoalTicket.vue */ "./resources/js/components/GoalTicket.vue");
-/* harmony import */ var _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/GoalTicketEndScreen.vue */ "./resources/js/components/GoalTicketEndScreen.vue");
-/* harmony import */ var _components_InactiveScreen_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/InactiveScreen.vue */ "./resources/js/components/InactiveScreen.vue");
-/* harmony import */ var _components_InstructionScreen_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/InstructionScreen.vue */ "./resources/js/components/InstructionScreen.vue");
-/* harmony import */ var _components_InactiveOverlay_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/InactiveOverlay.vue */ "./resources/js/components/InactiveOverlay.vue");
-/* harmony import */ var _components_TestScreen_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/TestScreen.vue */ "./resources/js/components/TestScreen.vue");
-/* harmony import */ var _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/FinishSidebar.vue */ "./resources/js/components/FinishSidebar.vue");
-/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
+/* harmony import */ var _components_GithubPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GithubPage.vue */ "./resources/js/components/GithubPage.vue");
+/* harmony import */ var _components_QR_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/QR.vue */ "./resources/js/components/QR.vue");
+/* harmony import */ var _components_GeneralScreen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/GeneralScreen.vue */ "./resources/js/components/GeneralScreen.vue");
+/* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/SideBar.vue */ "./resources/js/components/SideBar.vue");
+/* harmony import */ var _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/GameScreen.vue */ "./resources/js/components/GameScreen.vue");
+/* harmony import */ var _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SessionEndScreen.vue */ "./resources/js/components/SessionEndScreen.vue");
+/* harmony import */ var _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/GoalTicket.vue */ "./resources/js/components/GoalTicket.vue");
+/* harmony import */ var _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/GoalTicketEndScreen.vue */ "./resources/js/components/GoalTicketEndScreen.vue");
+/* harmony import */ var _components_InactiveScreen_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/InactiveScreen.vue */ "./resources/js/components/InactiveScreen.vue");
+/* harmony import */ var _components_InstructionScreen_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/InstructionScreen.vue */ "./resources/js/components/InstructionScreen.vue");
+/* harmony import */ var _components_InactiveOverlay_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/InactiveOverlay.vue */ "./resources/js/components/InactiveOverlay.vue");
+/* harmony import */ var _components_TestScreen_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/TestScreen.vue */ "./resources/js/components/TestScreen.vue");
+/* harmony import */ var _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/FinishSidebar.vue */ "./resources/js/components/FinishSidebar.vue");
+/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -78394,43 +78507,53 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
 
 
-Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('goalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-Vue.component('finishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-Vue.component('inactiveOverlay', _components_InactiveOverlay_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+
+
+Vue.component('sideBar', _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('goalTicket', _components_GoalTicket_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('finishSidebar', _components_FinishSidebar_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+Vue.component('goalTicketEndScreen', _components_GoalTicketEndScreen_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('inactiveOverlay', _components_InactiveOverlay_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
 var routes = [{
   name: 'home',
   path: '/',
-  component: _components_GeneralScreen_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _components_GithubPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  name: 'qr',
+  path: '/qr',
+  component: _components_QR_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+}, {
+  name: 'old',
+  path: '/old',
+  component: _components_GeneralScreen_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   name: 'game',
   path: '/game',
-  component: _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _components_GameScreen_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   props: true
 }, {
   name: 'end',
   path: '/end',
-  component: _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _components_SessionEndScreen_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   props: true
 }, {
   name: 'error',
   path: '*',
-  component: _components_404_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_404_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   name: 'inactive',
   path: '/inactive',
-  component: _components_InactiveScreen_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+  component: _components_InactiveScreen_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
   props: true
 }, {
   name: 'instruction',
   path: '/instruction',
-  component: _components_InstructionScreen_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+  component: _components_InstructionScreen_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }, {
   name: 'test',
   path: '/test',
-  component: _components_TestScreen_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_TestScreen_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }];
 Vue.config.productionTip = false;
 Vue.config.devtools = false;
@@ -78827,6 +78950,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneralScreen_vue_vue_type_template_id_6b6ca919___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneralScreen_vue_vue_type_template_id_6b6ca919___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/GithubPage.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/GithubPage.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GithubPage.vue?vue&type=template&id=5049c686& */ "./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686&");
+/* harmony import */ var _GithubPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GithubPage.vue?vue&type=script&lang=js& */ "./resources/js/components/GithubPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GithubPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GithubPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GithubPage.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/GithubPage.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GithubPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GithubPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GithubPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GithubPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GithubPage.vue?vue&type=template&id=5049c686& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GithubPage.vue?vue&type=template&id=5049c686&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GithubPage_vue_vue_type_template_id_5049c686___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -79267,6 +79459,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/QR.vue":
+/*!****************************************!*\
+  !*** ./resources/js/components/QR.vue ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QR.vue?vue&type=template&id=b5ccd5a8& */ "./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8&");
+/* harmony import */ var _QR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QR.vue?vue&type=script&lang=js& */ "./resources/js/components/QR.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _QR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/QR.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/QR.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/QR.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./QR.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QR.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8& ***!
+  \***********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./QR.vue?vue&type=template&id=b5ccd5a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/QR.vue?vue&type=template&id=b5ccd5a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QR_vue_vue_type_template_id_b5ccd5a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/SessionEndScreen.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/SessionEndScreen.vue ***!
@@ -79608,8 +79869,8 @@ var gameHasEnded = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Laravelapps\EngieHubGit\engie-hub\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/gracien/Bureau/oSoc19/engie-hub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

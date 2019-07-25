@@ -1,0 +1,49 @@
+#header img {
+  max-width: 100vw;
+  min-height: 70vh;
+  margin: 0 auto 0 auto;
+}
+
+#header{
+      background-image: url('../images/header.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 80vh;
+
+}
+
+#description{
+  padding: 5% 0 6% 0;
+  background-color: #00AAFF;
+  color: white;
+}
+
+#headshot img{
+  max-width: 60%;
+}
+
+#visuals{
+  padding: 5%;
+}
+#mock{
+  width: 50vw;
+}
+
+#gallery div{
+  min-height: 100px;
+  max-height: 30vh;
+}
+
+#gallery img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.badge{
+  margin-right: 20px;
+}
+
+.d-flex span{
+  margin-right: 2%;
+}

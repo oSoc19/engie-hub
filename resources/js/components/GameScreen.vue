@@ -45,7 +45,6 @@
 
 <script>
 import {router} from '../app.js'
-import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
 import animationData2 from '../lottie/blue-dancing-blob.json';
@@ -63,7 +62,7 @@ export default {
     data: function() {
         return {
         activeIndex: 0,
-        defaultOptions1: { animationData: animationData, loop: true },
+        defaultOptions1: { animationData: animationData, loop: false   },
         defaultOptions2: { animationData: animationData2, loop: true },
         stepoffOptions: { animationData: stepoff, loop: true },
         stepoffDisplay: "hidden",
