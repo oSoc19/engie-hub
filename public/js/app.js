@@ -1893,15 +1893,12 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/_
       var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].subscribe('particle-channel');
       channel.bind('particle-data', function (data) {
         _this.energy = _this.energy + 20;
-        console.log(data.data);
-        console.log(_this.percentageCompleted);
 
         _this.calculatePercentage();
       });
     },
     calculatePercentage: function calculatePercentage() {
       var percentage = this.energy / this.nextThreshold;
-      console.log(percentage);
 
       if (percentage < 1) {
         this.percentageCompleted = percentage * 100;
@@ -1967,7 +1964,6 @@ var _lottie_stepoff_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/_
 
       axios.get('/api/goals').then(function (response) {
         _this3.goals = response.data.data;
-        console.log(response.data.data);
       });
     },
     endSession: function endSession() {
@@ -2154,8 +2150,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GoalTicket',
   props: ['current'],
@@ -2174,7 +2168,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/goals').then(function (response) {
         _this.goals = response.data.data;
-        console.log(response.data.data);
       });
     }
   }
@@ -2191,28 +2184,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2242,7 +2213,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/goals').then(function (response) {
         _this.goals = response.data.data;
-        console.log(response.data.data);
       });
     },
     acquiredGoalsAmount: function acquiredGoalsAmount(threshold) {
@@ -2334,7 +2304,6 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
 
 
 
- // import {gameHasStarted} from '../gameHasStarted.js';
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2357,25 +2326,12 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
   mounted: function mounted() {
     var _this = this;
 
-    // THIS HAS TO CHANGE
-    // this.startInstructions();
-    // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
-    //     this.instructionScreenCanActivate = true;
-    // }
-    //if (this.gameHasEnded == true) {
-    //setInterval(this.startInstructions(), 5000);
-    //}
-    //else {
-    //this.startInstructions();
-    //}
     var sec = 5;
     var timer = setInterval(function () {
       sec--;
-      console.log(sec);
 
       if (sec <= 0) {
         clearInterval(timer);
-        console.log("GOOO");
 
         _this.startInstructions();
       }
@@ -2385,10 +2341,7 @@ var _lottie_data_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__we
     startInstructions: function startInstructions() {
       var channel = _public_js_pusher_index_js__WEBPACK_IMPORTED_MODULE_4__["default"].subscribe('particle-channel');
       channel.bind('particle-data', function (data) {
-        console.log(data);
-
         if (_status_js__WEBPACK_IMPORTED_MODULE_5__["default"].gameHasEnded == true) {
-          console.log("pushed???");
           _status_js__WEBPACK_IMPORTED_MODULE_5__["default"].gameHasEnded = false;
           _app_js__WEBPACK_IMPORTED_MODULE_0__["router"].push({
             name: 'instruction'
@@ -2515,8 +2468,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2531,17 +2482,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.timerToInactiveScreen();
-    console.log("GOOOO");
 
     if (this.goals != null) {
-      console.log(this.goals);
       this.calculateFueledObjects();
     }
   },
   methods: {
     timerToInactiveScreen: function timerToInactiveScreen() {
       var sec = this.timeLeftBeforeInitialScreen;
-      console.log(sec);
       var timer = setInterval(function () {
         sec--;
 
@@ -2555,8 +2503,6 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         }
-
-        console.log(sec);
       }, 1000);
     },
     calculateFueledObjects: function calculateFueledObjects() {
@@ -2617,12 +2563,8 @@ __webpack_require__.r(__webpack_exports__);
       yesterdayEnergy: "456.232"
     };
   },
-  created: function created() {//this.getEnergy()
-  },
-  methods: {
-    getEnergy: function getEnergy() {//TODO api call to get information about energy generated
-    }
-  }
+  created: function created() {},
+  methods: {}
 });
 
 /***/ }),
@@ -7277,7 +7219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\r\n/* h1 {\r\n  color: white;\r\n  margin-bottom: 0;\r\n} */\nh4 {\r\n  margin-bottom: 0;\n}\r\n\r\n/* #engie_logo {\r\n  margin-bottom: 5%;\r\n} */\n.nj-navbar-logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 2rem;\r\n    margin-left: 2rem;\r\n    width: 7%;\n}\n.energy {\r\n  margin-top: 3%;\n}\r\n/* .progression{\r\n  margin-left: 5%;\r\n} */\r\n/* .first-pic  {\r\n  margin-right: -15%;\r\n} */\r\n/* .live {\r\n  border-style: solid;\r\n  border-color: #cc0033;\r\n  background-color: #cc0033;\r\n  color: white;\r\n} */\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n/* .nj-progress__text{\r\n  margin-left: 3%;\r\n} */\r\n.round {\r\n  border-radius: 100px;\n}\r\n\r\n/* .info-generated {\r\n  background-color: #00AAFF;\r\n} */\r\n\r\n/* .goals {\r\n  background-color: white;\r\n  color: #707070;\r\n}\r\n\r\n.goal-icons {\r\n    width: 29%;\r\n} */\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.total-generated-box {\r\n  color: white;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 7rem;\r\n    padding-bottom: 2rem;\r\n    margin-bottom: 3rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n    background-color: #F5F5F5;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.nj-navbar-logo {\r\n    position: absolute;\r\n    z-index: 2;\r\n    left: 0;\r\n    margin-top: 2rem;\r\n    margin-left: 2rem;\r\n    width: 7%;\n}\n.energy {\r\n  margin-top: 3%;\n}\n.spark {\r\n  height: 8.5rem;\r\n  width: 6%;\n}\n.lottie-popup {\r\n    z-index: 1;\n}\nh1 {\r\n  color: #00aaff;\r\n  margin-bottom: 10%;\n}\nh4 {\r\n  margin-bottom: 0;\n}\n.progress-div {\r\n  margin-top: 10%;\n}\n*/\r\n\r\n.round {\r\n  border-radius: 100px;\n}\n.container-flex {\r\n    display: flex;\r\n    flex-direction: row;\n}\n.total-generated-box {\r\n  color: white;\n}\n.watts-container {\r\n    background-color: #00AAFF;\r\n    color: #FFFFFF;\r\n    padding-top: 7rem;\r\n    padding-bottom: 2rem;\r\n    margin-bottom: 3rem;\n}\n.container-flex > div{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding-left: 0;\r\n    padding-right: 0;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
