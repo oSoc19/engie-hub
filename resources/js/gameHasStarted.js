@@ -1,1 +1,1 @@
-export var gameHasStarted = false; 
+export var gameHasStarted = false;

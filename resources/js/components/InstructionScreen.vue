@@ -31,6 +31,7 @@ export default {
           let timer = setInterval(() => {
               sec--;
               if (sec <= 0) {
+                  clearInterval(timer);
                   router.push({
                       name: 'game',
                       props: {

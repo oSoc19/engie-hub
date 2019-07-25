@@ -10,34 +10,6 @@
               <h2><img class="spark" src="/images/white_energy.svg"/> <span v-if="totalEnergy">{{totalEnergy}}</span> watts</h2>
               <h3>which equals</h3>
             </div>
-            <!-- <div class="p-2 goals"> -->
-              <!-- <template v-if="goals!=null">
-                <div class="row justify-content-center">
-                  <template v-for="(goal, index) in goals">
-                    <div class="col-md-4 goal-tickets" :key="index">
-                      <img :src="goal.emblem_path" class="goal-icons"  v-bind:style= "[(goals.includes(goalsCompleted[index])) ? {backgroundColor:  goal.emblem_color } : {backgroundColor: defaultColor }]" />
-                      <h4>{{fueledObjects[index]}}x</h4>
-                      <p>{{goal.name}}</p>
-                    </div>
-                  </template>
-                </template>
-                <template v-else>
-                  <div class="col-md-4 goal-tickets">
-                    <img src="/images/lamp.svg" class="goal-icons"/>
-                    <h4>0x</h4>
-                    <p>Object 1</p>
-                  </div>
-                  <div class="col-md-4 goal-tickets">
-                    <img src="/images/boiled_egg.svg" class="goal-icons"/>
-                    <h4>0x</h4>
-                    <p>Object 2</p>
-                  </div>
-                  <div class="col-md-3 goal-tickets">
-                      <img src="/images/coffee_pot.svg" class="goal-icons"/>
-                      <h4>0x</h4>
-                      <p>Object 3</p>
-                  </div> -->
-
                   <goalTicketEndScreen :totalEnergy="totalEnergy"></goalTicketEndScreen>
                 </div>
                 <finishSidebar :energy="totalEnergy"></finishSidebar>
@@ -71,7 +43,6 @@ import {router} from '../app.js'
             timerToInactiveScreen: function(){
                 let sec = this.timeLeftBeforeInitialScreen;
                 console.log(sec);
-                console.log("GOOOOO");
 
                 let timer = setInterval(function(){
                     sec--;
