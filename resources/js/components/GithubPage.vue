@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'RedirectComponent',
+    name: 'GithubPage',
     created(){
       window.location.replace("https://osoc19.github.io/engie-hub/");
     }
