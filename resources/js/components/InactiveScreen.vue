@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row justify-content-center center-row">
+        <div class="row inactive-box">
             <div class= "col-md-5 " id="blue-man-flex">
                 <img src="images/inactive/blue-man.svg" alt="blue-man"/>
             </div>
@@ -22,7 +22,6 @@ import lottie from 'lottie-web';
 import Lottie from 'vue-lottie';
 import animationData from '../lottie/data.json';
 import Pusher from "../../../public/js/pusher/index.js";
-// import {gameHasStarted} from '../gameHasStarted.js';
 
 
 export default {
@@ -42,9 +41,7 @@ export default {
         }
     },
     mounted() {
-        // if(this.gameHasEnded == true && this.instructionScreenCanActivate == false) {
-        //     this.instructionScreenCanActivate = true;
-        // }
+
         this.startInstructions();
 
     },
@@ -66,7 +63,6 @@ export default {
                 };
                     return;
                 });
-
       }
   }
 }
@@ -74,11 +70,13 @@ export default {
 <style>
 #blue-man-flex {
     align-self: flex-end;
+    padding-left: 3rem;
 }
 
 #bottom-line {
     position: absolute;
     bottom: 0;
+    width: -webkit-fill-available;
 }
 
 #step-on {
@@ -90,6 +88,10 @@ export default {
 #inactive {
     width: 0%;
     height: 0%;
+}
+
+.inactive-box {
+    height: -webkit-fill-available;
 }
 
 .lottie-box {

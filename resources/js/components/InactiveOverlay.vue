@@ -1,5 +1,4 @@
 <template>
-
         <div id="popup1" class="overlay row">
 	            <div class="popup row align-items-center justify-content-center ">
                     <h1 id="step-on">Step back on &</h1>
@@ -60,7 +59,8 @@ export default {
 .popup {
   margin: auto;
   padding: 20px;
-  background: #EE7;
+  /* background: #EE7; */
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   width: 54%;
   position: relative;
